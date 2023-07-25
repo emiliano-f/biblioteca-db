@@ -5,21 +5,49 @@
 package dominio;
 
 import java.sql.Date;
+import java.util.ArrayList;
 /**
  *
  * @author emiliano
  */
 public class Libro {
     private String ISBN;
-    private int idAutor; // foreign
-    private String nombre;
+    private String titulo;
     private String idioma;
     private String genero;
     private int idEditorial; // foreign
     private int edicion;
     private int paginas;
     private Date fechaPublicacion;
+	private Editorial editorial;
+	private ArrayList<Autor> autores;
 
+	public Libro(String ISBN, String titulo, int edicion, int idEditorial) {
+		this.ISBN = ISBN;
+		this.titulo = titulo;
+		this.idEditorial = idEditorial;
+		this.edicion = edicion;
+	}
+	
+	public Libro(String ISBN, String titulo, int edicion, int idEditorial, Editorial editorial) {
+		this(ISBN, titulo, edicion, idEditorial);
+		this.editorial = editorial;
+	}
+	
+	public Libro(String ISBN, String titulo, int edicion, int idEditorial, Editorial editorial, ArrayList<Autor> autores) {
+		this(ISBN, titulo, edicion, idEditorial, editorial);
+		this.autores = autores;
+	}
+	
+	public Libro(String ISBN, String titulo, int edicion, int idEditorial, String idioma, String genero, int paginas, Date año) {
+		this(ISBN, titulo, edicion, idEditorial);
+		this.idioma = idioma;
+		this.genero = genero;
+		this.paginas = paginas;
+		this.fechaPublicacion = año;
+		
+	}
+	
     /**
      * @return the ISBN
      */
@@ -32,34 +60,6 @@ public class Libro {
      */
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
-    }
-
-    /**
-     * @return the idAutor
-     */
-    public int getIdAutor() {
-        return idAutor;
-    }
-
-    /**
-     * @param idAutor the idAutor to set
-     */
-    public void setIdAutor(int idAutor) {
-        this.idAutor = idAutor;
-    }
-
-    /**
-     * @return the nombre
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     /**
@@ -145,5 +145,55 @@ public class Libro {
     public void setFechaPublicacion(Date fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
     }
+
+	/**
+	 * @return the titulo
+	 */
+	public String getTitulo() {
+		return titulo;
+	}
+
+	/**
+	 * @param titulo the titulo to set
+	 */
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	/**
+	 * @return the editorial
+	 */
+	public Editorial getEditorial() {
+		return editorial;
+	}
+
+	/**
+	 * @param editorial the editorial to set
+	 */
+	public void setEditorial(Editorial editorial) {
+		this.editorial = editorial;
+	}
+
+	/**
+	 * @return the autores
+	 */
+	public ArrayList<Autor> getAutores() {
+		return autores;
+	}
+
+	/**
+	 * @param autores the autores to set
+	 */
+	public void setAutores(ArrayList<Autor> autores) {
+		this.autores = autores;
+	}
     
+	public String getAutoresString() {
+		StringBuilder autores = new StringBuilder();
+		for (Autor autor: this.autores) {
+			autores.append(autor.getApellido()).append(", ");
+			autores.append(autor.getNombre()).append("; ");
+		}
+		return autores.toString();
+	}
 }

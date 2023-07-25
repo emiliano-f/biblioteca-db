@@ -21,7 +21,6 @@ create table `biblioteca`.`bibliotecarios` (
 
 
 create table `biblioteca`.`afiliados` (
-    `id` binary(16) not null primary key,
     `nombre` varchar(50) not null,
     `apellido` varchar(30) not null,
     `legajo` int not null,
@@ -29,7 +28,8 @@ create table `biblioteca`.`afiliados` (
     `login` int not null,
     `logout` int not null,
     foreign key (`id_biblioteca_afiliacion`)
-    references `biblioteca`.`bibliotecas`(`id`)
+    references `biblioteca`.`bibliotecas`(`id`),
+    primary key (`legajo`,`id_biblioteca_afiliacion`)
 );
 
 create table `biblioteca`.`ubicaciones` (
@@ -96,20 +96,40 @@ create table `biblioteca`.`libros_autores` (
 );
 
 create table `biblioteca`.`prestamos` (
-    `id_afiliado` binary(16) not null,
+    `legajo` int not null,
+    `id_biblioteca_afiliado` int not null,
     `id_ejemplar` int not null,
     `from` date not null,
     `to` date not null,
-    foreign key (`id_afiliado`)
-    references `biblioteca`.`afiliados`(`id`),
+    foreign key (`legajo`, `id_biblioteca_afiliado`)
+    references `biblioteca`.`afiliados`(`legajo`,`id_biblioteca_afiliacion`),
     foreign key (`id_ejemplar`)
     references `biblioteca`.`ejemplares`(`id`)
 );
 
 create table `biblioteca`.`sanciones` (
-    `id_afiliado` binary(16) not null,
+    `legajo` int not null,
+    `id_biblioteca_afiliado` int not null,
     `from` date not null,
     `to` date not null,
-    foreign key (`id_afiliado`)
-    references `biblioteca`.`afiliados`(`id`)
+    foreign key (`legajo`, `id_biblioteca_afiliado`)
+    references `biblioteca`.`afiliados`(`legajo`,`id_biblioteca_afiliacion`)
 );
+
+alter table `biblioteca`.`editoriales`
+add column ciudad varchar(30),
+
+alter table `biblioteca`.`editoriales`
+drop FOREIGN KEY `editoriales_ibfk_1`;
+
+alter table `biblioteca`.`editoriales`
+drop column id_ciudad;
+
+drop table `biblioteca`.`ciudades`;
+
+alter table `biblioteca`.`afiliados`
+drop column `login`,
+drop column `logout`;
+
+alter table `biblioteca`.`afiliados`
+add column `fecha_registro` date;

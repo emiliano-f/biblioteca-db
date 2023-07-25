@@ -10,7 +10,8 @@ import java.sql.Date;
  * @author emiliano
  */
 public class Prestamo {
-    private String idAfiliado;
+    private int legajo;
+    private int idBibliotecaAfiliacion; 
     private int idEjemplar;
     private Date from;
     private Date to;

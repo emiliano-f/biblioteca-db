@@ -25,12 +25,27 @@ public class Autor {
 		this(nombre, apellido);
 		this.nacionalidad = nacionalidad;
     }
+	
+	public Autor(int idAutor, String nombre, String apellido) {
+		this(nombre, apellido);
+		this.idAutor = idAutor;
+	}
 
+	public Autor(int idAutor, String nombre, String apellido, String nacionalidad) {
+		this(nombre, apellido, nacionalidad);
+		this.idAutor = idAutor;
+    }
+	
     public Autor(String nombre, String apellido, String nacionalidad, Date fechaNacimiento) {
 		this(nombre, apellido, nacionalidad);
 		this.fechaNacimiento = fechaNacimiento;
     }
 
+	public Autor(int idAutor, String nombre, String apellido, String nacionalidad, Date fechaNacimiento) {
+		this(nombre, apellido, nacionalidad, fechaNacimiento);
+		this.idAutor = idAutor;
+    }
+	
 	/**
 	 * @return the idAutor
 	 */
@@ -101,4 +116,8 @@ public class Autor {
 		this.fechaNacimiento = fechaNacimiento;
 	}
     
+	@Override
+	public String toString(){
+		return apellido + ", " + nombre;
+	}
 }

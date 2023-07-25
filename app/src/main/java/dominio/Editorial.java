@@ -10,8 +10,23 @@ package dominio;
  */
 public class Editorial {
     private int idEditorial;
-    private int idCiudad; //foreign
     private String nombre;
+	private String ciudad;
+
+	public Editorial(String nombre, String ciudad) {
+		this.nombre = nombre;
+		this.ciudad = ciudad;
+	}
+	
+	public Editorial(int idEditorial, String nombre) {
+		this.nombre = nombre;
+		this.idEditorial = idEditorial;
+	}
+	
+	public Editorial(int idEditorial, String nombre, String ciudad) {
+		this(nombre, ciudad);
+		this.idEditorial = idEditorial;
+	}
 
     /**
      * @return the idEditorial
@@ -28,20 +43,6 @@ public class Editorial {
     }
 
     /**
-     * @return the idCiudad
-     */
-    public int getIdCiudad() {
-        return idCiudad;
-    }
-
-    /**
-     * @param idCiudad the idCiudad to set
-     */
-    public void setIdCiudad(int idCiudad) {
-        this.idCiudad = idCiudad;
-    }
-
-    /**
      * @return the nombre
      */
     public String getNombre() {
@@ -54,5 +55,23 @@ public class Editorial {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+	/**
+	 * @return the ciudad
+	 */
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	/**
+	 * @param ciudad the ciudad to set
+	 */
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
     
+	@Override
+	public String toString() {
+		return nombre + " (" + ciudad + ")";
+	}
 }

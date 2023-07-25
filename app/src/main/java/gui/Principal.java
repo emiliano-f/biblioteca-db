@@ -3,12 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gui;
+import dominio.Afiliado;
 import dominio.Autor;
+import dominio.Biblioteca;
+import dominio.Editorial;
+import dominio.Libro;
 import java.awt.CardLayout;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import persistencia.AfiliadosDAO;
 import persistencia.AutoresDAO;
+import persistencia.BibliotecasDAO;
+import persistencia.EditorialesDAO;
+import persistencia.LibrosDAO;
 /**
  *
  * @author emiliano
@@ -20,6 +26,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+		initListasDesplegables();
     }
 
     /**
@@ -31,8 +38,18 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroupBuscarLibros = new javax.swing.ButtonGroup();
         buttonGroupBuscarAutor = new javax.swing.ButtonGroup();
+        buttonGroupModificarAutor = new javax.swing.ButtonGroup();
+        buttonGroupEliminarAutor = new javax.swing.ButtonGroup();
+        buttonGroupEditorialBuscar = new javax.swing.ButtonGroup();
+        buttonGroupEditorialModificar = new javax.swing.ButtonGroup();
+        buttonGroupEditorialEliminar = new javax.swing.ButtonGroup();
+        buttonGroupAfiliadoBuscar = new javax.swing.ButtonGroup();
+        buttonGroupAfiliadoModificar = new javax.swing.ButtonGroup();
+        buttonGroupAfiliadoEliminar = new javax.swing.ButtonGroup();
+        buttonGroupLibrosBuscar = new javax.swing.ButtonGroup();
+        buttonGroupLibrosModificar = new javax.swing.ButtonGroup();
+        buttonGroupLibrosEliminar = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         panelPrestamos = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -40,43 +57,135 @@ public class Principal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         panelAfiliados = new javax.swing.JPanel();
+        afiliadoEliminar = new javax.swing.JButton();
+        afiliadoModificar = new javax.swing.JButton();
+        afiliadoBuscar = new javax.swing.JButton();
+        afiliadoNuevo = new javax.swing.JButton();
+        cardLayoutAfiliadoTabla = new javax.swing.JPanel();
+        subPanelAfiliadoTablaBuscar = new javax.swing.JPanel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        tablaAfiliadoBuscar = new javax.swing.JTable();
+        subPanelAfiliadoTablaModificar = new javax.swing.JPanel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        tablaAfiliadoModificar = new javax.swing.JTable();
+        labelAfiliadoTablaModificarNombre = new javax.swing.JLabel();
+        labelAfiliadoTablaModificarApellido = new javax.swing.JLabel();
+        textoAfiliadoTablaModificarNombre = new javax.swing.JTextField();
+        textoAfiliadoTablaModificarApellido = new javax.swing.JTextField();
+        buttonAfiliadoTablaModificar = new javax.swing.JButton();
+        subPanelAfiliadoTablaEliminar = new javax.swing.JPanel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        tablaAfiliadoEliminar = new javax.swing.JTable();
+        subPanelAfiliadoTablaNuevo = new javax.swing.JPanel();
+        labelAfiliadoTablaNuevoNombre = new javax.swing.JLabel();
+        labelAfiliadoTablaNuevoApellido = new javax.swing.JLabel();
+        textoAfiliadoTablaNuevoNombre = new javax.swing.JTextField();
+        textoAfiliadoTablaNuevoApellido = new javax.swing.JTextField();
+        buttonAfiliadoTablaNuevo = new javax.swing.JButton();
+        textoAfiliadoTablaNuevoLegajo = new javax.swing.JTextField();
+        labelAfiliadoTablaNuevoLegajo = new javax.swing.JLabel();
+        listaAfiliadoTablaNuevo = new javax.swing.JComboBox();
+        labelAfiliadoTablaNuevoBiblioteca = new javax.swing.JLabel();
+        cardLayoutAfiliadoCampos = new javax.swing.JPanel();
+        subPanelAfiliadoNuevo = new javax.swing.JPanel();
+        subPanelAfiliadoModificar = new javax.swing.JPanel();
+        radioAfiliadoModificarNombre = new javax.swing.JRadioButton();
+        radioAfiliadoModificarApellido = new javax.swing.JRadioButton();
+        textoAfiliadoModificar = new javax.swing.JTextField();
+        buttonAfiliadoModificar = new javax.swing.JButton();
+        radioAfiliadoModificarLegajo = new javax.swing.JRadioButton();
+        subPanelAfiliadoEliminar = new javax.swing.JPanel();
+        radioAfiliadoEliminarNombre = new javax.swing.JRadioButton();
+        radioAfiliadoEliminarApellido = new javax.swing.JRadioButton();
+        textoAfiliadoEliminar = new javax.swing.JTextField();
+        buttonAfiliadoEliminar = new javax.swing.JButton();
+        buttonAfiliadoEliminarAccion = new javax.swing.JButton();
+        radioAfiliadoEliminarLegajo = new javax.swing.JRadioButton();
+        subPanelAfiliadoBuscar = new javax.swing.JPanel();
+        radioAfiliadoBuscarNombre = new javax.swing.JRadioButton();
+        radioAfiliadoBuscarApellido = new javax.swing.JRadioButton();
+        textoAfiliadoBuscar = new javax.swing.JTextField();
+        buttonAfiliadoBuscar = new javax.swing.JButton();
+        radioAfiliadoBuscarLegajo = new javax.swing.JRadioButton();
         panelLibros = new javax.swing.JPanel();
         librosNuevo = new javax.swing.JButton();
         librosBuscar = new javax.swing.JButton();
         librosModificar = new javax.swing.JButton();
         librosEliminar = new javax.swing.JButton();
-        cardLayoutCamposLibros = new javax.swing.JPanel();
-        subPanelNuevoLibros = new javax.swing.JPanel();
-        subPanelModificarLibros = new javax.swing.JPanel();
-        subPanelEliminarLibros = new javax.swing.JPanel();
-        subPanelBuscarLibros = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        textoBuscarLibros = new javax.swing.JTextField();
-        buttonBuscarLibros = new javax.swing.JButton();
-        cardLayoutTablaLibros = new javax.swing.JPanel();
-        subPanelBuscarTablaLibros = new javax.swing.JPanel();
+        cardLayoutLibrosCampos = new javax.swing.JPanel();
+        subPanelLibrosNuevo = new javax.swing.JPanel();
+        subPanelLibrosModificar = new javax.swing.JPanel();
+        radioLibrosModificarTitulo = new javax.swing.JRadioButton();
+        radioLibrosModificarISBN = new javax.swing.JRadioButton();
+        radioLibrosModificarAutor = new javax.swing.JRadioButton();
+        textoLibrosModificar = new javax.swing.JTextField();
+        buttonLibrosModificar = new javax.swing.JButton();
+        subPanelLibrosEliminar = new javax.swing.JPanel();
+        radioLibrosEliminarTitulo = new javax.swing.JRadioButton();
+        radioLibrosEliminarISBN = new javax.swing.JRadioButton();
+        radioLibrosEliminarAutor = new javax.swing.JRadioButton();
+        textoLibrosEliminar = new javax.swing.JTextField();
+        buttonLibrosEliminar = new javax.swing.JButton();
+        buttonLibrosEliminarAccion = new javax.swing.JButton();
+        subPanelLibrosBuscar = new javax.swing.JPanel();
+        radioLibrosBuscarTitulo = new javax.swing.JRadioButton();
+        radioLibrosBuscarISBN = new javax.swing.JRadioButton();
+        radioLibrosBuscarAutor = new javax.swing.JRadioButton();
+        textoLibrosBuscar = new javax.swing.JTextField();
+        buttonLibrosBuscar = new javax.swing.JButton();
+        cardLayoutLibrosTabla = new javax.swing.JPanel();
+        subPanelLibrosTablaBuscar = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        subPanelModificarTablaLibros = new javax.swing.JPanel();
-        subPanelEliminarTablaLibros = new javax.swing.JPanel();
-        subPanelNuevoTablaLibros = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        tablaLibrosBuscar = new javax.swing.JTable();
+        subPanelLibrosTablaModificar = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tablaLibrosModificar = new javax.swing.JTable();
+        textoLibrosModificarEdicion = new javax.swing.JTextField();
+        labelLibrosModificarPaginas = new javax.swing.JLabel();
+        textoLibrosModificarIdioma = new javax.swing.JTextField();
+        labelLibrosModificarTitulo = new javax.swing.JLabel();
+        textoLibrosModificarAño = new javax.swing.JTextField();
+        listaLibrosModificarEditorial = new javax.swing.JComboBox();
+        buttonLibrosModificarEditorial = new javax.swing.JButton();
+        textoLibrosModificarPaginas = new javax.swing.JTextField();
+        labelLibrosModificarGenero = new javax.swing.JLabel();
+        textoLibrosModificarGenero = new javax.swing.JTextField();
+        labelLibrosModificarEditorial = new javax.swing.JLabel();
+        labelLibrosModificarEdicion = new javax.swing.JLabel();
+        textoLibrosModificarTitulo = new javax.swing.JTextField();
+        labelLibrosModificarAño = new javax.swing.JLabel();
+        labelLibrosModificarIdioma = new javax.swing.JLabel();
+        textoLibrosModificarEditorial = new javax.swing.JTextField();
+        labelLibrosModificarISBN = new javax.swing.JLabel();
+        textoLibrosModificarISBN = new javax.swing.JTextField();
+        buttonLibrosTablaModificar = new javax.swing.JButton();
+        subPanelLibrosTablaEliminar = new javax.swing.JPanel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        tablaLibrosEliminar = new javax.swing.JTable();
+        subPanelLibrosTablaNuevo = new javax.swing.JPanel();
+        labelLibrosNuevoISBN = new javax.swing.JLabel();
+        labelLibrosNuevoTitulo = new javax.swing.JLabel();
+        labelLibrosNuevoIdioma = new javax.swing.JLabel();
+        labelLibrosNuevoGenero = new javax.swing.JLabel();
+        labelLibrosNuevoAño = new javax.swing.JLabel();
+        labelLibrosNuevoPaginas = new javax.swing.JLabel();
+        textoLibrosNuevoISBN = new javax.swing.JTextField();
+        textoLibrosNuevoTitulo = new javax.swing.JTextField();
+        textoLibrosNuevoIdioma = new javax.swing.JTextField();
+        textoLibrosNuevoGenero = new javax.swing.JTextField();
+        textoLibrosNuevoEdicion = new javax.swing.JTextField();
+        textoLibrosNuevoPaginas = new javax.swing.JTextField();
+        textoLibrosNuevoAño = new javax.swing.JTextField();
+        textoLibrosNuevoEditorial = new javax.swing.JTextField();
+        labelLibrosNuevoEdicion = new javax.swing.JLabel();
+        labelLibrosNuevoEditorial = new javax.swing.JLabel();
+        buttonLibrosNuevoEditorial = new javax.swing.JButton();
+        listaLibrosNuevoEditorial = new javax.swing.JComboBox();
+        labelLibrosNuevoAutor = new javax.swing.JLabel();
+        textoLibrosNuevoAutor = new javax.swing.JTextField();
+        buttonLibrosNuevoAutor = new javax.swing.JButton();
+        listaLibrosNuevoAutor = new javax.swing.JComboBox();
+        buttonLibrosTablaNuevo = new javax.swing.JButton();
         panelAutores = new javax.swing.JPanel();
         autorNuevo = new javax.swing.JButton();
         autorBuscar = new javax.swing.JButton();
@@ -85,7 +194,18 @@ public class Principal extends javax.swing.JFrame {
         cardLayoutCamposAutor = new javax.swing.JPanel();
         subPanelNuevoAutor = new javax.swing.JPanel();
         subPanelModificarAutor = new javax.swing.JPanel();
+        radioNombreModificarAutor = new javax.swing.JRadioButton();
+        radioApellidoModificarAutor = new javax.swing.JRadioButton();
+        radioNacionalidadModificarAutor = new javax.swing.JRadioButton();
+        textoModificarAutor = new javax.swing.JTextField();
+        buttonModificarAutor = new javax.swing.JButton();
         subPanelEliminarAutor = new javax.swing.JPanel();
+        radioNombreEliminarAutor = new javax.swing.JRadioButton();
+        radioApellidoEliminarAutor = new javax.swing.JRadioButton();
+        radioNacionalidadEliminarAutor = new javax.swing.JRadioButton();
+        textoEliminarAutor = new javax.swing.JTextField();
+        buttonEliminarAutor = new javax.swing.JButton();
+        buttonEliminarAccionAutor = new javax.swing.JButton();
         subPanelBuscarAutor = new javax.swing.JPanel();
         radioNombreBuscarAutor = new javax.swing.JRadioButton();
         radioApellidoBuscarAutor = new javax.swing.JRadioButton();
@@ -97,24 +217,74 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaBuscarAutor = new javax.swing.JTable();
         subPanelModificarTablaAutor = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tablaModificarAutor = new javax.swing.JTable();
+        labelModificarTablaNombreAutor = new javax.swing.JLabel();
+        labelModificarTablaApellidoAutor = new javax.swing.JLabel();
+        labelModificarTablaNacionalidadAutor = new javax.swing.JLabel();
+        textoModificarTablaNombreAutor = new javax.swing.JTextField();
+        labelModificarTablaFechaAutor = new javax.swing.JLabel();
+        textoModificarTablaApellidoAutor = new javax.swing.JTextField();
+        textoModificarTablaNacionalidadAutor = new javax.swing.JTextField();
+        textoModificarTablaFechaAutor = new javax.swing.JTextField();
+        buttonModificarTablaAutor = new javax.swing.JButton();
         subPanelEliminarTablaAutor = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tablaEliminarAutor = new javax.swing.JTable();
         subPanelNuevoTablaAutor = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
-        jTextField16 = new javax.swing.JTextField();
+        labelNuevoTablaNombreAutor = new javax.swing.JLabel();
+        labelNuevoTablaApellidoAutor = new javax.swing.JLabel();
+        labelNuevoTablaNacionalidadAutor = new javax.swing.JLabel();
+        labelNuevoTablaFechaAutor = new javax.swing.JLabel();
+        textoNuevoTablaNombreAutor = new javax.swing.JTextField();
+        textoNuevoTablaApellidoAutor = new javax.swing.JTextField();
+        textoNuevoTablaNacionalidadAutor = new javax.swing.JTextField();
+        textoNuevoTablaFechaAutor = new javax.swing.JTextField();
+        buttonNuevoTablaAutor = new javax.swing.JButton();
         panelEditoriales = new javax.swing.JPanel();
+        editorialNuevo = new javax.swing.JButton();
+        editorialBuscar = new javax.swing.JButton();
+        editorialModificar = new javax.swing.JButton();
+        editorialEliminar = new javax.swing.JButton();
+        cardLayoutEditorialCampos = new javax.swing.JPanel();
+        subPanelEditorialNuevo = new javax.swing.JPanel();
+        subPanelEditorialModificar = new javax.swing.JPanel();
+        radioEditorialModificarNombre = new javax.swing.JRadioButton();
+        radioEditorialModificarCiudad = new javax.swing.JRadioButton();
+        textoEditorialModificar = new javax.swing.JTextField();
+        buttonEditorialModificar = new javax.swing.JButton();
+        subPanelEditorialEliminar = new javax.swing.JPanel();
+        radioEditorialEliminarNombre = new javax.swing.JRadioButton();
+        radioEditorialEliminarCiudad = new javax.swing.JRadioButton();
+        textoEditorialEliminar = new javax.swing.JTextField();
+        buttonEditorialEliminar = new javax.swing.JButton();
+        buttonEditorialEliminarAccion = new javax.swing.JButton();
+        subPanelEditorialBuscar = new javax.swing.JPanel();
+        radioEditorialBuscarNombre = new javax.swing.JRadioButton();
+        radioEditorialBuscarCiudad = new javax.swing.JRadioButton();
+        textoEditorialBuscar = new javax.swing.JTextField();
+        buttonEditorialBuscar = new javax.swing.JButton();
+        cardLayoutEditorialTabla = new javax.swing.JPanel();
+        subPanelEditorialTablaBuscar = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tablaEditorialBuscar = new javax.swing.JTable();
+        subPanelEditorialTablaModificar = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tablaEditorialModificar = new javax.swing.JTable();
+        labelEditorialTablaModificarNombre = new javax.swing.JLabel();
+        labelEditorialTablaModificarCiudad = new javax.swing.JLabel();
+        textoEditorialTablaModificarNombre = new javax.swing.JTextField();
+        textoEditorialTablaModificarCiudad = new javax.swing.JTextField();
+        buttonEditorialTablaModificar = new javax.swing.JButton();
+        subPanelEditorialTablaEliminar = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tablaEditorialEliminar = new javax.swing.JTable();
+        subPanelEditorialTablaNuevo = new javax.swing.JPanel();
+        labelEditorialTablaNuevoNombre = new javax.swing.JLabel();
+        labelEditorialTablaNuevoCiudad = new javax.swing.JLabel();
+        textoEditorialTablaNuevoNombre = new javax.swing.JTextField();
+        textoEditorialTablaNuevoCiudad = new javax.swing.JTextField();
+        buttonEditorialTablaNuevo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,15 +330,555 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Prestamos", panelPrestamos);
 
+        afiliadoEliminar.setText("Eliminar");
+        afiliadoEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                afiliadoEliminarActionPerformed(evt);
+            }
+        });
+
+        afiliadoModificar.setText("Modificar");
+        afiliadoModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                afiliadoModificarActionPerformed(evt);
+            }
+        });
+
+        afiliadoBuscar.setText("Buscar");
+        afiliadoBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                afiliadoBuscarActionPerformed(evt);
+            }
+        });
+
+        afiliadoNuevo.setText("Nuevo");
+        afiliadoNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                afiliadoNuevoActionPerformed(evt);
+            }
+        });
+
+        cardLayoutAfiliadoTabla.setLayout(new java.awt.CardLayout());
+
+        tablaAfiliadoBuscar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Legajo", "Nombre", "Apellido", "Biblioteca", "Dependencia", "Fecha de Registro"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane11.setViewportView(tablaAfiliadoBuscar);
+
+        javax.swing.GroupLayout subPanelAfiliadoTablaBuscarLayout = new javax.swing.GroupLayout(subPanelAfiliadoTablaBuscar);
+        subPanelAfiliadoTablaBuscar.setLayout(subPanelAfiliadoTablaBuscarLayout);
+        subPanelAfiliadoTablaBuscarLayout.setHorizontalGroup(
+            subPanelAfiliadoTablaBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelAfiliadoTablaBuscarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 1096, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        subPanelAfiliadoTablaBuscarLayout.setVerticalGroup(
+            subPanelAfiliadoTablaBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelAfiliadoTablaBuscarLayout.createSequentialGroup()
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 15, Short.MAX_VALUE))
+        );
+
+        cardLayoutAfiliadoTabla.add(subPanelAfiliadoTablaBuscar, "cardAfiliadoTablaBuscar");
+
+        tablaAfiliadoModificar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Legajo", "Nombre", "Apellido", "Biblioteca", "Dependencia", "Fecha de Registro"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tablaAfiliadoModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaAfiliadoModificarMouseClicked(evt);
+            }
+        });
+        jScrollPane12.setViewportView(tablaAfiliadoModificar);
+
+        labelAfiliadoTablaModificarNombre.setText("Nombre*");
+
+        labelAfiliadoTablaModificarApellido.setText("Apellido*");
+
+        buttonAfiliadoTablaModificar.setText("Modificar");
+        buttonAfiliadoTablaModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAfiliadoTablaModificarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout subPanelAfiliadoTablaModificarLayout = new javax.swing.GroupLayout(subPanelAfiliadoTablaModificar);
+        subPanelAfiliadoTablaModificar.setLayout(subPanelAfiliadoTablaModificarLayout);
+        subPanelAfiliadoTablaModificarLayout.setHorizontalGroup(
+            subPanelAfiliadoTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelAfiliadoTablaModificarLayout.createSequentialGroup()
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelAfiliadoTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(subPanelAfiliadoTablaModificarLayout.createSequentialGroup()
+                        .addGroup(subPanelAfiliadoTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelAfiliadoTablaModificarNombre)
+                            .addComponent(labelAfiliadoTablaModificarApellido))
+                        .addGap(18, 18, 18)
+                        .addGroup(subPanelAfiliadoTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(textoAfiliadoTablaModificarApellido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                            .addComponent(textoAfiliadoTablaModificarNombre, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addComponent(buttonAfiliadoTablaModificar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        subPanelAfiliadoTablaModificarLayout.setVerticalGroup(
+            subPanelAfiliadoTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+            .addGroup(subPanelAfiliadoTablaModificarLayout.createSequentialGroup()
+                .addGap(152, 152, 152)
+                .addGroup(subPanelAfiliadoTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelAfiliadoTablaModificarNombre)
+                    .addComponent(textoAfiliadoTablaModificarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelAfiliadoTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoAfiliadoTablaModificarApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelAfiliadoTablaModificarApellido))
+                .addGap(80, 80, 80)
+                .addComponent(buttonAfiliadoTablaModificar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        cardLayoutAfiliadoTabla.add(subPanelAfiliadoTablaModificar, "cardAfiliadoTablaModificar");
+
+        tablaAfiliadoEliminar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Legajo", "Nombre", "Ciudad", "Biblioteca", "Dependencia", "Fecha de Registro"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tablaAfiliadoEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaAfiliadoEliminarMouseClicked(evt);
+            }
+        });
+        jScrollPane13.setViewportView(tablaAfiliadoEliminar);
+
+        javax.swing.GroupLayout subPanelAfiliadoTablaEliminarLayout = new javax.swing.GroupLayout(subPanelAfiliadoTablaEliminar);
+        subPanelAfiliadoTablaEliminar.setLayout(subPanelAfiliadoTablaEliminarLayout);
+        subPanelAfiliadoTablaEliminarLayout.setHorizontalGroup(
+            subPanelAfiliadoTablaEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelAfiliadoTablaEliminarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 1096, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        subPanelAfiliadoTablaEliminarLayout.setVerticalGroup(
+            subPanelAfiliadoTablaEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+        );
+
+        cardLayoutAfiliadoTabla.add(subPanelAfiliadoTablaEliminar, "cardAfiliadoTablaEliminar");
+
+        labelAfiliadoTablaNuevoNombre.setText("Nombre*");
+
+        labelAfiliadoTablaNuevoApellido.setText("Apellido*");
+
+        textoAfiliadoTablaNuevoNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoAfiliadoTablaNuevoNombreActionPerformed(evt);
+            }
+        });
+
+        textoAfiliadoTablaNuevoApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoAfiliadoTablaNuevoApellidoActionPerformed(evt);
+            }
+        });
+
+        buttonAfiliadoTablaNuevo.setText("Añadir");
+        buttonAfiliadoTablaNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAfiliadoTablaNuevoActionPerformed(evt);
+            }
+        });
+
+        textoAfiliadoTablaNuevoLegajo.setToolTipText("");
+        textoAfiliadoTablaNuevoLegajo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        textoAfiliadoTablaNuevoLegajo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoAfiliadoTablaNuevoLegajoActionPerformed(evt);
+            }
+        });
+
+        labelAfiliadoTablaNuevoLegajo.setText("Legajo*");
+
+        listaAfiliadoTablaNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaAfiliadoTablaNuevoActionPerformed(evt);
+            }
+        });
+
+        labelAfiliadoTablaNuevoBiblioteca.setText("Biblioteca*");
+
+        javax.swing.GroupLayout subPanelAfiliadoTablaNuevoLayout = new javax.swing.GroupLayout(subPanelAfiliadoTablaNuevo);
+        subPanelAfiliadoTablaNuevo.setLayout(subPanelAfiliadoTablaNuevoLayout);
+        subPanelAfiliadoTablaNuevoLayout.setHorizontalGroup(
+            subPanelAfiliadoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelAfiliadoTablaNuevoLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addGroup(subPanelAfiliadoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonAfiliadoTablaNuevo)
+                    .addGroup(subPanelAfiliadoTablaNuevoLayout.createSequentialGroup()
+                        .addGroup(subPanelAfiliadoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelAfiliadoTablaNuevoApellido)
+                            .addComponent(labelAfiliadoTablaNuevoNombre)
+                            .addComponent(labelAfiliadoTablaNuevoLegajo)
+                            .addComponent(labelAfiliadoTablaNuevoBiblioteca))
+                        .addGap(18, 18, 18)
+                        .addGroup(subPanelAfiliadoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(listaAfiliadoTablaNuevo, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textoAfiliadoTablaNuevoNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                            .addComponent(textoAfiliadoTablaNuevoApellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                            .addComponent(textoAfiliadoTablaNuevoLegajo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))))
+                .addContainerGap(639, Short.MAX_VALUE))
+        );
+        subPanelAfiliadoTablaNuevoLayout.setVerticalGroup(
+            subPanelAfiliadoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelAfiliadoTablaNuevoLayout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addGroup(subPanelAfiliadoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoAfiliadoTablaNuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelAfiliadoTablaNuevoNombre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelAfiliadoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoAfiliadoTablaNuevoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelAfiliadoTablaNuevoApellido))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelAfiliadoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoAfiliadoTablaNuevoLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelAfiliadoTablaNuevoLegajo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelAfiliadoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(listaAfiliadoTablaNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelAfiliadoTablaNuevoBiblioteca))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonAfiliadoTablaNuevo)
+                .addContainerGap(224, Short.MAX_VALUE))
+        );
+
+        cardLayoutAfiliadoTabla.add(subPanelAfiliadoTablaNuevo, "cardAfiliadoTablaNuevo");
+
+        cardLayoutAfiliadoCampos.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout subPanelAfiliadoNuevoLayout = new javax.swing.GroupLayout(subPanelAfiliadoNuevo);
+        subPanelAfiliadoNuevo.setLayout(subPanelAfiliadoNuevoLayout);
+        subPanelAfiliadoNuevoLayout.setHorizontalGroup(
+            subPanelAfiliadoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 999, Short.MAX_VALUE)
+        );
+        subPanelAfiliadoNuevoLayout.setVerticalGroup(
+            subPanelAfiliadoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 118, Short.MAX_VALUE)
+        );
+
+        cardLayoutAfiliadoCampos.add(subPanelAfiliadoNuevo, "cardAfiliadoNuevo");
+
+        buttonGroupAfiliadoModificar.add(radioAfiliadoModificarNombre);
+        radioAfiliadoModificarNombre.setSelected(true);
+        radioAfiliadoModificarNombre.setText("Nombre");
+        radioAfiliadoModificarNombre.setActionCommand("nombre");
+
+        buttonGroupAfiliadoModificar.add(radioAfiliadoModificarApellido);
+        radioAfiliadoModificarApellido.setText("Apellido");
+        radioAfiliadoModificarApellido.setActionCommand("apellido");
+        radioAfiliadoModificarApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioAfiliadoModificarApellidoActionPerformed(evt);
+            }
+        });
+
+        textoAfiliadoModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoAfiliadoModificarActionPerformed(evt);
+            }
+        });
+
+        buttonAfiliadoModificar.setText("Buscar");
+        buttonAfiliadoModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAfiliadoModificarActionPerformed(evt);
+            }
+        });
+
+        buttonGroupAfiliadoModificar.add(radioAfiliadoModificarLegajo);
+        radioAfiliadoModificarLegajo.setText("Legajo");
+        radioAfiliadoModificarLegajo.setActionCommand("legajo");
+        radioAfiliadoModificarLegajo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioAfiliadoModificarLegajoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout subPanelAfiliadoModificarLayout = new javax.swing.GroupLayout(subPanelAfiliadoModificar);
+        subPanelAfiliadoModificar.setLayout(subPanelAfiliadoModificarLayout);
+        subPanelAfiliadoModificarLayout.setHorizontalGroup(
+            subPanelAfiliadoModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelAfiliadoModificarLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(subPanelAfiliadoModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(subPanelAfiliadoModificarLayout.createSequentialGroup()
+                        .addComponent(radioAfiliadoModificarLegajo)
+                        .addGap(127, 127, 127)
+                        .addComponent(textoAfiliadoModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonAfiliadoModificar))
+                    .addComponent(radioAfiliadoModificarNombre)
+                    .addComponent(radioAfiliadoModificarApellido))
+                .addContainerGap(202, Short.MAX_VALUE))
+        );
+        subPanelAfiliadoModificarLayout.setVerticalGroup(
+            subPanelAfiliadoModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelAfiliadoModificarLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(radioAfiliadoModificarNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioAfiliadoModificarApellido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelAfiliadoModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(subPanelAfiliadoModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(textoAfiliadoModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonAfiliadoModificar))
+                    .addComponent(radioAfiliadoModificarLegajo))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        cardLayoutAfiliadoCampos.add(subPanelAfiliadoModificar, "cardAfiliadoModificar");
+
+        buttonGroupAfiliadoEliminar.add(radioAfiliadoEliminarNombre);
+        radioAfiliadoEliminarNombre.setSelected(true);
+        radioAfiliadoEliminarNombre.setText("Nombre");
+        radioAfiliadoEliminarNombre.setActionCommand("nombre");
+
+        buttonGroupAfiliadoEliminar.add(radioAfiliadoEliminarApellido);
+        radioAfiliadoEliminarApellido.setText("Apellido");
+        radioAfiliadoEliminarApellido.setActionCommand("apellido");
+        radioAfiliadoEliminarApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioAfiliadoEliminarApellidoActionPerformed(evt);
+            }
+        });
+
+        textoAfiliadoEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoAfiliadoEliminarActionPerformed(evt);
+            }
+        });
+
+        buttonAfiliadoEliminar.setText("Buscar");
+        buttonAfiliadoEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAfiliadoEliminarActionPerformed(evt);
+            }
+        });
+
+        buttonAfiliadoEliminarAccion.setText("Eliminar");
+        buttonAfiliadoEliminarAccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAfiliadoEliminarAccionActionPerformed(evt);
+            }
+        });
+
+        buttonGroupAfiliadoEliminar.add(radioAfiliadoEliminarLegajo);
+        radioAfiliadoEliminarLegajo.setText("Legajo");
+        radioAfiliadoEliminarLegajo.setActionCommand("legajo");
+        radioAfiliadoEliminarLegajo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioAfiliadoEliminarLegajoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout subPanelAfiliadoEliminarLayout = new javax.swing.GroupLayout(subPanelAfiliadoEliminar);
+        subPanelAfiliadoEliminar.setLayout(subPanelAfiliadoEliminarLayout);
+        subPanelAfiliadoEliminarLayout.setHorizontalGroup(
+            subPanelAfiliadoEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelAfiliadoEliminarLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(subPanelAfiliadoEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(subPanelAfiliadoEliminarLayout.createSequentialGroup()
+                        .addComponent(radioAfiliadoEliminarLegajo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                        .addComponent(textoAfiliadoEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonAfiliadoEliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                        .addComponent(buttonAfiliadoEliminarAccion))
+                    .addComponent(radioAfiliadoEliminarNombre)
+                    .addComponent(radioAfiliadoEliminarApellido))
+                .addContainerGap())
+        );
+        subPanelAfiliadoEliminarLayout.setVerticalGroup(
+            subPanelAfiliadoEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelAfiliadoEliminarLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(radioAfiliadoEliminarNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioAfiliadoEliminarApellido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelAfiliadoEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioAfiliadoEliminarLegajo)
+                    .addComponent(textoAfiliadoEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonAfiliadoEliminar)
+                    .addComponent(buttonAfiliadoEliminarAccion))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        cardLayoutAfiliadoCampos.add(subPanelAfiliadoEliminar, "cardAfiliadoEliminar");
+
+        subPanelAfiliadoBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        buttonGroupAfiliadoBuscar.add(radioAfiliadoBuscarNombre);
+        radioAfiliadoBuscarNombre.setText("Nombre");
+        radioAfiliadoBuscarNombre.setActionCommand("nombre");
+
+        buttonGroupAfiliadoBuscar.add(radioAfiliadoBuscarApellido);
+        radioAfiliadoBuscarApellido.setText("Apellido");
+        radioAfiliadoBuscarApellido.setActionCommand("apellido");
+        radioAfiliadoBuscarApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioAfiliadoBuscarApellidoActionPerformed(evt);
+            }
+        });
+
+        textoAfiliadoBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoAfiliadoBuscarActionPerformed(evt);
+            }
+        });
+
+        buttonAfiliadoBuscar.setText("Buscar");
+        buttonAfiliadoBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAfiliadoBuscarActionPerformed(evt);
+            }
+        });
+
+        buttonGroupAfiliadoBuscar.add(radioAfiliadoBuscarLegajo);
+        radioAfiliadoBuscarLegajo.setText("Legajo");
+        radioAfiliadoBuscarLegajo.setActionCommand("legajo");
+        radioAfiliadoBuscarLegajo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioAfiliadoBuscarLegajoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout subPanelAfiliadoBuscarLayout = new javax.swing.GroupLayout(subPanelAfiliadoBuscar);
+        subPanelAfiliadoBuscar.setLayout(subPanelAfiliadoBuscarLayout);
+        subPanelAfiliadoBuscarLayout.setHorizontalGroup(
+            subPanelAfiliadoBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelAfiliadoBuscarLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(subPanelAfiliadoBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(subPanelAfiliadoBuscarLayout.createSequentialGroup()
+                        .addComponent(radioAfiliadoBuscarLegajo)
+                        .addGap(127, 127, 127)
+                        .addComponent(textoAfiliadoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonAfiliadoBuscar))
+                    .addComponent(radioAfiliadoBuscarNombre)
+                    .addComponent(radioAfiliadoBuscarApellido))
+                .addContainerGap(202, Short.MAX_VALUE))
+        );
+        subPanelAfiliadoBuscarLayout.setVerticalGroup(
+            subPanelAfiliadoBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelAfiliadoBuscarLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(radioAfiliadoBuscarNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioAfiliadoBuscarApellido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelAfiliadoBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(subPanelAfiliadoBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(textoAfiliadoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonAfiliadoBuscar))
+                    .addComponent(radioAfiliadoBuscarLegajo))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        cardLayoutAfiliadoCampos.add(subPanelAfiliadoBuscar, "cardAfiliadoBuscar");
+
         javax.swing.GroupLayout panelAfiliadosLayout = new javax.swing.GroupLayout(panelAfiliados);
         panelAfiliados.setLayout(panelAfiliadosLayout);
         panelAfiliadosLayout.setHorizontalGroup(
             panelAfiliadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1108, Short.MAX_VALUE)
+            .addGroup(panelAfiliadosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAfiliadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(afiliadoBuscar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(afiliadoModificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(afiliadoEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(afiliadoNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(1016, Short.MAX_VALUE))
+            .addGroup(panelAfiliadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelAfiliadosLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(cardLayoutAfiliadoTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(panelAfiliadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAfiliadosLayout.createSequentialGroup()
+                    .addContainerGap(103, Short.MAX_VALUE)
+                    .addComponent(cardLayoutAfiliadoCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 999, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
         panelAfiliadosLayout.setVerticalGroup(
             panelAfiliadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 607, Short.MAX_VALUE)
+            .addGroup(panelAfiliadosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(afiliadoBuscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(afiliadoNuevo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(afiliadoModificar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(afiliadoEliminar)
+                .addContainerGap(483, Short.MAX_VALUE))
+            .addGroup(panelAfiliadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAfiliadosLayout.createSequentialGroup()
+                    .addContainerGap(131, Short.MAX_VALUE)
+                    .addComponent(cardLayoutAfiliadoTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+            .addGroup(panelAfiliadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelAfiliadosLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(cardLayoutAfiliadoCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(483, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Afiliados", panelAfiliados);
@@ -201,290 +911,565 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        cardLayoutCamposLibros.setLayout(new java.awt.CardLayout());
+        cardLayoutLibrosCampos.setLayout(new java.awt.CardLayout());
 
-        javax.swing.GroupLayout subPanelNuevoLibrosLayout = new javax.swing.GroupLayout(subPanelNuevoLibros);
-        subPanelNuevoLibros.setLayout(subPanelNuevoLibrosLayout);
-        subPanelNuevoLibrosLayout.setHorizontalGroup(
-            subPanelNuevoLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout subPanelLibrosNuevoLayout = new javax.swing.GroupLayout(subPanelLibrosNuevo);
+        subPanelLibrosNuevo.setLayout(subPanelLibrosNuevoLayout);
+        subPanelLibrosNuevoLayout.setHorizontalGroup(
+            subPanelLibrosNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 998, Short.MAX_VALUE)
         );
-        subPanelNuevoLibrosLayout.setVerticalGroup(
-            subPanelNuevoLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        subPanelLibrosNuevoLayout.setVerticalGroup(
+            subPanelLibrosNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 118, Short.MAX_VALUE)
         );
 
-        cardLayoutCamposLibros.add(subPanelNuevoLibros, "cardNuevoLibros");
+        cardLayoutLibrosCampos.add(subPanelLibrosNuevo, "cardLibrosNuevo");
 
-        javax.swing.GroupLayout subPanelModificarLibrosLayout = new javax.swing.GroupLayout(subPanelModificarLibros);
-        subPanelModificarLibros.setLayout(subPanelModificarLibrosLayout);
-        subPanelModificarLibrosLayout.setHorizontalGroup(
-            subPanelModificarLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 998, Short.MAX_VALUE)
-        );
-        subPanelModificarLibrosLayout.setVerticalGroup(
-            subPanelModificarLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 118, Short.MAX_VALUE)
-        );
+        buttonGroupLibrosModificar.add(radioLibrosModificarTitulo);
+        radioLibrosModificarTitulo.setSelected(true);
+        radioLibrosModificarTitulo.setText("Título");
+        radioLibrosModificarTitulo.setActionCommand("titulo");
 
-        cardLayoutCamposLibros.add(subPanelModificarLibros, "cardModificarLibros");
+        buttonGroupLibrosModificar.add(radioLibrosModificarISBN);
+        radioLibrosModificarISBN.setText("ISBN");
 
-        javax.swing.GroupLayout subPanelEliminarLibrosLayout = new javax.swing.GroupLayout(subPanelEliminarLibros);
-        subPanelEliminarLibros.setLayout(subPanelEliminarLibrosLayout);
-        subPanelEliminarLibrosLayout.setHorizontalGroup(
-            subPanelEliminarLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 998, Short.MAX_VALUE)
-        );
-        subPanelEliminarLibrosLayout.setVerticalGroup(
-            subPanelEliminarLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 118, Short.MAX_VALUE)
-        );
+        buttonGroupLibrosModificar.add(radioLibrosModificarAutor);
+        radioLibrosModificarAutor.setText("Autor");
+        radioLibrosModificarAutor.setActionCommand("autor");
 
-        cardLayoutCamposLibros.add(subPanelEliminarLibros, "cardEliminarLibros");
-
-        subPanelBuscarLibros.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        buttonGroupBuscarLibros.add(jRadioButton1);
-        jRadioButton1.setText("Título");
-
-        buttonGroupBuscarLibros.add(jRadioButton2);
-        jRadioButton2.setText("ISBN");
-
-        buttonGroupBuscarLibros.add(jRadioButton3);
-        jRadioButton3.setText("Autor");
-
-        textoBuscarLibros.addActionListener(new java.awt.event.ActionListener() {
+        textoLibrosModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoBuscarLibrosActionPerformed(evt);
+                textoLibrosModificarActionPerformed(evt);
             }
         });
 
-        buttonBuscarLibros.setText("jButton5");
+        buttonLibrosModificar.setText("Buscar");
+        buttonLibrosModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLibrosModificarActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout subPanelBuscarLibrosLayout = new javax.swing.GroupLayout(subPanelBuscarLibros);
-        subPanelBuscarLibros.setLayout(subPanelBuscarLibrosLayout);
-        subPanelBuscarLibrosLayout.setHorizontalGroup(
-            subPanelBuscarLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(subPanelBuscarLibrosLayout.createSequentialGroup()
+        javax.swing.GroupLayout subPanelLibrosModificarLayout = new javax.swing.GroupLayout(subPanelLibrosModificar);
+        subPanelLibrosModificar.setLayout(subPanelLibrosModificarLayout);
+        subPanelLibrosModificarLayout.setHorizontalGroup(
+            subPanelLibrosModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelLibrosModificarLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(subPanelBuscarLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton1)
-                    .addGroup(subPanelBuscarLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, subPanelBuscarLibrosLayout.createSequentialGroup()
-                            .addComponent(jRadioButton3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonBuscarLibros))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, subPanelBuscarLibrosLayout.createSequentialGroup()
-                            .addComponent(jRadioButton2)
-                            .addGap(212, 212, 212)
-                            .addComponent(textoBuscarLibros, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addGroup(subPanelLibrosModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioLibrosModificarTitulo)
+                    .addGroup(subPanelLibrosModificarLayout.createSequentialGroup()
+                        .addComponent(radioLibrosModificarAutor)
+                        .addGap(132, 132, 132)
+                        .addComponent(textoLibrosModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonLibrosModificar))
+                    .addComponent(radioLibrosModificarISBN))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
-        subPanelBuscarLibrosLayout.setVerticalGroup(
-            subPanelBuscarLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(subPanelBuscarLibrosLayout.createSequentialGroup()
+        subPanelLibrosModificarLayout.setVerticalGroup(
+            subPanelLibrosModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelLibrosModificarLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jRadioButton1)
+                .addComponent(radioLibrosModificarTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(subPanelBuscarLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(textoBuscarLibros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(radioLibrosModificarISBN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton3)
+                .addGroup(subPanelLibrosModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioLibrosModificarAutor)
+                    .addComponent(textoLibrosModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonLibrosModificar))
                 .addContainerGap(16, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, subPanelBuscarLibrosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonBuscarLibros)
+        );
+
+        cardLayoutLibrosCampos.add(subPanelLibrosModificar, "cardLibrosModificar");
+
+        buttonGroupLibrosEliminar.add(radioLibrosEliminarTitulo);
+        radioLibrosEliminarTitulo.setSelected(true);
+        radioLibrosEliminarTitulo.setText("Título");
+        radioLibrosEliminarTitulo.setActionCommand("titulo");
+
+        buttonGroupLibrosEliminar.add(radioLibrosEliminarISBN);
+        radioLibrosEliminarISBN.setText("ISBN");
+
+        buttonGroupLibrosEliminar.add(radioLibrosEliminarAutor);
+        radioLibrosEliminarAutor.setText("Autor");
+        radioLibrosEliminarAutor.setActionCommand("autor");
+
+        textoLibrosEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoLibrosEliminarActionPerformed(evt);
+            }
+        });
+
+        buttonLibrosEliminar.setText("Buscar");
+        buttonLibrosEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLibrosEliminarActionPerformed(evt);
+            }
+        });
+
+        buttonLibrosEliminarAccion.setText("Eliminar");
+        buttonLibrosEliminarAccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLibrosEliminarAccionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout subPanelLibrosEliminarLayout = new javax.swing.GroupLayout(subPanelLibrosEliminar);
+        subPanelLibrosEliminar.setLayout(subPanelLibrosEliminarLayout);
+        subPanelLibrosEliminarLayout.setHorizontalGroup(
+            subPanelLibrosEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelLibrosEliminarLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(subPanelLibrosEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioLibrosEliminarTitulo)
+                    .addGroup(subPanelLibrosEliminarLayout.createSequentialGroup()
+                        .addComponent(radioLibrosEliminarAutor)
+                        .addGap(132, 132, 132)
+                        .addComponent(textoLibrosEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonLibrosEliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                        .addComponent(buttonLibrosEliminarAccion))
+                    .addComponent(radioLibrosEliminarISBN))
                 .addContainerGap())
         );
+        subPanelLibrosEliminarLayout.setVerticalGroup(
+            subPanelLibrosEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelLibrosEliminarLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(radioLibrosEliminarTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioLibrosEliminarISBN)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelLibrosEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioLibrosEliminarAutor)
+                    .addComponent(textoLibrosEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonLibrosEliminar)
+                    .addComponent(buttonLibrosEliminarAccion))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
 
-        cardLayoutCamposLibros.add(subPanelBuscarLibros, "cardBuscarLibros");
+        cardLayoutLibrosCampos.add(subPanelLibrosEliminar, "cardLibrosEliminar");
 
-        cardLayoutTablaLibros.setLayout(new java.awt.CardLayout());
+        subPanelLibrosBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        buttonGroupLibrosBuscar.add(radioLibrosBuscarTitulo);
+        radioLibrosBuscarTitulo.setSelected(true);
+        radioLibrosBuscarTitulo.setText("Título");
+        radioLibrosBuscarTitulo.setActionCommand("titulo");
+
+        buttonGroupLibrosBuscar.add(radioLibrosBuscarISBN);
+        radioLibrosBuscarISBN.setText("ISBN");
+
+        buttonGroupLibrosBuscar.add(radioLibrosBuscarAutor);
+        radioLibrosBuscarAutor.setText("Autor");
+        radioLibrosBuscarAutor.setActionCommand("autor");
+
+        textoLibrosBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoLibrosBuscarActionPerformed(evt);
+            }
+        });
+
+        buttonLibrosBuscar.setText("Buscar");
+        buttonLibrosBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLibrosBuscarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout subPanelLibrosBuscarLayout = new javax.swing.GroupLayout(subPanelLibrosBuscar);
+        subPanelLibrosBuscar.setLayout(subPanelLibrosBuscarLayout);
+        subPanelLibrosBuscarLayout.setHorizontalGroup(
+            subPanelLibrosBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelLibrosBuscarLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(subPanelLibrosBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioLibrosBuscarTitulo)
+                    .addGroup(subPanelLibrosBuscarLayout.createSequentialGroup()
+                        .addComponent(radioLibrosBuscarAutor)
+                        .addGap(132, 132, 132)
+                        .addComponent(textoLibrosBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonLibrosBuscar))
+                    .addComponent(radioLibrosBuscarISBN))
+                .addContainerGap(202, Short.MAX_VALUE))
+        );
+        subPanelLibrosBuscarLayout.setVerticalGroup(
+            subPanelLibrosBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelLibrosBuscarLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(radioLibrosBuscarTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioLibrosBuscarISBN)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelLibrosBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioLibrosBuscarAutor)
+                    .addComponent(textoLibrosBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonLibrosBuscar))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        cardLayoutLibrosCampos.add(subPanelLibrosBuscar, "cardLibrosBuscar");
+
+        cardLayoutLibrosTabla.setLayout(new java.awt.CardLayout());
+
+        tablaLibrosBuscar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Título", "Autor", "Editorial", "Edición", "Páginas", "Dependencia", "Ejemplares", "Año", "Idioma"
+                "ISBN", "Título", "Autor", "Editorial", "Edición", "Páginas", "Año", "Idioma"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setHeaderValue("Páginas");
-            jTable1.getColumnModel().getColumn(5).setHeaderValue("Dependencia");
-            jTable1.getColumnModel().getColumn(6).setHeaderValue("Ejemplares");
-            jTable1.getColumnModel().getColumn(7).setHeaderValue("Año");
-            jTable1.getColumnModel().getColumn(8).setHeaderValue("Idioma");
-        }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
 
-        javax.swing.GroupLayout subPanelBuscarTablaLibrosLayout = new javax.swing.GroupLayout(subPanelBuscarTablaLibros);
-        subPanelBuscarTablaLibros.setLayout(subPanelBuscarTablaLibrosLayout);
-        subPanelBuscarTablaLibrosLayout.setHorizontalGroup(
-            subPanelBuscarTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(subPanelBuscarTablaLibrosLayout.createSequentialGroup()
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaLibrosBuscar);
+
+        javax.swing.GroupLayout subPanelLibrosTablaBuscarLayout = new javax.swing.GroupLayout(subPanelLibrosTablaBuscar);
+        subPanelLibrosTablaBuscar.setLayout(subPanelLibrosTablaBuscarLayout);
+        subPanelLibrosTablaBuscarLayout.setHorizontalGroup(
+            subPanelLibrosTablaBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelLibrosTablaBuscarLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1096, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        subPanelBuscarTablaLibrosLayout.setVerticalGroup(
-            subPanelBuscarTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(subPanelBuscarTablaLibrosLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        subPanelLibrosTablaBuscarLayout.setVerticalGroup(
+            subPanelLibrosTablaBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
         );
 
-        cardLayoutTablaLibros.add(subPanelBuscarTablaLibros, "cardBuscarTablaLibros");
+        cardLayoutLibrosTabla.add(subPanelLibrosTablaBuscar, "cardLibrosTablaBuscar");
 
-        javax.swing.GroupLayout subPanelModificarTablaLibrosLayout = new javax.swing.GroupLayout(subPanelModificarTablaLibros);
-        subPanelModificarTablaLibros.setLayout(subPanelModificarTablaLibrosLayout);
-        subPanelModificarTablaLibrosLayout.setHorizontalGroup(
-            subPanelModificarTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1096, Short.MAX_VALUE)
-        );
-        subPanelModificarTablaLibrosLayout.setVerticalGroup(
-            subPanelModificarTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 465, Short.MAX_VALUE)
-        );
+        tablaLibrosModificar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        cardLayoutTablaLibros.add(subPanelModificarTablaLibros, "cardModificarTablaLibros");
+            },
+            new String [] {
+                "ISBN", "Título", "Autor", "Editorial", "Edición", "Páginas", "Año", "Idioma"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
 
-        javax.swing.GroupLayout subPanelEliminarTablaLibrosLayout = new javax.swing.GroupLayout(subPanelEliminarTablaLibros);
-        subPanelEliminarTablaLibros.setLayout(subPanelEliminarTablaLibrosLayout);
-        subPanelEliminarTablaLibrosLayout.setHorizontalGroup(
-            subPanelEliminarTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1096, Short.MAX_VALUE)
-        );
-        subPanelEliminarTablaLibrosLayout.setVerticalGroup(
-            subPanelEliminarTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 465, Short.MAX_VALUE)
-        );
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tablaLibrosModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaLibrosModificarMouseClicked(evt);
+            }
+        });
+        jScrollPane8.setViewportView(tablaLibrosModificar);
 
-        cardLayoutTablaLibros.add(subPanelEliminarTablaLibros, "cardEliminarTablaLibros");
+        labelLibrosModificarPaginas.setText("Páginas");
 
-        jLabel1.setText("ISBN");
+        labelLibrosModificarTitulo.setText("Título*");
 
-        jLabel2.setText("Título");
+        buttonLibrosModificarEditorial.setText("Buscar");
+        buttonLibrosModificarEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLibrosModificarEditorialActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setText("Idioma");
+        labelLibrosModificarGenero.setText("Género");
 
-        jLabel4.setText("Género");
+        labelLibrosModificarEditorial.setText("Editorial*");
 
-        jLabel5.setText("Editorial");
+        labelLibrosModificarEdicion.setText("Edición*");
 
-        jLabel6.setText("Páginas");
+        labelLibrosModificarAño.setText("Año de Publicación");
 
-        jLabel7.setText("Páginas");
+        labelLibrosModificarIdioma.setText("Idioma");
 
-        jTextField1.setText("jTextField1");
+        textoLibrosModificarEditorial.setText("Búsqueda por nombre de editorial");
 
-        jTextField2.setText("jTextField1");
+        labelLibrosModificarISBN.setText("ISBN*");
 
-        jTextField3.setText("jTextField1");
+        textoLibrosModificarISBN.setEditable(false);
 
-        jTextField4.setText("jTextField1");
+        buttonLibrosTablaModificar.setText("Modificar");
+        buttonLibrosTablaModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLibrosTablaModificarActionPerformed(evt);
+            }
+        });
 
-        jTextField5.setText("jTextField1");
-
-        jTextField6.setText("jTextField1");
-
-        jTextField7.setText("jTextField1");
-
-        jTextField8.setText("jTextField1");
-
-        javax.swing.GroupLayout subPanelNuevoTablaLibrosLayout = new javax.swing.GroupLayout(subPanelNuevoTablaLibros);
-        subPanelNuevoTablaLibros.setLayout(subPanelNuevoTablaLibrosLayout);
-        subPanelNuevoTablaLibrosLayout.setHorizontalGroup(
-            subPanelNuevoTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(subPanelNuevoTablaLibrosLayout.createSequentialGroup()
-                .addGroup(subPanelNuevoTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(subPanelNuevoTablaLibrosLayout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(jLabel7))
-                    .addGroup(subPanelNuevoTablaLibrosLayout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addGroup(subPanelNuevoTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+        javax.swing.GroupLayout subPanelLibrosTablaModificarLayout = new javax.swing.GroupLayout(subPanelLibrosTablaModificar);
+        subPanelLibrosTablaModificar.setLayout(subPanelLibrosTablaModificarLayout);
+        subPanelLibrosTablaModificarLayout.setHorizontalGroup(
+            subPanelLibrosTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelLibrosTablaModificarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(subPanelLibrosTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(subPanelLibrosTablaModificarLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(subPanelLibrosTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelLibrosModificarGenero)
+                            .addComponent(labelLibrosModificarTitulo)
+                            .addComponent(labelLibrosModificarIdioma)
+                            .addComponent(labelLibrosModificarAño)
+                            .addComponent(labelLibrosModificarPaginas)
+                            .addComponent(labelLibrosModificarEdicion)
+                            .addComponent(labelLibrosModificarEditorial)
+                            .addComponent(labelLibrosModificarISBN))
                         .addGap(18, 18, 18)
-                        .addGroup(subPanelNuevoTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(647, Short.MAX_VALUE))
+                        .addGroup(subPanelLibrosTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textoLibrosModificarISBN)
+                            .addGroup(subPanelLibrosTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(buttonLibrosModificarEditorial)
+                                .addGroup(subPanelLibrosTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(textoLibrosModificarEditorial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                                    .addComponent(textoLibrosModificarAño, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textoLibrosModificarPaginas, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textoLibrosModificarEdicion, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textoLibrosModificarGenero, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textoLibrosModificarIdioma, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textoLibrosModificarTitulo, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(listaLibrosModificarEditorial, 0, 213, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, subPanelLibrosTablaModificarLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonLibrosTablaModificar)
+                        .addGap(14, 14, 14))))
         );
-        subPanelNuevoTablaLibrosLayout.setVerticalGroup(
-            subPanelNuevoTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(subPanelNuevoTablaLibrosLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(subPanelNuevoTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        subPanelLibrosTablaModificarLayout.setVerticalGroup(
+            subPanelLibrosTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelLibrosTablaModificarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(subPanelLibrosTablaModificarLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(subPanelLibrosTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelLibrosModificarISBN)
+                    .addComponent(textoLibrosModificarISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(subPanelNuevoTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                .addGroup(subPanelLibrosTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoLibrosModificarTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLibrosModificarTitulo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(subPanelLibrosTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoLibrosModificarIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLibrosModificarIdioma))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(subPanelNuevoTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                .addGroup(subPanelLibrosTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoLibrosModificarGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLibrosModificarGenero))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(subPanelNuevoTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                .addGroup(subPanelLibrosTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoLibrosModificarEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLibrosModificarEdicion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(subPanelNuevoTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                .addGroup(subPanelLibrosTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoLibrosModificarPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLibrosModificarPaginas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(subPanelNuevoTablaLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                .addGroup(subPanelLibrosTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoLibrosModificarAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLibrosModificarAño))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(349, 349, 349)
-                .addComponent(jLabel7)
+                .addGroup(subPanelLibrosTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoLibrosModificarEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLibrosModificarEditorial))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonLibrosModificarEditorial)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(listaLibrosModificarEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonLibrosTablaModificar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        cardLayoutTablaLibros.add(subPanelNuevoTablaLibros, "cardNuevoTablaLibros");
+        cardLayoutLibrosTabla.add(subPanelLibrosTablaModificar, "cardLibrosTablaModificar");
+
+        tablaLibrosEliminar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ISBN", "Título", "Autor", "Editorial", "Edición", "Páginas", "Año", "Idioma"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tablaLibrosEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaLibrosEliminarMouseClicked(evt);
+            }
+        });
+        jScrollPane9.setViewportView(tablaLibrosEliminar);
+
+        javax.swing.GroupLayout subPanelLibrosTablaEliminarLayout = new javax.swing.GroupLayout(subPanelLibrosTablaEliminar);
+        subPanelLibrosTablaEliminar.setLayout(subPanelLibrosTablaEliminarLayout);
+        subPanelLibrosTablaEliminarLayout.setHorizontalGroup(
+            subPanelLibrosTablaEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelLibrosTablaEliminarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 1096, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        subPanelLibrosTablaEliminarLayout.setVerticalGroup(
+            subPanelLibrosTablaEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+        );
+
+        cardLayoutLibrosTabla.add(subPanelLibrosTablaEliminar, "cardLibrosTablaEliminar");
+
+        labelLibrosNuevoISBN.setText("ISBN*");
+
+        labelLibrosNuevoTitulo.setText("Título*");
+
+        labelLibrosNuevoIdioma.setText("Idioma");
+
+        labelLibrosNuevoGenero.setText("Género");
+
+        labelLibrosNuevoAño.setText("Año de Publicación");
+
+        labelLibrosNuevoPaginas.setText("Páginas");
+
+        textoLibrosNuevoEditorial.setText("Búsqueda por nombre de editorial");
+
+        labelLibrosNuevoEdicion.setText("Edición*");
+
+        labelLibrosNuevoEditorial.setText("Editorial*");
+
+        buttonLibrosNuevoEditorial.setText("Buscar");
+        buttonLibrosNuevoEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLibrosNuevoEditorialActionPerformed(evt);
+            }
+        });
+
+        labelLibrosNuevoAutor.setText("Autor*");
+
+        textoLibrosNuevoAutor.setText("Búsqueda por Apellido");
+
+        buttonLibrosNuevoAutor.setText("Buscar");
+        buttonLibrosNuevoAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLibrosNuevoAutorActionPerformed(evt);
+            }
+        });
+
+        buttonLibrosTablaNuevo.setText("Añadir");
+        buttonLibrosTablaNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLibrosTablaNuevoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout subPanelLibrosTablaNuevoLayout = new javax.swing.GroupLayout(subPanelLibrosTablaNuevo);
+        subPanelLibrosTablaNuevo.setLayout(subPanelLibrosTablaNuevoLayout);
+        subPanelLibrosTablaNuevoLayout.setHorizontalGroup(
+            subPanelLibrosTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelLibrosTablaNuevoLayout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addGroup(subPanelLibrosTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonLibrosTablaNuevo)
+                    .addGroup(subPanelLibrosTablaNuevoLayout.createSequentialGroup()
+                        .addGroup(subPanelLibrosTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelLibrosNuevoGenero)
+                            .addComponent(labelLibrosNuevoISBN)
+                            .addComponent(labelLibrosNuevoTitulo)
+                            .addComponent(labelLibrosNuevoIdioma)
+                            .addComponent(labelLibrosNuevoAño)
+                            .addComponent(labelLibrosNuevoPaginas)
+                            .addComponent(labelLibrosNuevoEdicion)
+                            .addComponent(labelLibrosNuevoEditorial)
+                            .addComponent(labelLibrosNuevoAutor))
+                        .addGap(18, 18, 18)
+                        .addGroup(subPanelLibrosTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textoLibrosNuevoISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoLibrosNuevoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoLibrosNuevoIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoLibrosNuevoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoLibrosNuevoEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoLibrosNuevoPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoLibrosNuevoAño, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(subPanelLibrosTablaNuevoLayout.createSequentialGroup()
+                                .addComponent(textoLibrosNuevoEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(buttonLibrosNuevoEditorial)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(listaLibrosNuevoEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(subPanelLibrosTablaNuevoLayout.createSequentialGroup()
+                                .addComponent(textoLibrosNuevoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(buttonLibrosNuevoAutor)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(listaLibrosNuevoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(217, Short.MAX_VALUE))
+        );
+        subPanelLibrosTablaNuevoLayout.setVerticalGroup(
+            subPanelLibrosTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelLibrosTablaNuevoLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(subPanelLibrosTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelLibrosNuevoISBN)
+                    .addComponent(textoLibrosNuevoISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelLibrosTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoLibrosNuevoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLibrosNuevoTitulo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelLibrosTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoLibrosNuevoIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLibrosNuevoIdioma))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelLibrosTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoLibrosNuevoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLibrosNuevoGenero))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelLibrosTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoLibrosNuevoEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLibrosNuevoEdicion))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelLibrosTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoLibrosNuevoPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLibrosNuevoPaginas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelLibrosTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoLibrosNuevoAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLibrosNuevoAño))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelLibrosTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoLibrosNuevoEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLibrosNuevoEditorial)
+                    .addComponent(buttonLibrosNuevoEditorial)
+                    .addComponent(listaLibrosNuevoEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelLibrosTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(listaLibrosNuevoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonLibrosNuevoAutor)
+                    .addComponent(textoLibrosNuevoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLibrosNuevoAutor))
+                .addGap(37, 37, 37)
+                .addComponent(buttonLibrosTablaNuevo)
+                .addContainerGap(95, Short.MAX_VALUE))
+        );
+
+        cardLayoutLibrosTabla.add(subPanelLibrosTablaNuevo, "cardLibrosTablaNuevo");
 
         javax.swing.GroupLayout panelLibrosLayout = new javax.swing.GroupLayout(panelLibros);
         panelLibros.setLayout(panelLibrosLayout);
@@ -493,7 +1478,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(panelLibrosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cardLayoutTablaLibros, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(cardLayoutLibrosTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(panelLibrosLayout.createSequentialGroup()
                         .addGroup(panelLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(librosBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -501,7 +1486,7 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(librosEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(librosModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cardLayoutCamposLibros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cardLayoutLibrosCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelLibrosLayout.setVerticalGroup(
@@ -509,7 +1494,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(panelLibrosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cardLayoutCamposLibros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cardLayoutLibrosCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelLibrosLayout.createSequentialGroup()
                         .addComponent(librosBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -519,7 +1504,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(librosEliminar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cardLayoutTablaLibros, javax.swing.GroupLayout.PREFERRED_SIZE, 465, Short.MAX_VALUE)
+                .addComponent(cardLayoutLibrosTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -568,28 +1553,142 @@ public class Principal extends javax.swing.JFrame {
 
         cardLayoutCamposAutor.add(subPanelNuevoAutor, "cardNuevoAutor");
 
+        buttonGroupModificarAutor.add(radioNombreModificarAutor);
+        radioNombreModificarAutor.setSelected(true);
+        radioNombreModificarAutor.setText("Nombre");
+        radioNombreModificarAutor.setActionCommand("nombre");
+
+        buttonGroupModificarAutor.add(radioApellidoModificarAutor);
+        radioApellidoModificarAutor.setText("Apellido");
+        radioApellidoModificarAutor.setActionCommand("apellido");
+        radioApellidoModificarAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioApellidoModificarAutorActionPerformed(evt);
+            }
+        });
+
+        buttonGroupModificarAutor.add(radioNacionalidadModificarAutor);
+        radioNacionalidadModificarAutor.setText("Nacionalidad");
+        radioNacionalidadModificarAutor.setActionCommand("nacionalidad");
+
+        textoModificarAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoModificarAutorActionPerformed(evt);
+            }
+        });
+
+        buttonModificarAutor.setText("Buscar");
+        buttonModificarAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonModificarAutorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout subPanelModificarAutorLayout = new javax.swing.GroupLayout(subPanelModificarAutor);
         subPanelModificarAutor.setLayout(subPanelModificarAutorLayout);
         subPanelModificarAutorLayout.setHorizontalGroup(
             subPanelModificarAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 998, Short.MAX_VALUE)
+            .addGroup(subPanelModificarAutorLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(subPanelModificarAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioNombreModificarAutor)
+                    .addGroup(subPanelModificarAutorLayout.createSequentialGroup()
+                        .addComponent(radioNacionalidadModificarAutor)
+                        .addGap(88, 88, 88)
+                        .addComponent(textoModificarAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonModificarAutor))
+                    .addComponent(radioApellidoModificarAutor))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
         subPanelModificarAutorLayout.setVerticalGroup(
             subPanelModificarAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 118, Short.MAX_VALUE)
+            .addGroup(subPanelModificarAutorLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(radioNombreModificarAutor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioApellidoModificarAutor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelModificarAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioNacionalidadModificarAutor)
+                    .addComponent(textoModificarAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonModificarAutor))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         cardLayoutCamposAutor.add(subPanelModificarAutor, "cardModificarAutor");
+
+        buttonGroupEliminarAutor.add(radioNombreEliminarAutor);
+        radioNombreEliminarAutor.setSelected(true);
+        radioNombreEliminarAutor.setText("Nombre");
+        radioNombreEliminarAutor.setActionCommand("nombre");
+
+        buttonGroupEliminarAutor.add(radioApellidoEliminarAutor);
+        radioApellidoEliminarAutor.setText("Apellido");
+        radioApellidoEliminarAutor.setActionCommand("apellido");
+        radioApellidoEliminarAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioApellidoEliminarAutorActionPerformed(evt);
+            }
+        });
+
+        buttonGroupEliminarAutor.add(radioNacionalidadEliminarAutor);
+        radioNacionalidadEliminarAutor.setText("Nacionalidad");
+        radioNacionalidadEliminarAutor.setActionCommand("nacionalidad");
+
+        textoEliminarAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoEliminarAutorActionPerformed(evt);
+            }
+        });
+
+        buttonEliminarAutor.setText("Buscar");
+        buttonEliminarAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEliminarAutorActionPerformed(evt);
+            }
+        });
+
+        buttonEliminarAccionAutor.setText("Eliminar");
+        buttonEliminarAccionAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEliminarAccionAutorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout subPanelEliminarAutorLayout = new javax.swing.GroupLayout(subPanelEliminarAutor);
         subPanelEliminarAutor.setLayout(subPanelEliminarAutorLayout);
         subPanelEliminarAutorLayout.setHorizontalGroup(
             subPanelEliminarAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 998, Short.MAX_VALUE)
+            .addGroup(subPanelEliminarAutorLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(subPanelEliminarAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioNombreEliminarAutor)
+                    .addGroup(subPanelEliminarAutorLayout.createSequentialGroup()
+                        .addComponent(radioNacionalidadEliminarAutor)
+                        .addGap(88, 88, 88)
+                        .addComponent(textoEliminarAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonEliminarAutor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                        .addComponent(buttonEliminarAccionAutor))
+                    .addComponent(radioApellidoEliminarAutor))
+                .addContainerGap())
         );
         subPanelEliminarAutorLayout.setVerticalGroup(
             subPanelEliminarAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 118, Short.MAX_VALUE)
+            .addGroup(subPanelEliminarAutorLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(radioNombreEliminarAutor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioApellidoEliminarAutor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelEliminarAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioNacionalidadEliminarAutor)
+                    .addComponent(textoEliminarAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonEliminarAutor)
+                    .addComponent(buttonEliminarAccionAutor))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         cardLayoutCamposAutor.add(subPanelEliminarAutor, "cardEliminarAutor");
@@ -680,6 +1779,10 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tablaBuscarAutor);
+        if (tablaBuscarAutor.getColumnModel().getColumnCount() > 0) {
+            tablaBuscarAutor.getColumnModel().getColumn(2).setHeaderValue("Nacionalidad");
+            tablaBuscarAutor.getColumnModel().getColumn(3).setHeaderValue("Fecha de Nacimiento");
+        }
 
         javax.swing.GroupLayout subPanelBuscarTablaAutorLayout = new javax.swing.GroupLayout(subPanelBuscarTablaAutor);
         subPanelBuscarTablaAutor.setLayout(subPanelBuscarTablaAutorLayout);
@@ -699,126 +1802,224 @@ public class Principal extends javax.swing.JFrame {
 
         cardLayoutTablaAutor.add(subPanelBuscarTablaAutor, "cardBuscarTablaAutor");
 
+        tablaModificarAutor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Apellido", "Nombre", "Nacionalidad", "Fecha de Nacimiento"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tablaModificarAutor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaModificarAutorMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tablaModificarAutor);
+        if (tablaModificarAutor.getColumnModel().getColumnCount() > 0) {
+            tablaModificarAutor.getColumnModel().getColumn(2).setHeaderValue("Nacionalidad");
+            tablaModificarAutor.getColumnModel().getColumn(3).setHeaderValue("Fecha de Nacimiento");
+        }
+
+        labelModificarTablaNombreAutor.setText("Nombre*");
+
+        labelModificarTablaApellidoAutor.setText("Apellido*");
+
+        labelModificarTablaNacionalidadAutor.setText("Nacionalidad*");
+
+        labelModificarTablaFechaAutor.setText("Fecha de Nacimiento");
+
+        textoModificarTablaNacionalidadAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoModificarTablaNacionalidadAutorActionPerformed(evt);
+            }
+        });
+
+        textoModificarTablaFechaAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoModificarTablaFechaAutorActionPerformed(evt);
+            }
+        });
+
+        buttonModificarTablaAutor.setText("Modificar");
+        buttonModificarTablaAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonModificarTablaAutorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout subPanelModificarTablaAutorLayout = new javax.swing.GroupLayout(subPanelModificarTablaAutor);
         subPanelModificarTablaAutor.setLayout(subPanelModificarTablaAutorLayout);
         subPanelModificarTablaAutorLayout.setHorizontalGroup(
             subPanelModificarTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1096, Short.MAX_VALUE)
+            .addGroup(subPanelModificarTablaAutorLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelModificarTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(subPanelModificarTablaAutorLayout.createSequentialGroup()
+                        .addGroup(subPanelModificarTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelModificarTablaFechaAutor)
+                            .addComponent(labelModificarTablaNombreAutor)
+                            .addComponent(labelModificarTablaApellidoAutor)
+                            .addComponent(labelModificarTablaNacionalidadAutor))
+                        .addGap(18, 18, 18)
+                        .addGroup(subPanelModificarTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(textoModificarTablaNacionalidadAutor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                            .addComponent(textoModificarTablaApellidoAutor, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textoModificarTablaNombreAutor, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textoModificarTablaFechaAutor)))
+                    .addComponent(buttonModificarTablaAutor))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         subPanelModificarTablaAutorLayout.setVerticalGroup(
             subPanelModificarTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 465, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+            .addGroup(subPanelModificarTablaAutorLayout.createSequentialGroup()
+                .addGap(152, 152, 152)
+                .addGroup(subPanelModificarTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelModificarTablaNombreAutor)
+                    .addComponent(textoModificarTablaNombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelModificarTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoModificarTablaApellidoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelModificarTablaApellidoAutor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelModificarTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoModificarTablaNacionalidadAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelModificarTablaNacionalidadAutor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelModificarTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoModificarTablaFechaAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelModificarTablaFechaAutor))
+                .addGap(18, 18, 18)
+                .addComponent(buttonModificarTablaAutor)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         cardLayoutTablaAutor.add(subPanelModificarTablaAutor, "cardModificarTablaAutor");
+
+        tablaEliminarAutor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Apellido", "Nombre", "Nacionalidad", "Fecha de Nacimiento"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tablaEliminarAutor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaEliminarAutorMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tablaEliminarAutor);
+        if (tablaEliminarAutor.getColumnModel().getColumnCount() > 0) {
+            tablaEliminarAutor.getColumnModel().getColumn(2).setHeaderValue("Nacionalidad");
+            tablaEliminarAutor.getColumnModel().getColumn(3).setHeaderValue("Fecha de Nacimiento");
+        }
 
         javax.swing.GroupLayout subPanelEliminarTablaAutorLayout = new javax.swing.GroupLayout(subPanelEliminarTablaAutor);
         subPanelEliminarTablaAutor.setLayout(subPanelEliminarTablaAutorLayout);
         subPanelEliminarTablaAutorLayout.setHorizontalGroup(
             subPanelEliminarTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1096, Short.MAX_VALUE)
+            .addGroup(subPanelEliminarTablaAutorLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1096, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         subPanelEliminarTablaAutorLayout.setVerticalGroup(
             subPanelEliminarTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 465, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
         );
 
         cardLayoutTablaAutor.add(subPanelEliminarTablaAutor, "cardEliminarTablaAutor");
 
-        jLabel8.setText("ISBN");
+        labelNuevoTablaNombreAutor.setText("Nombre*");
 
-        jLabel9.setText("Título");
+        labelNuevoTablaApellidoAutor.setText("Apellido*");
 
-        jLabel10.setText("Idioma");
+        labelNuevoTablaNacionalidadAutor.setText("Nacionalidad*");
 
-        jLabel11.setText("Género");
+        labelNuevoTablaFechaAutor.setText("Fecha de Nacimiento");
 
-        jLabel12.setText("Editorial");
+        textoNuevoTablaNacionalidadAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoNuevoTablaNacionalidadAutorActionPerformed(evt);
+            }
+        });
 
-        jLabel13.setText("Páginas");
+        textoNuevoTablaFechaAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoNuevoTablaFechaAutorActionPerformed(evt);
+            }
+        });
 
-        jLabel14.setText("Páginas");
-
-        jTextField9.setText("jTextField1");
-
-        jTextField10.setText("jTextField1");
-
-        jTextField11.setText("jTextField1");
-
-        jTextField12.setText("jTextField1");
-
-        jTextField13.setText("jTextField1");
-
-        jTextField14.setText("jTextField1");
-
-        jTextField15.setText("jTextField1");
-
-        jTextField16.setText("jTextField1");
+        buttonNuevoTablaAutor.setText("Añadir");
+        buttonNuevoTablaAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonNuevoTablaAutorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout subPanelNuevoTablaAutorLayout = new javax.swing.GroupLayout(subPanelNuevoTablaAutor);
         subPanelNuevoTablaAutor.setLayout(subPanelNuevoTablaAutorLayout);
         subPanelNuevoTablaAutorLayout.setHorizontalGroup(
             subPanelNuevoTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(subPanelNuevoTablaAutorLayout.createSequentialGroup()
-                .addGroup(subPanelNuevoTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(82, 82, 82)
+                .addGroup(subPanelNuevoTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonNuevoTablaAutor)
                     .addGroup(subPanelNuevoTablaAutorLayout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(jLabel14))
-                    .addGroup(subPanelNuevoTablaAutorLayout.createSequentialGroup()
-                        .addGap(82, 82, 82)
                         .addGroup(subPanelNuevoTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13))
+                            .addComponent(labelNuevoTablaFechaAutor)
+                            .addComponent(labelNuevoTablaNombreAutor)
+                            .addComponent(labelNuevoTablaApellidoAutor)
+                            .addComponent(labelNuevoTablaNacionalidadAutor))
                         .addGap(18, 18, 18)
                         .addGroup(subPanelNuevoTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(647, Short.MAX_VALUE))
+                            .addComponent(textoNuevoTablaNombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoNuevoTablaApellidoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoNuevoTablaNacionalidadAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoNuevoTablaFechaAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(571, Short.MAX_VALUE))
         );
         subPanelNuevoTablaAutorLayout.setVerticalGroup(
             subPanelNuevoTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(subPanelNuevoTablaAutorLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(subPanelNuevoTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelNuevoTablaNombreAutor)
+                    .addComponent(textoNuevoTablaNombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(subPanelNuevoTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoNuevoTablaApellidoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNuevoTablaApellidoAutor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(subPanelNuevoTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(textoNuevoTablaNacionalidadAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNuevoTablaNacionalidadAutor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(subPanelNuevoTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(subPanelNuevoTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(subPanelNuevoTablaAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(349, 349, 349)
-                .addComponent(jLabel14)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(textoNuevoTablaFechaAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNuevoTablaFechaAutor))
+                .addGap(18, 18, 18)
+                .addComponent(buttonNuevoTablaAutor)
+                .addContainerGap(269, Short.MAX_VALUE))
         );
 
         cardLayoutTablaAutor.add(subPanelNuevoTablaAutor, "cardNuevoTablaAutor");
@@ -862,21 +2063,493 @@ public class Principal extends javax.swing.JFrame {
                     .addContainerGap()
                     .addComponent(cardLayoutCamposAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(cardLayoutTablaAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 465, Short.MAX_VALUE)
+                    .addComponent(cardLayoutTablaAutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
         jTabbedPane1.addTab("Autores", panelAutores);
 
+        editorialNuevo.setText("Nuevo");
+        editorialNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editorialNuevoActionPerformed(evt);
+            }
+        });
+
+        editorialBuscar.setText("Buscar");
+        editorialBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editorialBuscarActionPerformed(evt);
+            }
+        });
+
+        editorialModificar.setText("Modificar");
+        editorialModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editorialModificarActionPerformed(evt);
+            }
+        });
+
+        editorialEliminar.setText("Eliminar");
+        editorialEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editorialEliminarActionPerformed(evt);
+            }
+        });
+
+        cardLayoutEditorialCampos.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout subPanelEditorialNuevoLayout = new javax.swing.GroupLayout(subPanelEditorialNuevo);
+        subPanelEditorialNuevo.setLayout(subPanelEditorialNuevoLayout);
+        subPanelEditorialNuevoLayout.setHorizontalGroup(
+            subPanelEditorialNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 998, Short.MAX_VALUE)
+        );
+        subPanelEditorialNuevoLayout.setVerticalGroup(
+            subPanelEditorialNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 118, Short.MAX_VALUE)
+        );
+
+        cardLayoutEditorialCampos.add(subPanelEditorialNuevo, "cardEditorialNuevo");
+
+        buttonGroupEditorialModificar.add(radioEditorialModificarNombre);
+        radioEditorialModificarNombre.setSelected(true);
+        radioEditorialModificarNombre.setText("Nombre");
+        radioEditorialModificarNombre.setActionCommand("nombre");
+
+        buttonGroupEditorialModificar.add(radioEditorialModificarCiudad);
+        radioEditorialModificarCiudad.setText("Ciudad");
+        radioEditorialModificarCiudad.setActionCommand("apellido");
+        radioEditorialModificarCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioEditorialModificarCiudadActionPerformed(evt);
+            }
+        });
+
+        textoEditorialModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoEditorialModificarActionPerformed(evt);
+            }
+        });
+
+        buttonEditorialModificar.setText("Buscar");
+        buttonEditorialModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditorialModificarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout subPanelEditorialModificarLayout = new javax.swing.GroupLayout(subPanelEditorialModificar);
+        subPanelEditorialModificar.setLayout(subPanelEditorialModificarLayout);
+        subPanelEditorialModificarLayout.setHorizontalGroup(
+            subPanelEditorialModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelEditorialModificarLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(subPanelEditorialModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioEditorialModificarNombre)
+                    .addGroup(subPanelEditorialModificarLayout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(textoEditorialModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonEditorialModificar))
+                    .addComponent(radioEditorialModificarCiudad))
+                .addContainerGap(202, Short.MAX_VALUE))
+        );
+        subPanelEditorialModificarLayout.setVerticalGroup(
+            subPanelEditorialModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelEditorialModificarLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(radioEditorialModificarNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioEditorialModificarCiudad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelEditorialModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoEditorialModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonEditorialModificar))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        cardLayoutEditorialCampos.add(subPanelEditorialModificar, "cardEditorialModificar");
+
+        buttonGroupEditorialEliminar.add(radioEditorialEliminarNombre);
+        radioEditorialEliminarNombre.setSelected(true);
+        radioEditorialEliminarNombre.setText("Nombre");
+        radioEditorialEliminarNombre.setActionCommand("nombre");
+
+        buttonGroupEditorialEliminar.add(radioEditorialEliminarCiudad);
+        radioEditorialEliminarCiudad.setText("Ciudad");
+        radioEditorialEliminarCiudad.setActionCommand("apellido");
+        radioEditorialEliminarCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioEditorialEliminarCiudadActionPerformed(evt);
+            }
+        });
+
+        textoEditorialEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoEditorialEliminarActionPerformed(evt);
+            }
+        });
+
+        buttonEditorialEliminar.setText("Buscar");
+        buttonEditorialEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditorialEliminarActionPerformed(evt);
+            }
+        });
+
+        buttonEditorialEliminarAccion.setText("Eliminar");
+        buttonEditorialEliminarAccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditorialEliminarAccionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout subPanelEditorialEliminarLayout = new javax.swing.GroupLayout(subPanelEditorialEliminar);
+        subPanelEditorialEliminar.setLayout(subPanelEditorialEliminarLayout);
+        subPanelEditorialEliminarLayout.setHorizontalGroup(
+            subPanelEditorialEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelEditorialEliminarLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(subPanelEditorialEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioEditorialEliminarNombre)
+                    .addGroup(subPanelEditorialEliminarLayout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(textoEditorialEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonEditorialEliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                        .addComponent(buttonEditorialEliminarAccion))
+                    .addComponent(radioEditorialEliminarCiudad))
+                .addContainerGap())
+        );
+        subPanelEditorialEliminarLayout.setVerticalGroup(
+            subPanelEditorialEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelEditorialEliminarLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(radioEditorialEliminarNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioEditorialEliminarCiudad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelEditorialEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoEditorialEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonEditorialEliminar)
+                    .addComponent(buttonEditorialEliminarAccion))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        cardLayoutEditorialCampos.add(subPanelEditorialEliminar, "cardEditorialEliminar");
+
+        subPanelEditorialBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        buttonGroupEditorialBuscar.add(radioEditorialBuscarNombre);
+        radioEditorialBuscarNombre.setSelected(true);
+        radioEditorialBuscarNombre.setText("Nombre");
+        radioEditorialBuscarNombre.setActionCommand("nombre");
+
+        buttonGroupEditorialBuscar.add(radioEditorialBuscarCiudad);
+        radioEditorialBuscarCiudad.setText("Ciudad");
+        radioEditorialBuscarCiudad.setActionCommand("ciudad");
+        radioEditorialBuscarCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioEditorialBuscarCiudadActionPerformed(evt);
+            }
+        });
+
+        textoEditorialBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoEditorialBuscarActionPerformed(evt);
+            }
+        });
+
+        buttonEditorialBuscar.setText("Buscar");
+        buttonEditorialBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditorialBuscarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout subPanelEditorialBuscarLayout = new javax.swing.GroupLayout(subPanelEditorialBuscar);
+        subPanelEditorialBuscar.setLayout(subPanelEditorialBuscarLayout);
+        subPanelEditorialBuscarLayout.setHorizontalGroup(
+            subPanelEditorialBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelEditorialBuscarLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(subPanelEditorialBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioEditorialBuscarNombre)
+                    .addGroup(subPanelEditorialBuscarLayout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(textoEditorialBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonEditorialBuscar))
+                    .addComponent(radioEditorialBuscarCiudad))
+                .addContainerGap(202, Short.MAX_VALUE))
+        );
+        subPanelEditorialBuscarLayout.setVerticalGroup(
+            subPanelEditorialBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelEditorialBuscarLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(radioEditorialBuscarNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioEditorialBuscarCiudad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelEditorialBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoEditorialBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonEditorialBuscar))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        cardLayoutEditorialCampos.add(subPanelEditorialBuscar, "cardEditorialBuscar");
+
+        cardLayoutEditorialTabla.setLayout(new java.awt.CardLayout());
+
+        tablaEditorialBuscar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Ciudad"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(tablaEditorialBuscar);
+
+        javax.swing.GroupLayout subPanelEditorialTablaBuscarLayout = new javax.swing.GroupLayout(subPanelEditorialTablaBuscar);
+        subPanelEditorialTablaBuscar.setLayout(subPanelEditorialTablaBuscarLayout);
+        subPanelEditorialTablaBuscarLayout.setHorizontalGroup(
+            subPanelEditorialTablaBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelEditorialTablaBuscarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1096, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        subPanelEditorialTablaBuscarLayout.setVerticalGroup(
+            subPanelEditorialTablaBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelEditorialTablaBuscarLayout.createSequentialGroup()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 10, Short.MAX_VALUE))
+        );
+
+        cardLayoutEditorialTabla.add(subPanelEditorialTablaBuscar, "cardEditorialTablaBuscar");
+
+        tablaEditorialModificar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Ciudad"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tablaEditorialModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaEditorialModificarMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(tablaEditorialModificar);
+
+        labelEditorialTablaModificarNombre.setText("Nombre*");
+
+        labelEditorialTablaModificarCiudad.setText("Apellido*");
+
+        buttonEditorialTablaModificar.setText("Modificar");
+        buttonEditorialTablaModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditorialTablaModificarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout subPanelEditorialTablaModificarLayout = new javax.swing.GroupLayout(subPanelEditorialTablaModificar);
+        subPanelEditorialTablaModificar.setLayout(subPanelEditorialTablaModificarLayout);
+        subPanelEditorialTablaModificarLayout.setHorizontalGroup(
+            subPanelEditorialTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelEditorialTablaModificarLayout.createSequentialGroup()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelEditorialTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(subPanelEditorialTablaModificarLayout.createSequentialGroup()
+                        .addGroup(subPanelEditorialTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelEditorialTablaModificarNombre)
+                            .addComponent(labelEditorialTablaModificarCiudad))
+                        .addGap(18, 18, 18)
+                        .addGroup(subPanelEditorialTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(textoEditorialTablaModificarCiudad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                            .addComponent(textoEditorialTablaModificarNombre, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addComponent(buttonEditorialTablaModificar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        subPanelEditorialTablaModificarLayout.setVerticalGroup(
+            subPanelEditorialTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+            .addGroup(subPanelEditorialTablaModificarLayout.createSequentialGroup()
+                .addGap(152, 152, 152)
+                .addGroup(subPanelEditorialTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelEditorialTablaModificarNombre)
+                    .addComponent(textoEditorialTablaModificarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelEditorialTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoEditorialTablaModificarCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelEditorialTablaModificarCiudad))
+                .addGap(80, 80, 80)
+                .addComponent(buttonEditorialTablaModificar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        cardLayoutEditorialTabla.add(subPanelEditorialTablaModificar, "cardEditorialTablaModificar");
+
+        tablaEditorialEliminar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Ciudad"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tablaEditorialEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaEditorialEliminarMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(tablaEditorialEliminar);
+
+        javax.swing.GroupLayout subPanelEditorialTablaEliminarLayout = new javax.swing.GroupLayout(subPanelEditorialTablaEliminar);
+        subPanelEditorialTablaEliminar.setLayout(subPanelEditorialTablaEliminarLayout);
+        subPanelEditorialTablaEliminarLayout.setHorizontalGroup(
+            subPanelEditorialTablaEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelEditorialTablaEliminarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 1096, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        subPanelEditorialTablaEliminarLayout.setVerticalGroup(
+            subPanelEditorialTablaEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+        );
+
+        cardLayoutEditorialTabla.add(subPanelEditorialTablaEliminar, "cardEditorialTablaEliminar");
+
+        labelEditorialTablaNuevoNombre.setText("Nombre*");
+
+        labelEditorialTablaNuevoCiudad.setText("Ciudad");
+
+        textoEditorialTablaNuevoNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoEditorialTablaNuevoNombreActionPerformed(evt);
+            }
+        });
+
+        textoEditorialTablaNuevoCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoEditorialTablaNuevoCiudadActionPerformed(evt);
+            }
+        });
+
+        buttonEditorialTablaNuevo.setText("Añadir");
+        buttonEditorialTablaNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditorialTablaNuevoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout subPanelEditorialTablaNuevoLayout = new javax.swing.GroupLayout(subPanelEditorialTablaNuevo);
+        subPanelEditorialTablaNuevo.setLayout(subPanelEditorialTablaNuevoLayout);
+        subPanelEditorialTablaNuevoLayout.setHorizontalGroup(
+            subPanelEditorialTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelEditorialTablaNuevoLayout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addGroup(subPanelEditorialTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonEditorialTablaNuevo)
+                    .addGroup(subPanelEditorialTablaNuevoLayout.createSequentialGroup()
+                        .addGroup(subPanelEditorialTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelEditorialTablaNuevoCiudad)
+                            .addComponent(labelEditorialTablaNuevoNombre))
+                        .addGap(18, 18, 18)
+                        .addGroup(subPanelEditorialTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textoEditorialTablaNuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoEditorialTablaNuevoCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(639, Short.MAX_VALUE))
+        );
+        subPanelEditorialTablaNuevoLayout.setVerticalGroup(
+            subPanelEditorialTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelEditorialTablaNuevoLayout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addGroup(subPanelEditorialTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoEditorialTablaNuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelEditorialTablaNuevoNombre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelEditorialTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoEditorialTablaNuevoCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelEditorialTablaNuevoCiudad))
+                .addGap(18, 18, 18)
+                .addComponent(buttonEditorialTablaNuevo)
+                .addContainerGap(269, Short.MAX_VALUE))
+        );
+
+        cardLayoutEditorialTabla.add(subPanelEditorialTablaNuevo, "cardEditorialTablaNuevo");
+
         javax.swing.GroupLayout panelEditorialesLayout = new javax.swing.GroupLayout(panelEditoriales);
         panelEditoriales.setLayout(panelEditorialesLayout);
         panelEditorialesLayout.setHorizontalGroup(
             panelEditorialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1108, Short.MAX_VALUE)
+            .addGroup(panelEditorialesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelEditorialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(editorialBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editorialNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editorialEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editorialModificar))
+                .addContainerGap(1016, Short.MAX_VALUE))
+            .addGroup(panelEditorialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelEditorialesLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(panelEditorialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(cardLayoutEditorialTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGroup(panelEditorialesLayout.createSequentialGroup()
+                            .addGap(98, 98, 98)
+                            .addComponent(cardLayoutEditorialCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addContainerGap()))
         );
         panelEditorialesLayout.setVerticalGroup(
             panelEditorialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 607, Short.MAX_VALUE)
+            .addGroup(panelEditorialesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(editorialBuscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editorialNuevo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editorialModificar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editorialEliminar)
+                .addContainerGap(483, Short.MAX_VALUE))
+            .addGroup(panelEditorialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelEditorialesLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(cardLayoutEditorialCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(cardLayoutEditorialTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         jTabbedPane1.addTab("Editoriales", panelEditoriales);
@@ -901,69 +2574,81 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+	private void initListasDesplegables() {
+		try {
+			tmpBiblioteca = new BibliotecasDAO().getAll();
+			for (int i=0; i<tmpBiblioteca.size(); i++) {
+				listaAfiliadoTablaNuevo.addItem(tmpBiblioteca.get(i));
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
         private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                 // TODO add your handling code here:
         }//GEN-LAST:event_jButton1ActionPerformed
 
         private void librosNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librosNuevoActionPerformed
                 // TODO add your handling code here:
-		subPanelBuscarLibros.setVisible(false);
-		subPanelNuevoLibros.setVisible(true);
-		subPanelModificarLibros.setVisible(false);
-		subPanelEliminarLibros.setVisible(false);
-		((CardLayout) cardLayoutCamposLibros.getLayout()).show(cardLayoutCamposLibros, "cardNuevoLibros");
-		subPanelBuscarTablaLibros.setVisible(false);
-		subPanelNuevoTablaLibros.setVisible(true);
-		subPanelModificarTablaLibros.setVisible(false);
-		subPanelEliminarTablaLibros.setVisible(false);
-		((CardLayout) cardLayoutTablaLibros.getLayout()).show(cardLayoutTablaLibros, "cardNuevoTablaLibros");
+		subPanelLibrosBuscar.setVisible(false);
+		subPanelLibrosNuevo.setVisible(true);
+		subPanelLibrosModificar.setVisible(false);
+		subPanelLibrosEliminar.setVisible(false);
+		((CardLayout) cardLayoutLibrosCampos.getLayout()).show(cardLayoutLibrosCampos, "cardLibrosNuevo");
+		subPanelLibrosTablaBuscar.setVisible(false);
+		subPanelLibrosTablaNuevo.setVisible(true);
+		subPanelLibrosTablaModificar.setVisible(false);
+		subPanelLibrosTablaEliminar.setVisible(false);
+		((CardLayout) cardLayoutLibrosTabla.getLayout()).show(cardLayoutLibrosTabla, "cardLibrosTablaNuevo");
         }//GEN-LAST:event_librosNuevoActionPerformed
 
         private void librosBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librosBuscarActionPerformed
                 // TODO add your handling code here:
-		subPanelBuscarLibros.setVisible(true);
-		subPanelNuevoLibros.setVisible(false);
-		subPanelModificarLibros.setVisible(false);
-		subPanelEliminarLibros.setVisible(false);
-		((CardLayout) cardLayoutCamposLibros.getLayout()).show(cardLayoutCamposLibros, "cardBuscarLibros");
-		subPanelBuscarTablaLibros.setVisible(true);
-		subPanelNuevoTablaLibros.setVisible(false);
-		subPanelModificarTablaLibros.setVisible(false);
-		subPanelEliminarTablaLibros.setVisible(false);
-		((CardLayout) cardLayoutTablaLibros.getLayout()).show(cardLayoutTablaLibros, "cardBuscarTablaLibros");
+		subPanelLibrosBuscar.setVisible(true);
+		subPanelLibrosNuevo.setVisible(false);
+		subPanelLibrosModificar.setVisible(false);
+		subPanelLibrosEliminar.setVisible(false);
+		((CardLayout) cardLayoutLibrosCampos.getLayout()).show(cardLayoutLibrosCampos, "cardLibrosBuscar");
+		subPanelLibrosTablaBuscar.setVisible(true);
+		subPanelLibrosTablaNuevo.setVisible(false);
+		subPanelLibrosTablaModificar.setVisible(false);
+		subPanelLibrosTablaEliminar.setVisible(false);
+		((CardLayout) cardLayoutLibrosTabla.getLayout()).show(cardLayoutLibrosTabla, "cardLibrosTablaBuscar");
         }//GEN-LAST:event_librosBuscarActionPerformed
 
         private void librosModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librosModificarActionPerformed
                 // TODO add your handling code here:
-		subPanelBuscarLibros.setVisible(false);
-		subPanelNuevoLibros.setVisible(false);
-		subPanelModificarLibros.setVisible(true);
-		subPanelEliminarLibros.setVisible(false);
-		((CardLayout) cardLayoutCamposLibros.getLayout()).show(cardLayoutCamposLibros, "cardModificarLibros");
-		subPanelBuscarTablaLibros.setVisible(false);
-		subPanelNuevoTablaLibros.setVisible(false);
-		subPanelModificarTablaLibros.setVisible(true);
-		subPanelEliminarTablaLibros.setVisible(false);
-		((CardLayout) cardLayoutTablaLibros.getLayout()).show(cardLayoutTablaLibros, "cardModificarTablaLibros");
+		subPanelLibrosBuscar.setVisible(false);
+		subPanelLibrosNuevo.setVisible(false);
+		subPanelLibrosModificar.setVisible(true);
+		subPanelLibrosEliminar.setVisible(false);
+		((CardLayout) cardLayoutLibrosCampos.getLayout()).show(cardLayoutLibrosCampos, "cardLibrosModificar");
+		subPanelLibrosTablaBuscar.setVisible(false);
+		subPanelLibrosTablaNuevo.setVisible(false);
+		subPanelLibrosTablaModificar.setVisible(true);
+		subPanelLibrosTablaEliminar.setVisible(false);
+		((CardLayout) cardLayoutLibrosTabla.getLayout()).show(cardLayoutLibrosTabla, "cardLibrosTablaModificar");
+		
+		blockCamposLibrosModificar();
         }//GEN-LAST:event_librosModificarActionPerformed
 
         private void librosEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librosEliminarActionPerformed
                 // TODO add your handling code here:
-		subPanelBuscarLibros.setVisible(false);
-		subPanelNuevoLibros.setVisible(false);
-		subPanelModificarLibros.setVisible(false);
-		subPanelEliminarLibros.setVisible(true);
-		((CardLayout) cardLayoutCamposLibros.getLayout()).show(cardLayoutCamposLibros, "cardEliminarLibros");
-		subPanelBuscarTablaLibros.setVisible(false);
-		subPanelNuevoTablaLibros.setVisible(false);
-		subPanelModificarTablaLibros.setVisible(false);
-		subPanelEliminarTablaLibros.setVisible(true);
-		((CardLayout) cardLayoutTablaLibros.getLayout()).show(cardLayoutTablaLibros, "cardEliminarTablaLibros");
+		subPanelLibrosBuscar.setVisible(false);
+		subPanelLibrosNuevo.setVisible(false);
+		subPanelLibrosModificar.setVisible(false);
+		subPanelLibrosEliminar.setVisible(true);
+		((CardLayout) cardLayoutLibrosCampos.getLayout()).show(cardLayoutLibrosCampos, "cardLibrosEliminar");
+		subPanelLibrosTablaBuscar.setVisible(false);
+		subPanelLibrosTablaNuevo.setVisible(false);
+		subPanelLibrosTablaModificar.setVisible(false);
+		subPanelLibrosTablaEliminar.setVisible(true);
+		((CardLayout) cardLayoutLibrosTabla.getLayout()).show(cardLayoutLibrosTabla, "cardLibrosTablaEliminar");
+		
+		blockCamposLibrosEliminar();
         }//GEN-LAST:event_librosEliminarActionPerformed
-
-        private void textoBuscarLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoBuscarLibrosActionPerformed
-                // TODO add your handling code here:
-        }//GEN-LAST:event_textoBuscarLibrosActionPerformed
 
         private void autorNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autorNuevoActionPerformed
                 // TODO add your handling code here:
@@ -995,16 +2680,19 @@ public class Principal extends javax.swing.JFrame {
 
         private void autorModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autorModificarActionPerformed
                 // TODO add your handling code here:
-		subPanelBuscarAutor.setVisible(false);
-		subPanelNuevoAutor.setVisible(false);
-		subPanelModificarAutor.setVisible(true);
-		subPanelEliminarAutor.setVisible(false);
-		((CardLayout) cardLayoutCamposAutor.getLayout()).show(cardLayoutCamposAutor, "cardModificarAutor");
-		subPanelBuscarTablaAutor.setVisible(false);
-		subPanelNuevoTablaAutor.setVisible(false);
-		subPanelModificarTablaAutor.setVisible(true);
-		subPanelEliminarTablaAutor.setVisible(false);
-		((CardLayout) cardLayoutTablaAutor.getLayout()).show(cardLayoutTablaAutor, "cardModificarTablaAutor");
+			subPanelBuscarAutor.setVisible(false);
+			subPanelNuevoAutor.setVisible(false);
+			subPanelModificarAutor.setVisible(true);
+			subPanelEliminarAutor.setVisible(false);
+			((CardLayout) cardLayoutCamposAutor.getLayout()).show(cardLayoutCamposAutor, "cardModificarAutor");
+			subPanelBuscarTablaAutor.setVisible(false);
+			subPanelNuevoTablaAutor.setVisible(false);
+			subPanelModificarTablaAutor.setVisible(true);
+			subPanelEliminarTablaAutor.setVisible(false);
+			((CardLayout) cardLayoutTablaAutor.getLayout()).show(cardLayoutTablaAutor, "cardModificarTablaAutor");
+			
+			// Bloqueamos campos de modificacion hasta que no se haya seleccionado
+			blockCamposModificarAutor();
         }//GEN-LAST:event_autorModificarActionPerformed
 
         private void autorEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autorEliminarActionPerformed
@@ -1019,6 +2707,9 @@ public class Principal extends javax.swing.JFrame {
 		subPanelModificarTablaAutor.setVisible(false);
 		subPanelEliminarTablaAutor.setVisible(true);
 		((CardLayout) cardLayoutTablaAutor.getLayout()).show(cardLayoutTablaAutor, "cardEliminarTablaAutor");
+		
+		// deshabilitar boton eliminar
+		blockCamposEliminarAutor();
         }//GEN-LAST:event_autorEliminarActionPerformed
 
         private void textoBuscarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoBuscarAutorActionPerformed
@@ -1039,19 +2730,961 @@ public class Principal extends javax.swing.JFrame {
 															buttonGroupBuscarAutor
 																	.getSelection()
 																	.getActionCommand());
-						fillTableBuscarAutor(autores);
+						fillTableAutor(autores, tablaBuscarAutor);
 					}
 					catch (Exception e){ // acá puede haber un error
-						;
+						e.printStackTrace();
 					}
 				}
         }//GEN-LAST:event_buttonBuscarAutorActionPerformed
 
+    private void textoNuevoTablaNacionalidadAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoNuevoTablaNacionalidadAutorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoNuevoTablaNacionalidadAutorActionPerformed
+
+    private void textoNuevoTablaFechaAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoNuevoTablaFechaAutorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoNuevoTablaFechaAutorActionPerformed
+
+    private void buttonNuevoTablaAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNuevoTablaAutorActionPerformed
+        String nombre = textoNuevoTablaNombreAutor.getText();
+		String apellido = textoNuevoTablaApellidoAutor.getText();
+		String nacionalidad = textoNuevoTablaNacionalidadAutor.getText();
+		//textoNuevoTablaFechaAutor;
+
+		try {
+			if (nombre.length() > 0
+				&& apellido.length() > 0
+				&& nacionalidad.length() > 0) {
+				
+				new AutoresDAO().insertAutor(new Autor(nombre, apellido, nacionalidad));
+				textoNuevoTablaNombreAutor.setText("");
+				textoNuevoTablaApellidoAutor.setText("");
+				textoNuevoTablaNacionalidadAutor.setText("");
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonNuevoTablaAutorActionPerformed
+
+    private void radioApellidoModificarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioApellidoModificarAutorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioApellidoModificarAutorActionPerformed
+
+    private void textoModificarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoModificarAutorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoModificarAutorActionPerformed
+
+    private void buttonModificarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonModificarAutorActionPerformed
+        blockCamposModificarAutor();
+		String textoBuscar = textoModificarAutor.getText();
 		
-	private void fillTableBuscarAutor (ArrayList<Autor> autores) {
+		if (textoBuscar.length() > 0) {
+			AutoresDAO dbAutores = new AutoresDAO();
+
+			try {
+				ArrayList<Autor> autores = dbAutores.searchAutor(textoBuscar, 
+															buttonGroupModificarAutor
+																	.getSelection()
+																	.getActionCommand());
+				tmpAutor = autores;
+				fillTableAutor(autores, tablaModificarAutor);
+			}
+			catch (Exception e){ // acá puede haber un error
+				e.printStackTrace();
+			}
+		}
+    }//GEN-LAST:event_buttonModificarAutorActionPerformed
+
+    private void textoModificarTablaNacionalidadAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoModificarTablaNacionalidadAutorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoModificarTablaNacionalidadAutorActionPerformed
+
+    private void textoModificarTablaFechaAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoModificarTablaFechaAutorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoModificarTablaFechaAutorActionPerformed
+
+    private void buttonModificarTablaAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonModificarTablaAutorActionPerformed
+        AutoresDAO autoresDAO = new AutoresDAO();
+		try {
+			if (textoModificarTablaNombreAutor.getText().length() > 0
+				&& textoModificarTablaApellidoAutor.getText().length() > 0
+				&& textoModificarTablaNacionalidadAutor.getText().length() > 0) {
+				
+				//actualizacion en DB
+				autoresDAO.updateAutor(new Autor(
+						tmpAutor.get(tablaModificarAutor.getSelectedRow()).getIdAutor(),
+						textoModificarTablaNombreAutor.getText(), 
+						textoModificarTablaApellidoAutor.getText(), 
+						textoModificarTablaNacionalidadAutor.getText()));
+						//textoModificarTablaFechaAutor.getText())); // error convertir a date antes
+				blockCamposModificarAutor();
+				
+				//actualizacion en frontend sin hacer consulta
+				// ---- pendiente
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonModificarTablaAutorActionPerformed
+
+    private void tablaModificarAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaModificarAutorMouseClicked
+        // habilitacion
+		buttonModificarTablaAutor.setEnabled(true);
+		textoModificarTablaNombreAutor.setEnabled(true);
+		textoModificarTablaApellidoAutor.setEnabled(true);
+		textoModificarTablaNacionalidadAutor.setEnabled(true);
+		textoModificarTablaFechaAutor.setEnabled(true);
 		
-		int columnsAutoresTable = 4;
-		Object forTable[][] = new Object[autores.size()][columnsAutoresTable];
+		// relleno de campos
+		int row = tablaModificarAutor.getSelectedRow();
+		
+		try {
+			textoModificarTablaNombreAutor.setText(tmpAutor.get(row).getNombre());
+			textoModificarTablaApellidoAutor.setText(tmpAutor.get(row).getApellido());
+			textoModificarTablaNacionalidadAutor.setText(tmpAutor.get(row).getNacionalidad());
+			textoModificarTablaFechaAutor.setText(tmpAutor.get(row).getFechaNacimiento().toString());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_tablaModificarAutorMouseClicked
+
+    private void radioApellidoEliminarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioApellidoEliminarAutorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioApellidoEliminarAutorActionPerformed
+
+    private void textoEliminarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoEliminarAutorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoEliminarAutorActionPerformed
+
+    private void buttonEliminarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEliminarAutorActionPerformed
+        // deshabilitar boton eliminar
+		buttonEliminarAccionAutor.setEnabled(false);
+		String textoBuscar = textoEliminarAutor.getText();
+		
+		if (textoBuscar.length() > 0) {
+			AutoresDAO dbAutores = new AutoresDAO();
+
+			try {
+				ArrayList<Autor> autores = dbAutores.searchAutor(textoBuscar, 
+															buttonGroupEliminarAutor
+																	.getSelection()
+																	.getActionCommand());
+				tmpAutor = autores;
+				fillTableAutor(autores, tablaEliminarAutor);
+			}
+			catch (Exception e){ // acá puede haber un error
+				e.printStackTrace();
+			}
+		}
+    }//GEN-LAST:event_buttonEliminarAutorActionPerformed
+
+    private void buttonEliminarAccionAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEliminarAccionAutorActionPerformed
+        AutoresDAO autoresDAO = new AutoresDAO();
+		try {
+			autoresDAO.deleteAutor(tmpAutor.get(tablaEliminarAutor.getSelectedRow()));
+			blockCamposEliminarAutor();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonEliminarAccionAutorActionPerformed
+
+    private void tablaEliminarAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEliminarAutorMouseClicked
+        buttonEliminarAccionAutor.setEnabled(true);
+    }//GEN-LAST:event_tablaEliminarAutorMouseClicked
+
+    private void editorialNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editorialNuevoActionPerformed
+        subPanelEditorialBuscar.setVisible(false);
+		subPanelEditorialNuevo.setVisible(true);
+		subPanelEditorialModificar.setVisible(false);
+		subPanelEditorialEliminar.setVisible(false);
+		((CardLayout) cardLayoutEditorialCampos.getLayout()).show(cardLayoutEditorialCampos, "cardEditorialNuevo");
+		subPanelEditorialTablaBuscar.setVisible(false);
+		subPanelEditorialTablaNuevo.setVisible(true);
+		subPanelEditorialTablaModificar.setVisible(false);
+		subPanelEditorialTablaEliminar.setVisible(false);
+		((CardLayout) cardLayoutEditorialTabla.getLayout()).show(cardLayoutEditorialTabla, "cardEditorialTablaNuevo");
+        
+    }//GEN-LAST:event_editorialNuevoActionPerformed
+
+    private void editorialBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editorialBuscarActionPerformed
+        subPanelEditorialBuscar.setVisible(true);
+		subPanelEditorialNuevo.setVisible(false);
+		subPanelEditorialModificar.setVisible(false);
+		subPanelEditorialEliminar.setVisible(false);
+		((CardLayout) cardLayoutEditorialCampos.getLayout()).show(cardLayoutEditorialCampos, "cardEditorialBuscar");
+		subPanelEditorialTablaBuscar.setVisible(true);
+		subPanelEditorialTablaNuevo.setVisible(false);
+		subPanelEditorialTablaModificar.setVisible(false);
+		subPanelEditorialTablaEliminar.setVisible(false);
+		((CardLayout) cardLayoutEditorialTabla.getLayout()).show(cardLayoutEditorialTabla, "cardEditorialTablaBuscar");
+    }//GEN-LAST:event_editorialBuscarActionPerformed
+
+    private void editorialModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editorialModificarActionPerformed
+        subPanelEditorialBuscar.setVisible(false);
+		subPanelEditorialNuevo.setVisible(false);
+		subPanelEditorialModificar.setVisible(true);
+		subPanelEditorialEliminar.setVisible(false);
+		((CardLayout) cardLayoutEditorialCampos.getLayout()).show(cardLayoutEditorialCampos, "cardEditorialModificar");
+		subPanelEditorialTablaBuscar.setVisible(false);
+		subPanelEditorialTablaNuevo.setVisible(false);
+		subPanelEditorialTablaModificar.setVisible(true);
+		subPanelEditorialTablaEliminar.setVisible(false);
+		((CardLayout) cardLayoutEditorialTabla.getLayout()).show(cardLayoutEditorialTabla, "cardEditorialTablaModificar");
+		
+		blockCamposEditorialModificar();
+    }//GEN-LAST:event_editorialModificarActionPerformed
+
+    private void editorialEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editorialEliminarActionPerformed
+        subPanelEditorialBuscar.setVisible(false);
+		subPanelEditorialNuevo.setVisible(false);
+		subPanelEditorialModificar.setVisible(false);
+		subPanelEditorialEliminar.setVisible(true);
+		((CardLayout) cardLayoutEditorialCampos.getLayout()).show(cardLayoutEditorialCampos, "cardEditorialEliminar");
+		subPanelEditorialTablaBuscar.setVisible(false);
+		subPanelEditorialTablaNuevo.setVisible(false);
+		subPanelEditorialTablaModificar.setVisible(false);
+		subPanelEditorialTablaEliminar.setVisible(true);
+		((CardLayout) cardLayoutEditorialTabla.getLayout()).show(cardLayoutEditorialTabla, "cardEditorialTablaEliminar");
+		
+		blockCamposEditorialEliminar();
+    }//GEN-LAST:event_editorialEliminarActionPerformed
+
+    private void radioEditorialModificarCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEditorialModificarCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioEditorialModificarCiudadActionPerformed
+
+    private void textoEditorialModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoEditorialModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoEditorialModificarActionPerformed
+
+    private void buttonEditorialModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditorialModificarActionPerformed
+        blockCamposEditorialModificar();
+		String textoBuscar = textoEditorialModificar.getText();
+		
+		if (textoBuscar.length() > 0) {
+			EditorialesDAO dbEditorial = new EditorialesDAO();
+
+			try {
+				ArrayList<Editorial> editoriales = dbEditorial.searchEditorial(textoBuscar, 
+															buttonGroupEditorialModificar
+																	.getSelection()
+																	.getActionCommand());
+				tmpEditorial = editoriales;
+				fillEditorialTable(editoriales, tablaEditorialModificar);
+			}
+			catch (Exception e){ // acá puede haber un error
+				e.printStackTrace();
+			}
+		}
+    }//GEN-LAST:event_buttonEditorialModificarActionPerformed
+
+    private void radioEditorialEliminarCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEditorialEliminarCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioEditorialEliminarCiudadActionPerformed
+
+    private void textoEditorialEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoEditorialEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoEditorialEliminarActionPerformed
+
+    private void buttonEditorialEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditorialEliminarActionPerformed
+        // deshabilitar boton eliminar
+		buttonEditorialEliminarAccion.setEnabled(false);
+		String textoBuscar = textoEditorialEliminar.getText();
+		
+		if (textoBuscar.length() > 0) {
+			EditorialesDAO dbEditoriales = new EditorialesDAO();
+
+			try {
+				ArrayList<Editorial> editoriales = dbEditoriales.searchEditorial(textoBuscar, 
+															buttonGroupEditorialEliminar
+																	.getSelection()
+																	.getActionCommand());
+				tmpEditorial = editoriales;
+				fillEditorialTable(editoriales, tablaEditorialEliminar);
+			}
+			catch (Exception e){ // acá puede haber un error
+				e.printStackTrace();
+			}
+		}
+    }//GEN-LAST:event_buttonEditorialEliminarActionPerformed
+
+    private void buttonEditorialEliminarAccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditorialEliminarAccionActionPerformed
+        EditorialesDAO editorialesDAO = new EditorialesDAO();
+		try {
+			editorialesDAO.deleteEditorial(tmpEditorial.get(tablaEditorialEliminar.getSelectedRow()));
+			blockCamposEditorialEliminar();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonEditorialEliminarAccionActionPerformed
+
+    private void radioEditorialBuscarCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEditorialBuscarCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioEditorialBuscarCiudadActionPerformed
+
+    private void textoEditorialBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoEditorialBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoEditorialBuscarActionPerformed
+
+    private void buttonEditorialBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditorialBuscarActionPerformed
+        String textoBuscar = textoEditorialBuscar.getText();
+		if (textoBuscar.length() > 0) {
+			EditorialesDAO dbEditoriales = new EditorialesDAO();
+
+			try {
+				ArrayList<Editorial> editoriales = dbEditoriales.searchEditorial(textoBuscar, 
+															buttonGroupEditorialBuscar
+																	.getSelection()
+																	.getActionCommand());
+				fillEditorialTable(editoriales, tablaEditorialBuscar);
+			}
+			catch (Exception e){ // acá puede haber un error
+				e.printStackTrace();
+			}
+		}
+    }//GEN-LAST:event_buttonEditorialBuscarActionPerformed
+
+    private void tablaEditorialModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEditorialModificarMouseClicked
+        // habilitacion
+		buttonEditorialTablaModificar.setEnabled(true);
+		textoEditorialTablaModificarNombre.setEnabled(true);
+		textoEditorialTablaModificarCiudad.setEnabled(true);
+		
+		// relleno de campos
+		int row = tablaEditorialModificar.getSelectedRow();
+		
+		try {
+			textoEditorialTablaModificarNombre.setText(tmpEditorial.get(row).getNombre());
+			textoEditorialTablaModificarCiudad.setText(tmpEditorial.get(row).getCiudad());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_tablaEditorialModificarMouseClicked
+
+    private void buttonEditorialTablaModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditorialTablaModificarActionPerformed
+        EditorialesDAO editorialesDAO = new EditorialesDAO();
+		try {
+			if (textoEditorialTablaModificarNombre.getText().length() > 0
+				&& textoEditorialTablaModificarCiudad.getText().length() > 0) {
+				
+				//actualizacion en DB
+				editorialesDAO.updateEditorial(new Editorial(
+						tmpEditorial.get(tablaEditorialModificar.getSelectedRow()).getIdEditorial(),
+						textoEditorialTablaModificarNombre.getText(), 
+						textoEditorialTablaModificarCiudad.getText()));
+				
+				blockCamposEditorialModificar();
+				
+				//actualizacion en frontend sin hacer consulta
+				// ---- pendiente
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonEditorialTablaModificarActionPerformed
+
+    private void tablaEditorialEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEditorialEliminarMouseClicked
+        buttonEditorialEliminarAccion.setEnabled(true);
+    }//GEN-LAST:event_tablaEditorialEliminarMouseClicked
+
+    private void textoEditorialTablaNuevoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoEditorialTablaNuevoNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoEditorialTablaNuevoNombreActionPerformed
+
+    private void textoEditorialTablaNuevoCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoEditorialTablaNuevoCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoEditorialTablaNuevoCiudadActionPerformed
+
+    private void buttonEditorialTablaNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditorialTablaNuevoActionPerformed
+		String nombre = textoEditorialTablaNuevoNombre.getText();
+		String ciudad = textoEditorialTablaNuevoCiudad.getText();
+		//textoNuevoTablaFechaAutor;
+
+		try {
+			if (nombre.length() > 0
+				&& ciudad.length() > 0) {
+				
+				new EditorialesDAO().insertEditorial(new Editorial(nombre, ciudad));
+				textoEditorialTablaNuevoNombre.setText("");
+				textoEditorialTablaNuevoCiudad.setText("");
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonEditorialTablaNuevoActionPerformed
+
+    private void afiliadoEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afiliadoEliminarActionPerformed
+        subPanelAfiliadoBuscar.setVisible(false);
+		subPanelAfiliadoNuevo.setVisible(false);
+		subPanelAfiliadoModificar.setVisible(false);
+		subPanelAfiliadoEliminar.setVisible(true);
+		((CardLayout) cardLayoutAfiliadoCampos.getLayout()).show(cardLayoutAfiliadoCampos, "cardAfiliadoEliminar");
+		subPanelAfiliadoTablaBuscar.setVisible(false);
+		subPanelAfiliadoTablaNuevo.setVisible(false);
+		subPanelAfiliadoTablaModificar.setVisible(false);
+		subPanelAfiliadoTablaEliminar.setVisible(true);
+		((CardLayout) cardLayoutAfiliadoTabla.getLayout()).show(cardLayoutAfiliadoTabla, "cardAfiliadoTablaEliminar");
+		
+		blockCamposAfiliadoEliminar();
+    }//GEN-LAST:event_afiliadoEliminarActionPerformed
+
+    private void afiliadoModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afiliadoModificarActionPerformed
+        subPanelAfiliadoBuscar.setVisible(false);
+		subPanelAfiliadoNuevo.setVisible(false);
+		subPanelAfiliadoModificar.setVisible(true);
+		subPanelAfiliadoEliminar.setVisible(false);
+		((CardLayout) cardLayoutAfiliadoCampos.getLayout()).show(cardLayoutAfiliadoCampos, "cardAfiliadoModificar");
+		subPanelAfiliadoTablaBuscar.setVisible(false);
+		subPanelAfiliadoTablaNuevo.setVisible(false);
+		subPanelAfiliadoTablaModificar.setVisible(true);
+		subPanelAfiliadoTablaEliminar.setVisible(false);
+		((CardLayout) cardLayoutAfiliadoTabla.getLayout()).show(cardLayoutAfiliadoTabla, "cardAfiliadoTablaModificar");
+		
+		blockCamposAfiliadoModificar();
+    }//GEN-LAST:event_afiliadoModificarActionPerformed
+
+    private void afiliadoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afiliadoBuscarActionPerformed
+        subPanelAfiliadoBuscar.setVisible(true);
+		subPanelAfiliadoNuevo.setVisible(false);
+		subPanelAfiliadoModificar.setVisible(false);
+		subPanelAfiliadoEliminar.setVisible(false);
+		((CardLayout) cardLayoutAfiliadoCampos.getLayout()).show(cardLayoutAfiliadoCampos, "cardAfiliadoBuscar");
+		subPanelAfiliadoTablaBuscar.setVisible(true);
+		subPanelAfiliadoTablaNuevo.setVisible(false);
+		subPanelAfiliadoTablaModificar.setVisible(false);
+		subPanelAfiliadoTablaEliminar.setVisible(false);
+		((CardLayout) cardLayoutAfiliadoTabla.getLayout()).show(cardLayoutAfiliadoTabla, "cardAfiliadoTablaBuscar");
+    }//GEN-LAST:event_afiliadoBuscarActionPerformed
+
+    private void afiliadoNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afiliadoNuevoActionPerformed
+        subPanelAfiliadoBuscar.setVisible(false);
+		subPanelAfiliadoNuevo.setVisible(true);
+		subPanelAfiliadoModificar.setVisible(false);
+		subPanelAfiliadoEliminar.setVisible(false);
+		((CardLayout) cardLayoutAfiliadoCampos.getLayout()).show(cardLayoutAfiliadoCampos, "cardAfiliadoNuevo");
+		subPanelAfiliadoTablaBuscar.setVisible(false);
+		subPanelAfiliadoTablaNuevo.setVisible(true);
+		subPanelAfiliadoTablaModificar.setVisible(false);
+		subPanelAfiliadoTablaEliminar.setVisible(false);
+		((CardLayout) cardLayoutAfiliadoTabla.getLayout()).show(cardLayoutAfiliadoTabla, "cardAfiliadoTablaNuevo");
+    }//GEN-LAST:event_afiliadoNuevoActionPerformed
+
+    private void textoLibrosBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoLibrosBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoLibrosBuscarActionPerformed
+
+    private void tablaAfiliadoModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaAfiliadoModificarMouseClicked
+        // habilitacion
+		buttonAfiliadoTablaModificar.setEnabled(true);
+		textoAfiliadoTablaModificarNombre.setEnabled(true);
+		textoAfiliadoTablaModificarApellido.setEnabled(true);
+		
+		// relleno de campos
+		int row = tablaAfiliadoModificar.getSelectedRow();
+		
+		try {
+			textoAfiliadoTablaModificarNombre.setText(tmpAfiliado.get(row).getNombre());
+			textoAfiliadoTablaModificarApellido.setText(tmpAfiliado.get(row).getApellido());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_tablaAfiliadoModificarMouseClicked
+
+    private void buttonAfiliadoTablaModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfiliadoTablaModificarActionPerformed
+        AfiliadosDAO afiliadosDAO = new AfiliadosDAO();
+		try {
+			if (textoAfiliadoTablaModificarNombre.getText().length() > 0
+				&& textoAfiliadoTablaModificarApellido.getText().length() > 0) {
+				
+				//actualizacion en DB
+				afiliadosDAO.updateAfiliado(new Afiliado(
+						tmpAfiliado.get(tablaAfiliadoModificar.getSelectedRow()).getLegajo(),
+						tmpAfiliado.get(tablaAfiliadoModificar.getSelectedRow()).getIdBibliotecaAfiliacion(),
+						textoAfiliadoTablaModificarNombre.getText(), 
+						textoAfiliadoTablaModificarApellido.getText()));
+				
+				blockCamposAfiliadoModificar();
+				
+				//actualizacion en frontend sin hacer consulta
+				// ---- pendiente
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonAfiliadoTablaModificarActionPerformed
+
+    private void tablaAfiliadoEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaAfiliadoEliminarMouseClicked
+        buttonAfiliadoEliminarAccion.setEnabled(true);
+    }//GEN-LAST:event_tablaAfiliadoEliminarMouseClicked
+
+    private void textoAfiliadoTablaNuevoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoAfiliadoTablaNuevoNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoAfiliadoTablaNuevoNombreActionPerformed
+
+    private void textoAfiliadoTablaNuevoApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoAfiliadoTablaNuevoApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoAfiliadoTablaNuevoApellidoActionPerformed
+
+    private void buttonAfiliadoTablaNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfiliadoTablaNuevoActionPerformed
+        String nombre = textoAfiliadoTablaNuevoNombre.getText();
+		String apellido = textoAfiliadoTablaNuevoApellido.getText();
+		String legajo = textoAfiliadoTablaNuevoLegajo.getText();
+		int idBiblioteca = ((Biblioteca) listaAfiliadoTablaNuevo.getSelectedItem()).getIdBiblioteca();
+		//textoNuevoTablaFechaAutor;
+		try {
+			if (nombre.length() > 0
+				&& apellido.length() > 0
+				&& legajo.length() > 0) {
+				
+				new AfiliadosDAO().insertAfiliado(new Afiliado(Integer.parseInt(legajo),
+																idBiblioteca,
+																nombre,
+																apellido,
+																new java.sql.Date(System.currentTimeMillis())));
+				textoAfiliadoTablaNuevoNombre.setText("");
+				textoAfiliadoTablaNuevoApellido.setText("");
+				textoAfiliadoTablaNuevoLegajo.setText("");
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonAfiliadoTablaNuevoActionPerformed
+
+    private void radioAfiliadoEliminarApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAfiliadoEliminarApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioAfiliadoEliminarApellidoActionPerformed
+
+    private void textoAfiliadoEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoAfiliadoEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoAfiliadoEliminarActionPerformed
+
+    private void buttonAfiliadoEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfiliadoEliminarActionPerformed
+        // deshabilitar boton eliminar
+		buttonAfiliadoEliminarAccion.setEnabled(false);
+		String textoBuscar = textoAfiliadoEliminar.getText();
+		
+		if (textoBuscar.length() > 0) {
+			AfiliadosDAO dbAfiliados = new AfiliadosDAO();
+
+			try {
+				ArrayList<Afiliado> afiliados = dbAfiliados.searchAfiliado(textoBuscar, 
+															buttonGroupAfiliadoEliminar
+																	.getSelection()
+																	.getActionCommand());
+				tmpAfiliado = afiliados;
+				fillAfiliadoTable(afiliados, tablaAfiliadoEliminar);
+			}
+			catch (Exception e){ // acá puede haber un error
+				e.printStackTrace();
+			}
+		}
+    }//GEN-LAST:event_buttonAfiliadoEliminarActionPerformed
+
+    private void buttonAfiliadoEliminarAccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfiliadoEliminarAccionActionPerformed
+        AfiliadosDAO afiliadosDAO = new AfiliadosDAO();
+		try {
+			afiliadosDAO.deleteAfiliado(tmpAfiliado.get(tablaAfiliadoEliminar.getSelectedRow()));
+			blockCamposAfiliadoEliminar();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonAfiliadoEliminarAccionActionPerformed
+
+    private void textoAfiliadoTablaNuevoLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoAfiliadoTablaNuevoLegajoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoAfiliadoTablaNuevoLegajoActionPerformed
+
+    private void listaAfiliadoTablaNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaAfiliadoTablaNuevoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listaAfiliadoTablaNuevoActionPerformed
+
+    private void radioAfiliadoBuscarLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAfiliadoBuscarLegajoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioAfiliadoBuscarLegajoActionPerformed
+
+    private void buttonAfiliadoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfiliadoBuscarActionPerformed
+		String textoBuscar = textoAfiliadoBuscar.getText();
+		if (textoBuscar.length() > 0) {
+			AfiliadosDAO dbAfiliados = new AfiliadosDAO();
+
+			try {
+				ArrayList<Afiliado> afiliados = dbAfiliados.searchAfiliado(textoBuscar, 
+															buttonGroupAfiliadoBuscar
+																	.getSelection()
+																	.getActionCommand());
+				fillAfiliadoTable(afiliados, tablaAfiliadoBuscar);
+			}
+			catch (Exception e){ // acá puede haber un error
+				e.printStackTrace();
+			}
+		}
+    }//GEN-LAST:event_buttonAfiliadoBuscarActionPerformed
+
+    private void textoAfiliadoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoAfiliadoBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoAfiliadoBuscarActionPerformed
+
+    private void radioAfiliadoBuscarApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAfiliadoBuscarApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioAfiliadoBuscarApellidoActionPerformed
+
+    private void radioAfiliadoModificarApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAfiliadoModificarApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioAfiliadoModificarApellidoActionPerformed
+
+    private void textoAfiliadoModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoAfiliadoModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoAfiliadoModificarActionPerformed
+
+    private void buttonAfiliadoModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAfiliadoModificarActionPerformed
+        String textoBuscar = textoAfiliadoModificar.getText();
+		try {
+			if (textoBuscar.length() > 0) {
+				AfiliadosDAO dbAfiliados = new AfiliadosDAO();
+			
+				ArrayList<Afiliado> afiliados = dbAfiliados.searchAfiliado(textoBuscar, 
+															buttonGroupAfiliadoModificar
+																	.getSelection()
+																	.getActionCommand());
+				tmpAfiliado = afiliados;
+				fillAfiliadoTable(afiliados, tablaAfiliadoModificar);
+			}
+		}
+		catch (Exception e){ // acá puede haber un error
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonAfiliadoModificarActionPerformed
+
+    private void radioAfiliadoModificarLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAfiliadoModificarLegajoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioAfiliadoModificarLegajoActionPerformed
+
+    private void radioAfiliadoEliminarLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAfiliadoEliminarLegajoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioAfiliadoEliminarLegajoActionPerformed
+
+    private void buttonLibrosTablaNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLibrosTablaNuevoActionPerformed
+        String ISBN = textoLibrosNuevoISBN.getText();
+        String titulo = textoLibrosNuevoTitulo.getText();
+		String idioma = textoLibrosNuevoIdioma.getText();
+		String genero = textoLibrosNuevoGenero.getText();
+		String edicion = textoLibrosNuevoEdicion.getText();
+		String paginas = textoLibrosNuevoPaginas.getText();
+		String año = textoLibrosNuevoAño.getText();
+
+		try {
+			if (ISBN.length() == 13
+				&& titulo.length() > 0
+				&& edicion.length() > 0
+				&& listaLibrosNuevoAutor.getSelectedItem() != null
+				&& listaLibrosNuevoEditorial.getSelectedItem() != null) { // editorial no nulo
+				
+				// add autores
+				ArrayList<Autor> autores = new ArrayList();
+				autores.add(tmpLibrosNuevoAutor.get(listaLibrosNuevoAutor.getSelectedIndex()));
+				
+				Libro libro = new Libro(ISBN, titulo, Integer.parseInt(edicion),
+										tmpLibrosNuevoEditorial.get(listaLibrosNuevoEditorial.getSelectedIndex()).getIdEditorial(),
+										tmpLibrosNuevoEditorial.get(listaLibrosNuevoEditorial.getSelectedIndex()),
+										autores);
+				libro.setIdioma(idioma);
+				libro.setGenero(genero);
+				libro.setPaginas(Integer.parseInt(paginas));
+				
+				// año
+				checkAndGetAño(año);
+				
+				libro.setFechaPublicacion(java.sql.Date.valueOf(año + "-01-01"));
+				
+				new LibrosDAO().insertLibro(libro);
+				
+				textoLibrosNuevoISBN.setText("");
+				textoLibrosNuevoTitulo.setText("");
+				textoLibrosNuevoEditorial.setText("");
+				textoLibrosNuevoAutor.setText("");
+				tmpLibrosNuevoAutor = null;
+				tmpLibrosNuevoEditorial = null;
+				listaLibrosNuevoAutor.removeAllItems();
+				listaLibrosNuevoEditorial.removeAllItems();
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonLibrosTablaNuevoActionPerformed
+
+    private void buttonLibrosNuevoAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLibrosNuevoAutorActionPerformed
+        try {
+			listaLibrosNuevoAutor.removeAllItems();
+			if (textoLibrosNuevoAutor.getText().length() > 0) {
+				tmpLibrosNuevoAutor = new AutoresDAO().searchAutor(textoLibrosNuevoAutor.getText(), "apellido");
+				for (int i=0; i<tmpLibrosNuevoAutor.size(); i++) {
+					listaLibrosNuevoAutor.addItem(tmpLibrosNuevoAutor.get(i));
+				}
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonLibrosNuevoAutorActionPerformed
+
+    private void buttonLibrosNuevoEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLibrosNuevoEditorialActionPerformed
+        try {
+			listaLibrosNuevoEditorial.removeAllItems();
+			if (textoLibrosNuevoEditorial.getText().length() > 0) {
+				tmpLibrosNuevoEditorial = new EditorialesDAO().searchEditorial(textoLibrosNuevoEditorial.getText(), "nombre");
+				for (int i=0; i<tmpLibrosNuevoEditorial.size(); i++) {
+					listaLibrosNuevoEditorial.addItem(tmpLibrosNuevoEditorial.get(i));
+				}
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonLibrosNuevoEditorialActionPerformed
+
+    private void buttonLibrosBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLibrosBuscarActionPerformed
+        String textoBuscar = textoLibrosBuscar.getText();
+		
+		try {
+			if (textoBuscar.length() > 0) {
+				LibrosDAO dbLibros = new LibrosDAO();
+				ArrayList<Libro> libros = dbLibros.searchLibro(textoBuscar, 
+															buttonGroupLibrosBuscar
+																	.getSelection()
+																	.getActionCommand());
+				fillLibrosTable(libros, tablaLibrosBuscar);
+			}
+		}
+		catch (Exception e){ // acá puede haber un error
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonLibrosBuscarActionPerformed
+
+    private void textoLibrosModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoLibrosModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoLibrosModificarActionPerformed
+
+    private void buttonLibrosModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLibrosModificarActionPerformed
+        String textoBuscar = textoLibrosModificar.getText();
+		
+		try {
+			if (textoBuscar.length() > 0) {
+				LibrosDAO dbLibros = new LibrosDAO();
+				ArrayList<Libro> libros = dbLibros.searchLibro(textoBuscar, 
+															buttonGroupLibrosBuscar
+																	.getSelection()
+																	.getActionCommand());
+				fillLibrosTable(libros, tablaLibrosBuscar);
+			}
+		}
+		catch (Exception e){ // acá puede haber un error
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonLibrosModificarActionPerformed
+
+    private void buttonLibrosModificarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLibrosModificarEditorialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonLibrosModificarEditorialActionPerformed
+
+    private void buttonLibrosTablaModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLibrosTablaModificarActionPerformed
+        LibrosDAO librosDAO = new LibrosDAO();
+		try {
+			if (textoLibrosModificarTitulo.getText().length() > 0
+				&& textoLibrosModificarEdicion.getText().length() > 0
+				&& listaLibrosModificarEditorial.getSelectedItem() != null) {
+				
+				//actualizacion en DB
+				librosDAO.updateLibro(new Libro(
+						tmpLibros.get(tablaLibrosModificar.getSelectedRow()).getISBN(),
+						textoLibrosModificarTitulo.getText(),
+						Integer.parseInt(textoLibrosModificarEdicion.getText()), 
+						((Editorial) listaLibrosModificarEditorial.getSelectedItem()).getIdEditorial(),
+						textoLibrosModificarIdioma.getText(),
+						textoLibrosModificarGenero.getText(),
+						Integer.parseInt(textoLibrosModificarPaginas.getText()),
+						java.sql.Date.valueOf(String.valueOf(checkAndGetAño(textoLibrosModificarAño.getText()))+"-01-01")
+				));
+						
+				
+				blockCamposLibrosModificar();
+				
+				//actualizacion en frontend sin hacer consulta
+				// ---- pendiente
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonLibrosTablaModificarActionPerformed
+
+    private void tablaLibrosModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaLibrosModificarMouseClicked
+        // habilitacion
+		buttonLibrosTablaModificar.setEnabled(true);
+		textoLibrosModificarTitulo.setEnabled(true);
+		textoLibrosModificarIdioma.setEnabled(true);
+		textoLibrosModificarGenero.setEnabled(true);
+		textoLibrosModificarEdicion.setEnabled(true);
+		textoLibrosModificarPaginas.setEnabled(true);
+		textoLibrosModificarAño.setEnabled(true);
+		textoLibrosModificarEditorial.setEnabled(true);
+		buttonLibrosModificarEditorial.setEnabled(true);
+		listaLibrosModificarEditorial.removeAllItems();
+		
+		// relleno de campos
+		int row = tablaLibrosModificar.getSelectedRow();
+		
+		try {
+			textoLibrosModificarISBN.setText(tmpLibros.get(row).getISBN());
+			textoLibrosModificarTitulo.setText(tmpLibros.get(row).getTitulo());
+			textoLibrosModificarIdioma.setText(tmpLibros.get(row).getIdioma());
+			textoLibrosModificarGenero.setText(tmpLibros.get(row).getGenero());
+			textoLibrosModificarEdicion.setText(String.valueOf(tmpLibros.get(row).getEdicion()));
+			textoLibrosModificarPaginas.setText(String.valueOf(tmpLibros.get(row).getPaginas()));
+			textoLibrosModificarAño.setText(tmpLibros.get(row).getFechaPublicacion().toString());
+			listaLibrosModificarEditorial.addItem(tmpLibros.get(row).getEditorial());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_tablaLibrosModificarMouseClicked
+
+    private void textoLibrosEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoLibrosEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoLibrosEliminarActionPerformed
+
+    private void buttonLibrosEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLibrosEliminarActionPerformed
+        // deshabilitar boton eliminar
+		buttonLibrosEliminarAccion.setEnabled(false);
+		String textoBuscar = textoLibrosEliminar.getText();
+		
+		if (textoBuscar.length() > 0) {
+			LibrosDAO dbLibros = new LibrosDAO();
+
+			try {
+				ArrayList<Libro> libros = dbLibros.searchLibro(textoBuscar, 
+															buttonGroupLibrosEliminar
+																	.getSelection()
+																	.getActionCommand());
+				tmpLibros = libros;
+				fillLibrosTable(libros, tablaLibrosEliminar);
+			}
+			catch (Exception e){ // acá puede haber un error
+				e.printStackTrace();
+			}
+		}
+    }//GEN-LAST:event_buttonLibrosEliminarActionPerformed
+
+    private void buttonLibrosEliminarAccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLibrosEliminarAccionActionPerformed
+        LibrosDAO librosDAO = new LibrosDAO();
+		try {
+			librosDAO.deleteLibro(tmpLibros.get(tablaLibrosEliminar.getSelectedRow()));
+			blockCamposLibrosEliminar();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonLibrosEliminarAccionActionPerformed
+
+    private void tablaLibrosEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaLibrosEliminarMouseClicked
+		buttonLibrosEliminarAccion.setEnabled(true);
+    }//GEN-LAST:event_tablaLibrosEliminarMouseClicked
+	
+	private int checkAndGetAño(String año) throws Exception {
+		int year = Integer.parseInt(año);
+		if (year < 0 || year > new java.sql.Date(System.currentTimeMillis()).getYear()) {
+			throw new Exception("Invalid year");
+		}
+		return year;
+	}
+	
+	private void blockCamposLibrosModificar() {
+		buttonLibrosTablaModificar.setEnabled(false);
+		textoLibrosModificarISBN.setText("");
+		textoLibrosModificarTitulo.setText("");
+		textoLibrosModificarIdioma.setText("");
+		textoLibrosModificarGenero.setText("");
+		textoLibrosModificarEdicion.setText("");
+		textoLibrosModificarPaginas.setText("");
+		textoLibrosModificarAño.setText("");
+		textoLibrosModificarEditorial.setText("");
+		textoLibrosModificarTitulo.setEnabled(false);
+		textoLibrosModificarIdioma.setEnabled(false);
+		textoLibrosModificarGenero.setEnabled(false);
+		textoLibrosModificarEdicion.setEnabled(false);
+		textoLibrosModificarPaginas.setEnabled(false);
+		textoLibrosModificarAño.setEnabled(false);
+		textoLibrosModificarEditorial.setEnabled(false);
+		buttonLibrosModificarEditorial.setEnabled(false);
+		tmpLibros = null;
+	}
+	
+	private void blockCamposLibrosEliminar() {
+		buttonLibrosEliminarAccion.setEnabled(false);
+		tmpLibros = null;
+	}
+	
+	private void blockCamposAfiliadoModificar() {
+		buttonAfiliadoTablaModificar.setEnabled(false);
+		tmpAfiliado = null;
+		textoAfiliadoTablaModificarNombre.setText("");
+		textoAfiliadoTablaModificarApellido.setText("");
+		textoAfiliadoTablaModificarNombre.setEnabled(false);
+		textoAfiliadoTablaModificarApellido.setEnabled(false);
+	}
+	
+	private void blockCamposAfiliadoEliminar() {
+		buttonAfiliadoEliminarAccion.setEnabled(false);
+		tmpAfiliado = null;
+	}
+	
+	private void blockCamposEditorialModificar() {
+		buttonEditorialTablaModificar.setEnabled(false);
+		tmpEditorial = null;
+		textoEditorialTablaModificarNombre.setText("");
+		textoEditorialTablaModificarCiudad.setText("");
+		textoEditorialTablaModificarNombre.setEnabled(false);
+		textoEditorialTablaModificarCiudad.setEnabled(false);
+	}
+	
+	private void blockCamposEditorialEliminar() {
+		buttonEditorialEliminarAccion.setEnabled(false);
+		tmpEditorial = null;
+	}
+	
+	private void blockCamposEliminarAutor(){
+		buttonEliminarAccionAutor.setEnabled(false);
+		tmpAutor = null;
+	}
+	
+	private void blockCamposModificarAutor(){
+		buttonModificarTablaAutor.setEnabled(false);
+		tmpAutor = null;
+		textoModificarTablaNombreAutor.setText("");
+		textoModificarTablaApellidoAutor.setText("");
+		textoModificarTablaNacionalidadAutor.setText("");
+		textoModificarTablaFechaAutor.setText("");
+		textoModificarTablaNombreAutor.setEnabled(false);
+		textoModificarTablaApellidoAutor.setEnabled(false);
+		textoModificarTablaNacionalidadAutor.setEnabled(false);
+		textoModificarTablaFechaAutor.setEnabled(false);
+	}
+	
+	private Object[][] createObjectForTableAutor (ArrayList<Autor> autores, int columns) {
+		Object forTable[][] = new Object[autores.size()][columns];
 		
 		for (int i=0; i<autores.size(); i++) {
 			forTable[i][0] = autores.get(i).getApellido();
@@ -1060,8 +3693,114 @@ public class Principal extends javax.swing.JFrame {
 			forTable[i][3] = autores.get(i).getFechaNacimiento();
 		}
 		
-		tablaBuscarAutor.setModel(new javax.swing.table.DefaultTableModel(
-            forTable,
+		return forTable;
+	}
+	
+	private Object[][] createObjectForTableEditorial (ArrayList<Editorial> editoriales, int columns) {
+		Object forTable[][] = new Object[editoriales.size()][columns];
+		
+		for (int i=0; i<editoriales.size(); i++) {
+			forTable[i][0] = editoriales.get(i).getNombre();
+			forTable[i][1] = editoriales.get(i).getCiudad();
+		}
+		
+		return forTable;
+	}
+	
+	private Object[][] createObjectForTableAfiliado (ArrayList<Afiliado> afiliados, int columns) {
+		Object forTable[][] = new Object[afiliados.size()][columns];
+		Afiliado afiliado;
+		for (int i=0; i<afiliados.size(); i++) {
+			afiliado = afiliados.get(i);
+			forTable[i][0] = afiliado.getLegajo();
+			forTable[i][1] = afiliado.getNombre();
+			forTable[i][2] = afiliado.getApellido();
+			forTable[i][3] = afiliado.getBiblioteca().getNombre();
+			forTable[i][4] = afiliado.getBiblioteca().getDependencia();
+			forTable[i][5] = afiliado.getFechaRegistro().toString();
+		}
+		
+		return forTable;
+	}
+	
+	private Object[][] createObjectForTableLibros (ArrayList<Libro> libros, int columns) {
+		Object forTable[][] = new Object[libros.size()][columns];
+		Libro libro;
+		for (int i=0; i<libros.size(); i++) {
+			libro = libros.get(i);
+			forTable[i][0] = libro.getISBN();
+			forTable[i][1] = libro.getTitulo();
+			forTable[i][2] = libro.getAutoresString();
+			forTable[i][3] = libro.getEditorial().getNombre();
+			forTable[i][4] = libro.getEdicion();
+			forTable[i][5] = libro.getPaginas();
+			forTable[i][6] = libro.getFechaPublicacion().getYear();
+			forTable[i][7] = libro.getIdioma();
+		}
+		
+		return forTable;
+	}
+	
+	private void fillLibrosTable(ArrayList<Libro> libros, javax.swing.JTable tabla){
+		int columns = 8;
+		tabla.setModel(new javax.swing.table.DefaultTableModel(
+            createObjectForTableLibros(libros, columns),
+            new String [] {
+                "ISBN", "Titulo", "Autor", "Editorial", "Edicion", "Paginas", "Año", "Idioma"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class,
+				java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class,
+				java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+	}
+	
+	private void fillAfiliadoTable(ArrayList<Afiliado> afiliados, javax.swing.JTable tabla){
+		int columns = 6;
+		tabla.setModel(new javax.swing.table.DefaultTableModel(
+            createObjectForTableAfiliado(afiliados, columns),
+            new String [] {
+                "Legajo", "Nombre", "Apellido", "Biblioteca", "Dependencia", "Fecha de Registro"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+	}
+	
+	private void fillEditorialTable(ArrayList<Editorial> editoriales, javax.swing.JTable tabla){
+		int columns = 2;
+		tabla.setModel(new javax.swing.table.DefaultTableModel(
+            createObjectForTableEditorial(editoriales, columns),
+            new String [] {
+                "Nombre", "Ciudad"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+	}
+	
+	private void fillTableAutor (ArrayList<Autor> autores, javax.swing.JTable tabla) {
+		int columns = 4;
+		tabla.setModel(new javax.swing.table.DefaultTableModel(
+            createObjectForTableAutor(autores, columns),
             new String [] {
                 "Apellido", "Nombre", "Nacionalidad", "Fecha de Nacimiento"
             }
@@ -1076,6 +3815,14 @@ public class Principal extends javax.swing.JFrame {
         });
 	}
 	
+	// Algunos atributos propios
+	private ArrayList<Autor> tmpAutor;
+	private ArrayList<Editorial> tmpEditorial;
+	private ArrayList<Biblioteca> tmpBiblioteca;
+	private ArrayList<Afiliado> tmpAfiliado;
+	private ArrayList<Autor> tmpLibrosNuevoAutor;
+	private ArrayList<Editorial> tmpLibrosNuevoEditorial;
+	private ArrayList<Libro> tmpLibros;
     /**
      * @param args the command line arguments
      */
@@ -1113,89 +3860,252 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton afiliadoBuscar;
+    private javax.swing.JButton afiliadoEliminar;
+    private javax.swing.JButton afiliadoModificar;
+    private javax.swing.JButton afiliadoNuevo;
     private javax.swing.JButton autorBuscar;
     private javax.swing.JButton autorEliminar;
     private javax.swing.JButton autorModificar;
     private javax.swing.JButton autorNuevo;
+    private javax.swing.JButton buttonAfiliadoBuscar;
+    private javax.swing.JButton buttonAfiliadoEliminar;
+    private javax.swing.JButton buttonAfiliadoEliminarAccion;
+    private javax.swing.JButton buttonAfiliadoModificar;
+    private javax.swing.JButton buttonAfiliadoTablaModificar;
+    private javax.swing.JButton buttonAfiliadoTablaNuevo;
     private javax.swing.JButton buttonBuscarAutor;
-    private javax.swing.JButton buttonBuscarLibros;
+    private javax.swing.JButton buttonEditorialBuscar;
+    private javax.swing.JButton buttonEditorialEliminar;
+    private javax.swing.JButton buttonEditorialEliminarAccion;
+    private javax.swing.JButton buttonEditorialModificar;
+    private javax.swing.JButton buttonEditorialTablaModificar;
+    private javax.swing.JButton buttonEditorialTablaNuevo;
+    private javax.swing.JButton buttonEliminarAccionAutor;
+    private javax.swing.JButton buttonEliminarAutor;
+    private javax.swing.ButtonGroup buttonGroupAfiliadoBuscar;
+    private javax.swing.ButtonGroup buttonGroupAfiliadoEliminar;
+    private javax.swing.ButtonGroup buttonGroupAfiliadoModificar;
     private javax.swing.ButtonGroup buttonGroupBuscarAutor;
-    private javax.swing.ButtonGroup buttonGroupBuscarLibros;
+    private javax.swing.ButtonGroup buttonGroupEditorialBuscar;
+    private javax.swing.ButtonGroup buttonGroupEditorialEliminar;
+    private javax.swing.ButtonGroup buttonGroupEditorialModificar;
+    private javax.swing.ButtonGroup buttonGroupEliminarAutor;
+    private javax.swing.ButtonGroup buttonGroupLibrosBuscar;
+    private javax.swing.ButtonGroup buttonGroupLibrosEliminar;
+    private javax.swing.ButtonGroup buttonGroupLibrosModificar;
+    private javax.swing.ButtonGroup buttonGroupModificarAutor;
+    private javax.swing.JButton buttonLibrosBuscar;
+    private javax.swing.JButton buttonLibrosEliminar;
+    private javax.swing.JButton buttonLibrosEliminarAccion;
+    private javax.swing.JButton buttonLibrosModificar;
+    private javax.swing.JButton buttonLibrosModificarEditorial;
+    private javax.swing.JButton buttonLibrosNuevoAutor;
+    private javax.swing.JButton buttonLibrosNuevoEditorial;
+    private javax.swing.JButton buttonLibrosTablaModificar;
+    private javax.swing.JButton buttonLibrosTablaNuevo;
+    private javax.swing.JButton buttonModificarAutor;
+    private javax.swing.JButton buttonModificarTablaAutor;
+    private javax.swing.JButton buttonNuevoTablaAutor;
+    private javax.swing.JPanel cardLayoutAfiliadoCampos;
+    private javax.swing.JPanel cardLayoutAfiliadoTabla;
     private javax.swing.JPanel cardLayoutCamposAutor;
-    private javax.swing.JPanel cardLayoutCamposLibros;
+    private javax.swing.JPanel cardLayoutEditorialCampos;
+    private javax.swing.JPanel cardLayoutEditorialTabla;
+    private javax.swing.JPanel cardLayoutLibrosCampos;
+    private javax.swing.JPanel cardLayoutLibrosTabla;
     private javax.swing.JPanel cardLayoutTablaAutor;
-    private javax.swing.JPanel cardLayoutTablaLibros;
+    private javax.swing.JButton editorialBuscar;
+    private javax.swing.JButton editorialEliminar;
+    private javax.swing.JButton editorialModificar;
+    private javax.swing.JButton editorialNuevo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel labelAfiliadoTablaModificarApellido;
+    private javax.swing.JLabel labelAfiliadoTablaModificarNombre;
+    private javax.swing.JLabel labelAfiliadoTablaNuevoApellido;
+    private javax.swing.JLabel labelAfiliadoTablaNuevoBiblioteca;
+    private javax.swing.JLabel labelAfiliadoTablaNuevoLegajo;
+    private javax.swing.JLabel labelAfiliadoTablaNuevoNombre;
+    private javax.swing.JLabel labelEditorialTablaModificarCiudad;
+    private javax.swing.JLabel labelEditorialTablaModificarNombre;
+    private javax.swing.JLabel labelEditorialTablaNuevoCiudad;
+    private javax.swing.JLabel labelEditorialTablaNuevoNombre;
+    private javax.swing.JLabel labelLibrosModificarAño;
+    private javax.swing.JLabel labelLibrosModificarEdicion;
+    private javax.swing.JLabel labelLibrosModificarEditorial;
+    private javax.swing.JLabel labelLibrosModificarGenero;
+    private javax.swing.JLabel labelLibrosModificarISBN;
+    private javax.swing.JLabel labelLibrosModificarIdioma;
+    private javax.swing.JLabel labelLibrosModificarPaginas;
+    private javax.swing.JLabel labelLibrosModificarTitulo;
+    private javax.swing.JLabel labelLibrosNuevoAutor;
+    private javax.swing.JLabel labelLibrosNuevoAño;
+    private javax.swing.JLabel labelLibrosNuevoEdicion;
+    private javax.swing.JLabel labelLibrosNuevoEditorial;
+    private javax.swing.JLabel labelLibrosNuevoGenero;
+    private javax.swing.JLabel labelLibrosNuevoISBN;
+    private javax.swing.JLabel labelLibrosNuevoIdioma;
+    private javax.swing.JLabel labelLibrosNuevoPaginas;
+    private javax.swing.JLabel labelLibrosNuevoTitulo;
+    private javax.swing.JLabel labelModificarTablaApellidoAutor;
+    private javax.swing.JLabel labelModificarTablaFechaAutor;
+    private javax.swing.JLabel labelModificarTablaNacionalidadAutor;
+    private javax.swing.JLabel labelModificarTablaNombreAutor;
+    private javax.swing.JLabel labelNuevoTablaApellidoAutor;
+    private javax.swing.JLabel labelNuevoTablaFechaAutor;
+    private javax.swing.JLabel labelNuevoTablaNacionalidadAutor;
+    private javax.swing.JLabel labelNuevoTablaNombreAutor;
     private javax.swing.JButton librosBuscar;
     private javax.swing.JButton librosEliminar;
     private javax.swing.JButton librosModificar;
     private javax.swing.JButton librosNuevo;
+    private javax.swing.JComboBox listaAfiliadoTablaNuevo;
+    private javax.swing.JComboBox listaLibrosModificarEditorial;
+    private javax.swing.JComboBox listaLibrosNuevoAutor;
+    private javax.swing.JComboBox listaLibrosNuevoEditorial;
     private javax.swing.JPanel panelAfiliados;
     private javax.swing.JPanel panelAutores;
     private javax.swing.JPanel panelEditoriales;
     private javax.swing.JPanel panelLibros;
     private javax.swing.JPanel panelPrestamos;
+    private javax.swing.JRadioButton radioAfiliadoBuscarApellido;
+    private javax.swing.JRadioButton radioAfiliadoBuscarLegajo;
+    private javax.swing.JRadioButton radioAfiliadoBuscarNombre;
+    private javax.swing.JRadioButton radioAfiliadoEliminarApellido;
+    private javax.swing.JRadioButton radioAfiliadoEliminarLegajo;
+    private javax.swing.JRadioButton radioAfiliadoEliminarNombre;
+    private javax.swing.JRadioButton radioAfiliadoModificarApellido;
+    private javax.swing.JRadioButton radioAfiliadoModificarLegajo;
+    private javax.swing.JRadioButton radioAfiliadoModificarNombre;
     private javax.swing.JRadioButton radioApellidoBuscarAutor;
+    private javax.swing.JRadioButton radioApellidoEliminarAutor;
+    private javax.swing.JRadioButton radioApellidoModificarAutor;
+    private javax.swing.JRadioButton radioEditorialBuscarCiudad;
+    private javax.swing.JRadioButton radioEditorialBuscarNombre;
+    private javax.swing.JRadioButton radioEditorialEliminarCiudad;
+    private javax.swing.JRadioButton radioEditorialEliminarNombre;
+    private javax.swing.JRadioButton radioEditorialModificarCiudad;
+    private javax.swing.JRadioButton radioEditorialModificarNombre;
+    private javax.swing.JRadioButton radioLibrosBuscarAutor;
+    private javax.swing.JRadioButton radioLibrosBuscarISBN;
+    private javax.swing.JRadioButton radioLibrosBuscarTitulo;
+    private javax.swing.JRadioButton radioLibrosEliminarAutor;
+    private javax.swing.JRadioButton radioLibrosEliminarISBN;
+    private javax.swing.JRadioButton radioLibrosEliminarTitulo;
+    private javax.swing.JRadioButton radioLibrosModificarAutor;
+    private javax.swing.JRadioButton radioLibrosModificarISBN;
+    private javax.swing.JRadioButton radioLibrosModificarTitulo;
     private javax.swing.JRadioButton radioNacionalidadBuscarAutor;
+    private javax.swing.JRadioButton radioNacionalidadEliminarAutor;
+    private javax.swing.JRadioButton radioNacionalidadModificarAutor;
     private javax.swing.JRadioButton radioNombreBuscarAutor;
+    private javax.swing.JRadioButton radioNombreEliminarAutor;
+    private javax.swing.JRadioButton radioNombreModificarAutor;
+    private javax.swing.JPanel subPanelAfiliadoBuscar;
+    private javax.swing.JPanel subPanelAfiliadoEliminar;
+    private javax.swing.JPanel subPanelAfiliadoModificar;
+    private javax.swing.JPanel subPanelAfiliadoNuevo;
+    private javax.swing.JPanel subPanelAfiliadoTablaBuscar;
+    private javax.swing.JPanel subPanelAfiliadoTablaEliminar;
+    private javax.swing.JPanel subPanelAfiliadoTablaModificar;
+    private javax.swing.JPanel subPanelAfiliadoTablaNuevo;
     private javax.swing.JPanel subPanelBuscarAutor;
-    private javax.swing.JPanel subPanelBuscarLibros;
     private javax.swing.JPanel subPanelBuscarTablaAutor;
-    private javax.swing.JPanel subPanelBuscarTablaLibros;
+    private javax.swing.JPanel subPanelEditorialBuscar;
+    private javax.swing.JPanel subPanelEditorialEliminar;
+    private javax.swing.JPanel subPanelEditorialModificar;
+    private javax.swing.JPanel subPanelEditorialNuevo;
+    private javax.swing.JPanel subPanelEditorialTablaBuscar;
+    private javax.swing.JPanel subPanelEditorialTablaEliminar;
+    private javax.swing.JPanel subPanelEditorialTablaModificar;
+    private javax.swing.JPanel subPanelEditorialTablaNuevo;
     private javax.swing.JPanel subPanelEliminarAutor;
-    private javax.swing.JPanel subPanelEliminarLibros;
     private javax.swing.JPanel subPanelEliminarTablaAutor;
-    private javax.swing.JPanel subPanelEliminarTablaLibros;
+    private javax.swing.JPanel subPanelLibrosBuscar;
+    private javax.swing.JPanel subPanelLibrosEliminar;
+    private javax.swing.JPanel subPanelLibrosModificar;
+    private javax.swing.JPanel subPanelLibrosNuevo;
+    private javax.swing.JPanel subPanelLibrosTablaBuscar;
+    private javax.swing.JPanel subPanelLibrosTablaEliminar;
+    private javax.swing.JPanel subPanelLibrosTablaModificar;
+    private javax.swing.JPanel subPanelLibrosTablaNuevo;
     private javax.swing.JPanel subPanelModificarAutor;
-    private javax.swing.JPanel subPanelModificarLibros;
     private javax.swing.JPanel subPanelModificarTablaAutor;
-    private javax.swing.JPanel subPanelModificarTablaLibros;
     private javax.swing.JPanel subPanelNuevoAutor;
-    private javax.swing.JPanel subPanelNuevoLibros;
     private javax.swing.JPanel subPanelNuevoTablaAutor;
-    private javax.swing.JPanel subPanelNuevoTablaLibros;
+    private javax.swing.JTable tablaAfiliadoBuscar;
+    private javax.swing.JTable tablaAfiliadoEliminar;
+    private javax.swing.JTable tablaAfiliadoModificar;
     private javax.swing.JTable tablaBuscarAutor;
+    private javax.swing.JTable tablaEditorialBuscar;
+    private javax.swing.JTable tablaEditorialEliminar;
+    private javax.swing.JTable tablaEditorialModificar;
+    private javax.swing.JTable tablaEliminarAutor;
+    private javax.swing.JTable tablaLibrosBuscar;
+    private javax.swing.JTable tablaLibrosEliminar;
+    private javax.swing.JTable tablaLibrosModificar;
+    private javax.swing.JTable tablaModificarAutor;
+    private javax.swing.JTextField textoAfiliadoBuscar;
+    private javax.swing.JTextField textoAfiliadoEliminar;
+    private javax.swing.JTextField textoAfiliadoModificar;
+    private javax.swing.JTextField textoAfiliadoTablaModificarApellido;
+    private javax.swing.JTextField textoAfiliadoTablaModificarNombre;
+    private javax.swing.JTextField textoAfiliadoTablaNuevoApellido;
+    private javax.swing.JTextField textoAfiliadoTablaNuevoLegajo;
+    private javax.swing.JTextField textoAfiliadoTablaNuevoNombre;
     private javax.swing.JTextField textoBuscarAutor;
-    private javax.swing.JTextField textoBuscarLibros;
+    private javax.swing.JTextField textoEditorialBuscar;
+    private javax.swing.JTextField textoEditorialEliminar;
+    private javax.swing.JTextField textoEditorialModificar;
+    private javax.swing.JTextField textoEditorialTablaModificarCiudad;
+    private javax.swing.JTextField textoEditorialTablaModificarNombre;
+    private javax.swing.JTextField textoEditorialTablaNuevoCiudad;
+    private javax.swing.JTextField textoEditorialTablaNuevoNombre;
+    private javax.swing.JTextField textoEliminarAutor;
+    private javax.swing.JTextField textoLibrosBuscar;
+    private javax.swing.JTextField textoLibrosEliminar;
+    private javax.swing.JTextField textoLibrosModificar;
+    private javax.swing.JTextField textoLibrosModificarAño;
+    private javax.swing.JTextField textoLibrosModificarEdicion;
+    private javax.swing.JTextField textoLibrosModificarEditorial;
+    private javax.swing.JTextField textoLibrosModificarGenero;
+    private javax.swing.JTextField textoLibrosModificarISBN;
+    private javax.swing.JTextField textoLibrosModificarIdioma;
+    private javax.swing.JTextField textoLibrosModificarPaginas;
+    private javax.swing.JTextField textoLibrosModificarTitulo;
+    private javax.swing.JTextField textoLibrosNuevoAutor;
+    private javax.swing.JTextField textoLibrosNuevoAño;
+    private javax.swing.JTextField textoLibrosNuevoEdicion;
+    private javax.swing.JTextField textoLibrosNuevoEditorial;
+    private javax.swing.JTextField textoLibrosNuevoGenero;
+    private javax.swing.JTextField textoLibrosNuevoISBN;
+    private javax.swing.JTextField textoLibrosNuevoIdioma;
+    private javax.swing.JTextField textoLibrosNuevoPaginas;
+    private javax.swing.JTextField textoLibrosNuevoTitulo;
+    private javax.swing.JTextField textoModificarAutor;
+    private javax.swing.JTextField textoModificarTablaApellidoAutor;
+    private javax.swing.JTextField textoModificarTablaFechaAutor;
+    private javax.swing.JTextField textoModificarTablaNacionalidadAutor;
+    private javax.swing.JTextField textoModificarTablaNombreAutor;
+    private javax.swing.JTextField textoNuevoTablaApellidoAutor;
+    private javax.swing.JTextField textoNuevoTablaFechaAutor;
+    private javax.swing.JTextField textoNuevoTablaNacionalidadAutor;
+    private javax.swing.JTextField textoNuevoTablaNombreAutor;
     // End of variables declaration//GEN-END:variables
 }

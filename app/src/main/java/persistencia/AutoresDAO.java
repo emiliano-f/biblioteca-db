@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class AutoresDAO extends DAO {
     
-    public void insertLibro(Autor autor) throws Exception {
+    public void insertAutor(Autor autor) throws Exception {
         
         try {
             if (autor == null){
@@ -24,17 +24,15 @@ public class AutoresDAO extends DAO {
             
             StringBuilder query = new StringBuilder(
                     """
-                        INSERT IGNORE INTO `libros`(`ISBN`,`nombre`,`idioma`,
-                                                    `genero`, `id_editorial`,
-                                                    `edicion`, `paginas`,
-                                                    `year_publicacion`)
+                        INSERT IGNORE INTO `autores`(`nombre`,`apellido`,
+                                                    `nacionalidad`)
                         VALUES (
-                        """);
-            query.append("`").append(autor.getNombre()).append("`,");
-            query.append("`").append(autor.getApellido()).append("`,");
-            query.append("`").append(autor.getNacionalidad()).append("`,");
-            query.append("`").append(autor.getFechaNacimiento()).append("`");
-            query.append(");\n");
+                        """); // no puse fecha de naciimenot
+            query.append("'").append(autor.getNombre()).append("',");
+            query.append("'").append(autor.getApellido()).append("',");
+            query.append("'").append(autor.getNacionalidad()).append("'");
+            //query.append("`").append(autor.getFechaNacimiento()).append("`");
+            query.append(");");
 
             updateDB(query.toString());
             
@@ -49,7 +47,7 @@ public class AutoresDAO extends DAO {
         }
     }
     
-    public void updateLibro(Autor autor) throws Exception {
+    public void updateAutor(Autor autor) throws Exception {
         
         try {
             if (autor == null) {
@@ -59,8 +57,16 @@ public class AutoresDAO extends DAO {
             connectDB();
             updateDB("START TRANSACTION;");
             
-            StringBuilder query = new StringBuilder();
-            
+            StringBuilder query = new StringBuilder("""
+                                                    UPDATE autores
+                                                    SET 
+                                                    """);
+            query.append("nombre='").append(autor.getNombre()).append("', ");
+			query.append("apellido='").append(autor.getApellido()).append("', ");
+			query.append("nacionalidad='").append(autor.getNacionalidad()).append("' ");
+			//query.append("fecha_nacimiento=").append(autor.getFechaNacimiento()).append(" ");
+			query.append("WHERE id=").append(autor.getIdAutor()).append(";");
+			
             updateDB(query.toString());
             
             updateDB("COMMIT;");
@@ -74,6 +80,24 @@ public class AutoresDAO extends DAO {
         }
     }
 	
+	public void deleteAutor(Autor autor) throws Exception {
+		try {
+			if (autor == null) {
+				throw new Exception("Null object");
+			}
+			
+			connectDB();
+			updateDB("DELETE FROM autores WHERE id="
+					+ autor.getIdAutor() + ";");
+		}
+		catch (Exception e) {
+			throw e;
+		}
+		finally {
+			disconnectDB();
+		}
+	}
+	
 	private ArrayList<Autor> executeSearch(String sql) throws Exception{
         try{
 			connectDB();
@@ -86,7 +110,9 @@ public class AutoresDAO extends DAO {
             }
 			
             while(rs.next()){
-				autores.add(new Autor(rs.getString("nombre"), 
+				autores.add(new Autor(
+						rs.getInt("id"),
+						rs.getString("nombre"), 
 						rs.getString("apellido"),
 						rs.getString("nacionalidad"),
 						rs.getDate("fecha_nacimiento")));
@@ -108,7 +134,7 @@ public class AutoresDAO extends DAO {
 			}
 			
 			String query = """
-					SELECT nombre, apellido, nacionalidad, fecha_nacimiento
+					SELECT *
 					FROM autores
                     WHERE 
 					""" + column + " REGEXP '" + pattern + "';";
