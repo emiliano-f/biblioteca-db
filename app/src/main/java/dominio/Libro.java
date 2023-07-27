@@ -22,9 +22,13 @@ public class Libro {
 	private Editorial editorial;
 	private ArrayList<Autor> autores;
 
-	public Libro(String ISBN, String titulo, int edicion, int idEditorial) {
+	public Libro(String ISBN, String titulo) {
 		this.ISBN = ISBN;
 		this.titulo = titulo;
+	}
+	
+	public Libro(String ISBN, String titulo, int edicion, int idEditorial) {
+		this(ISBN, titulo);
 		this.idEditorial = idEditorial;
 		this.edicion = edicion;
 	}

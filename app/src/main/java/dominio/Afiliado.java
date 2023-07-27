@@ -31,11 +31,7 @@ public class Afiliado {
 	}
 	
 	public Afiliado(int legajo, int idBibliotecaAfiliacion, String nombre, String apellido, Date fechaRegistro, Biblioteca biblioteca) {
-		this.legajo = legajo;
-		this.idBibliotecaAfiliacion = idBibliotecaAfiliacion;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.fechaRegistro = fechaRegistro;
+		this(legajo, idBibliotecaAfiliacion, nombre, apellido, fechaRegistro);
 		this.biblioteca = biblioteca;
 	}
 	

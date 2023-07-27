@@ -26,6 +26,16 @@
     </Component>
     <Component class="javax.swing.ButtonGroup" name="buttonGroupLibrosEliminar">
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroupEjemplarBuscar">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroupEjemplarTablaNuevo">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroupEjemplarModificar">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroupEjemplarEliminar">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroupPrestamoBuscar">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -85,13 +95,22 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jButton3" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jButton4" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jButton3" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jButton4" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jButton1" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="cardLayoutPrestamoCampos" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="cardLayoutPrestamoTabla" alignment="1" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="1016" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -99,14 +118,21 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="cardLayoutPrestamoCampos" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="cardLayoutPrestamoTabla" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="483" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -135,6 +161,213 @@
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
             </Component>
+            <Container class="javax.swing.JPanel" name="cardLayoutPrestamoTabla">
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="subPanelPrestamoTablaBuscar">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="card2"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane14" alignment="0" pref="1096" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane14" alignment="0" pref="465" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane14">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTable" name="tablaPrestamoBuscar">
+                          <Properties>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                              <Table columnCount="11" rowCount="0">
+                                <Column editable="true" title="ID" type="java.lang.Integer"/>
+                                <Column editable="true" title="Titulo" type="java.lang.String"/>
+                                <Column editable="true" title="ISBN" type="java.lang.String"/>
+                                <Column editable="true" title="Biblioteca" type="java.lang.String"/>
+                                <Column editable="true" title="N&#xfa;mero" type="java.lang.Integer"/>
+                                <Column editable="true" title="Disponible" type="java.lang.String"/>
+                                <Column editable="true" title="Legajo" type="java.lang.String"/>
+                                <Column editable="true" title="Apellido" type="java.lang.String"/>
+                                <Column editable="true" title="Nombre" type="java.lang.String"/>
+                                <Column editable="true" title="Desde" type="java.lang.String"/>
+                                <Column editable="true" title="Hasta" type="java.lang.String"/>
+                              </Table>
+                            </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                              </TableColumnModel>
+                            </Property>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="cardLayoutPrestamoCampos">
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="subPanelPrestamoBuscar">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="card2"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="radioPrestamoBuscarISBN" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="radioPrestamoBuscarLegajo" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="radioPrestamoBuscarId" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
+                              <Component id="textoPrestamoBuscar" min="-2" pref="380" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="buttonPrestamoBuscar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="267" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="radioPrestamoBuscarISBN" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="radioPrestamoBuscarId" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="radioPrestamoBuscarLegajo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textoPrestamoBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buttonPrestamoBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="17" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JRadioButton" name="radioPrestamoBuscarLegajo">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroupPrestamoBuscar"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Legajo"/>
+                        <Property name="actionCommand" type="java.lang.String" value="legajo"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="radioPrestamoBuscarISBN">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroupPrestamoBuscar"/>
+                        </Property>
+                        <Property name="selected" type="boolean" value="true"/>
+                        <Property name="text" type="java.lang.String" value="ISBN"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="radioPrestamoBuscarId">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroupPrestamoBuscar"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Id Ejemplar"/>
+                        <Property name="actionCommand" type="java.lang.String" value="id_ejemplar"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="textoPrestamoBuscar">
+                    </Component>
+                    <Component class="javax.swing.JButton" name="buttonPrestamoBuscar">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Buscar"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="panelAfiliados">
@@ -976,6 +1209,7 @@
                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                           <ComponentRef name="buttonGroupAfiliadoBuscar"/>
                         </Property>
+                        <Property name="selected" type="boolean" value="true"/>
                         <Property name="text" type="java.lang.String" value="Nombre"/>
                         <Property name="actionCommand" type="java.lang.String" value="nombre"/>
                       </Properties>
@@ -1493,17 +1727,17 @@
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
+                                  <Title value="P&#xe1;ginas"/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
+                                  <Title value="A&#xf1;o"/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
+                                  <Title value="Idioma"/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
@@ -3688,6 +3922,1044 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEditorialTablaNuevoActionPerformed"/>
                       </Events>
                     </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="panelEjemplares">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Ejemplares">
+                <Property name="tabTitle" type="java.lang.String" value="Ejemplares"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="ejemplarBuscar" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ejemplarNuevo" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ejemplarEliminar" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ejemplarModificar" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Component id="cardLayoutEjemplarCampos" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="cardLayoutEjemplarTabla" alignment="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="cardLayoutEjemplarCampos" min="-2" pref="118" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="ejemplarBuscar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="ejemplarNuevo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="ejemplarModificar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="ejemplarEliminar" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="cardLayoutEjemplarTabla" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="ejemplarNuevo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nuevo"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ejemplarNuevoActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="ejemplarBuscar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ejemplarBuscarActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="ejemplarModificar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modificar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ejemplarModificarActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="ejemplarEliminar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ejemplarEliminarActionPerformed"/>
+              </Events>
+            </Component>
+            <Container class="javax.swing.JPanel" name="cardLayoutEjemplarCampos">
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="subPanelEjemplarNuevo">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="cardEjemplarNuevo"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="998" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="118" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                </Container>
+                <Container class="javax.swing.JPanel" name="subPanelEjemplarBuscar">
+                  <Properties>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Default Cursor"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="cardEjemplarBuscar"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="radioEjemplarBuscarTitulo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="radioEjemplarBuscarAutor" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                                      <Component id="textoEjemplarBuscar" min="-2" pref="500" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="buttonEjemplarBuscar" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="radioEjemplarBuscarISBN" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="202" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="radioEjemplarBuscarTitulo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="radioEjemplarBuscarISBN" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="radioEjemplarBuscarAutor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textoEjemplarBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buttonEjemplarBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="16" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JRadioButton" name="radioEjemplarBuscarTitulo">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroupEjemplarBuscar"/>
+                        </Property>
+                        <Property name="selected" type="boolean" value="true"/>
+                        <Property name="text" type="java.lang.String" value="T&#xed;tulo"/>
+                        <Property name="actionCommand" type="java.lang.String" value="titulo"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="radioEjemplarBuscarISBN">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroupEjemplarBuscar"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="ISBN"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="radioEjemplarBuscarAutor">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroupEjemplarBuscar"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Autor"/>
+                        <Property name="actionCommand" type="java.lang.String" value="autor"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="textoEjemplarBuscar">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textoEjemplarBuscarActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="buttonEjemplarBuscar">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Buscar"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEjemplarBuscarActionPerformed"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="subPanelEjemplarModificar">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="cardEjemplarModificar"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="radioEjemplarModificarTitulo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="radioEjemplarModificarAutor" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                                      <Component id="textoEjemplarModificar" min="-2" pref="500" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="buttonEjemplarModificar" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="radioEjemplarModificarISBN" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="202" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="radioEjemplarModificarTitulo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="radioEjemplarModificarISBN" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="radioEjemplarModificarAutor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textoEjemplarModificar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buttonEjemplarModificar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="16" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JRadioButton" name="radioEjemplarModificarTitulo">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroupEjemplarModificar"/>
+                        </Property>
+                        <Property name="selected" type="boolean" value="true"/>
+                        <Property name="text" type="java.lang.String" value="T&#xed;tulo"/>
+                        <Property name="actionCommand" type="java.lang.String" value="titulo"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="radioEjemplarModificarISBN">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroupEjemplarModificar"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="ISBN"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="radioEjemplarModificarAutor">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroupEjemplarModificar"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Autor"/>
+                        <Property name="actionCommand" type="java.lang.String" value="autor"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="textoEjemplarModificar">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textoEjemplarModificarActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="buttonEjemplarModificar">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Buscar"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEjemplarModificarActionPerformed"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="subPanelEjemplarEliminar">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="cardEjemplarModificar"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="radioEjemplarEliminarTitulo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="radioEjemplarEliminarISBN" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace pref="918" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="radioEjemplarEliminarAutor" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                                      <Component id="textoEjemplarEliminar" min="-2" pref="500" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="buttonEjemplarEliminar" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="buttonEjemplarEliminarAccion" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="radioEjemplarEliminarTitulo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="radioEjemplarEliminarISBN" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="radioEjemplarEliminarAutor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textoEjemplarEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buttonEjemplarEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buttonEjemplarEliminarAccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="16" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JRadioButton" name="radioEjemplarEliminarTitulo">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroupEjemplarEliminar"/>
+                        </Property>
+                        <Property name="selected" type="boolean" value="true"/>
+                        <Property name="text" type="java.lang.String" value="T&#xed;tulo"/>
+                        <Property name="actionCommand" type="java.lang.String" value="titulo"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="radioEjemplarEliminarISBN">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroupEjemplarEliminar"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="ISBN"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="radioEjemplarEliminarAutor">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroupEjemplarEliminar"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Autor"/>
+                        <Property name="actionCommand" type="java.lang.String" value="autor"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="textoEjemplarEliminar">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textoEjemplarEliminarActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="buttonEjemplarEliminar">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Buscar"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEjemplarEliminarActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="buttonEjemplarEliminarAccion">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Eliminar"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEjemplarEliminarAccionActionPerformed"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="cardLayoutEjemplarTabla">
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="subPanelEjemplarTablaNuevo">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="cardEjemplarTablaNuevo"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="buttonEjemplarTablaNuevo" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                                              <Component id="labelEjemplarTablaNuevoUbicacion" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="labelEjemplarTablaNuevoBiblioteca" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="labelEjemplarTablaNuevoNumero" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                                      <Component id="radioEjemplarTablaNuevoISBN" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="radioEjemplarTablaNuevoAutor" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="radioEjemplarTablaNuevoTitulo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="labelEjemplarTablaNuevoCantidad" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="textoEjemplarTablaNuevoBiblioteca" min="-2" pref="270" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="buttonEjemplarTablaNuevoBiblioteca" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="listaEjemplarTablaNuevoBiblioteca" min="-2" pref="270" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="textoEjemplarTablaNuevoUbicacion" min="-2" pref="270" max="-2" attributes="0"/>
+                                          <Component id="textoEjemplarTablaNuevoNumero" min="-2" pref="270" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="textoEjemplarTablaNuevoLibro" min="-2" pref="270" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="buttonEjemplarTablaNuevoLibro" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="listaEjemplarTablaNuevoLibro" min="-2" pref="270" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="textoEjemplarTablaNuevoCantidad" min="-2" pref="270" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace pref="267" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="radioEjemplarTablaNuevoTitulo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="radioEjemplarTablaNuevoISBN" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="radioEjemplarTablaNuevoAutor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textoEjemplarTablaNuevoLibro" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buttonEjemplarTablaNuevoLibro" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="listaEjemplarTablaNuevoLibro" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="textoEjemplarTablaNuevoBiblioteca" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buttonEjemplarTablaNuevoBiblioteca" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="listaEjemplarTablaNuevoBiblioteca" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelEjemplarTablaNuevoBiblioteca" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="textoEjemplarTablaNuevoUbicacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelEjemplarTablaNuevoUbicacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="textoEjemplarTablaNuevoNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelEjemplarTablaNuevoNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="textoEjemplarTablaNuevoCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelEjemplarTablaNuevoCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="buttonEjemplarTablaNuevo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="180" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JRadioButton" name="radioEjemplarTablaNuevoTitulo">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroupEjemplarTablaNuevo"/>
+                        </Property>
+                        <Property name="selected" type="boolean" value="true"/>
+                        <Property name="text" type="java.lang.String" value="T&#xed;tulo"/>
+                        <Property name="actionCommand" type="java.lang.String" value="titulo"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="radioEjemplarTablaNuevoISBN">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroupEjemplarTablaNuevo"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="ISBN"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="radioEjemplarTablaNuevoAutor">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroupEjemplarTablaNuevo"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Autor"/>
+                        <Property name="actionCommand" type="java.lang.String" value="autor"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="textoEjemplarTablaNuevoLibro">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textoEjemplarTablaNuevoLibroActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="buttonEjemplarTablaNuevoLibro">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Buscar"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEjemplarTablaNuevoLibroActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="listaEjemplarTablaNuevoLibro">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="textoEjemplarTablaNuevoBiblioteca">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="B&#xfa;squeda por facultad"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textoEjemplarTablaNuevoBibliotecaActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="buttonEjemplarTablaNuevoBiblioteca">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Buscar"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEjemplarTablaNuevoBibliotecaActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="listaEjemplarTablaNuevoBiblioteca">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="textoEjemplarTablaNuevoUbicacion">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textoEjemplarTablaNuevoUbicacionActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="textoEjemplarTablaNuevoNumero">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textoEjemplarTablaNuevoNumeroActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="labelEjemplarTablaNuevoBiblioteca">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Biblioteca"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="labelEjemplarTablaNuevoUbicacion">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Ubicaci&#xf3;n"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="labelEjemplarTablaNuevoNumero">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Id. a partir de:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="buttonEjemplarTablaNuevo">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEjemplarTablaNuevoActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="labelEjemplarTablaNuevoCantidad">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Cantidad"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="textoEjemplarTablaNuevoCantidad">
+                      <Properties>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
+                        <Property name="text" type="java.lang.String" value="1"/>
+                        <Property name="toolTipText" type="java.lang.String" value=""/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textoEjemplarTablaNuevoCantidadActionPerformed"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="subPanelEjemplarTablaBuscar">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="cardEjemplarTablaBuscar"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="jScrollPane10" min="-2" pref="1096" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane10" alignment="0" pref="465" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane10">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTable" name="tablaEjemplarBuscar">
+                          <Properties>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                              <Table columnCount="10" rowCount="0">
+                                <Column editable="true" title="ISBN" type="java.lang.String"/>
+                                <Column editable="true" title="T&#xed;tulo" type="java.lang.String"/>
+                                <Column editable="true" title="Autor" type="java.lang.String"/>
+                                <Column editable="true" title="Biblioteca" type="java.lang.String"/>
+                                <Column editable="true" title="Cantidad" type="java.lang.Integer"/>
+                                <Column editable="true" title="Editorial" type="java.lang.String"/>
+                                <Column editable="true" title="Edici&#xf3;n" type="java.lang.Integer"/>
+                                <Column editable="true" title="P&#xe1;ginas" type="java.lang.Integer"/>
+                                <Column editable="true" title="A&#xf1;o" type="java.lang.String"/>
+                                <Column editable="true" title="Idioma" type="java.lang.String"/>
+                              </Table>
+                            </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                              </TableColumnModel>
+                            </Property>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="subPanelEjemplarTablaModificar">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="cardEjemplarTablaModificar"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="806" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="labelEjemplarTablaModificarTitulo" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelEjemplarTablaModificarISBN" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelEjemplarTablaModificarUbicacion" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="textoEjemplarTablaModificarISBN" alignment="0" pref="213" max="32767" attributes="0"/>
+                                  <Component id="textoEjemplarTablaModificarUbicacion" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="textoEjemplarTablaModificarTitulo" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace pref="1002" max="32767" attributes="0"/>
+                              <Component id="buttonEjemplarTablaModificar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane15" min="-2" pref="795" max="-2" attributes="0"/>
+                                  <EmptySpace pref="304" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="labelEjemplarTablaModificarISBN" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textoEjemplarTablaModificarISBN" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="textoEjemplarTablaModificarTitulo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelEjemplarTablaModificarTitulo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="textoEjemplarTablaModificarUbicacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelEjemplarTablaModificarUbicacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
+                              <Component id="buttonEjemplarTablaModificar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="84" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jScrollPane15" pref="453" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane15">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTable" name="tablaEjemplarModificar">
+                          <Properties>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                              <Table columnCount="9" rowCount="0">
+                                <Column editable="true" title="ID" type="java.lang.Integer"/>
+                                <Column editable="true" title="ISBN" type="java.lang.String"/>
+                                <Column editable="true" title="T&#xed;tulo" type="java.lang.String"/>
+                                <Column editable="true" title="N&#xfa;mero" type="java.lang.Integer"/>
+                                <Column editable="true" title="Autor" type="java.lang.String"/>
+                                <Column editable="true" title="Biblioteca" type="java.lang.String"/>
+                                <Column editable="true" title="Ubicacion" type="java.lang.String"/>
+                                <Column editable="true" title="Editorial" type="java.lang.String"/>
+                                <Column editable="true" title="Edici&#xf3;n" type="java.lang.Integer"/>
+                              </Table>
+                            </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                              </TableColumnModel>
+                            </Property>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                    <Component class="javax.swing.JTextField" name="textoEjemplarTablaModificarUbicacion">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="labelEjemplarTablaModificarTitulo">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="T&#xed;tulo*"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="textoEjemplarTablaModificarTitulo">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="labelEjemplarTablaModificarUbicacion">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Ubicacion"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="labelEjemplarTablaModificarISBN">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="ISBN*"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="textoEjemplarTablaModificarISBN">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="buttonEjemplarTablaModificar">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Modificar"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEjemplarTablaModificarActionPerformed"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="subPanelEjemplarTablaEliminar">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="cardEjemplarTablaEliminar"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane16" alignment="1" pref="1096" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane16" pref="453" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane16">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTable" name="tablaEjemplarEliminar">
+                          <Properties>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                              <Table columnCount="9" rowCount="0">
+                                <Column editable="true" title="ID" type="java.lang.Integer"/>
+                                <Column editable="true" title="ISBN" type="java.lang.String"/>
+                                <Column editable="true" title="T&#xed;tulo" type="java.lang.String"/>
+                                <Column editable="true" title="N&#xfa;mero" type="java.lang.Integer"/>
+                                <Column editable="true" title="Autor" type="java.lang.String"/>
+                                <Column editable="true" title="Biblioteca" type="java.lang.String"/>
+                                <Column editable="true" title="Ubicacion" type="java.lang.String"/>
+                                <Column editable="true" title="Editorial" type="java.lang.String"/>
+                                <Column editable="true" title="Edici&#xf3;n" type="java.lang.Integer"/>
+                              </Table>
+                            </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                              </TableColumnModel>
+                            </Property>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
                   </SubComponents>
                 </Container>
               </SubComponents>
