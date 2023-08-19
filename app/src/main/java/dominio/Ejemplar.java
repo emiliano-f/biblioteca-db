@@ -17,6 +17,7 @@ public class Ejemplar {
 	
 	private Biblioteca biblioteca;
 	private Libro libro;
+	private String disponible;
 	
 	private int cantidad = 1;
 
@@ -145,5 +146,19 @@ public class Ejemplar {
 	
 	public void addCantidad(){
 		this.cantidad++;
+	}
+
+	/**
+	 * @return the disponible
+	 */
+	public String getDisponible() {
+		return disponible;
+	}
+
+	/**
+	 * @param disponible the disponible to set
+	 */
+	public void setDisponible(String disponible) {
+		this.disponible = disponible;
 	}
 }

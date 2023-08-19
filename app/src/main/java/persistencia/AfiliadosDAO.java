@@ -6,6 +6,7 @@ package persistencia;
 
 import dominio.Afiliado;
 import dominio.Biblioteca;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -154,6 +155,65 @@ public class AfiliadosDAO extends DAO {
 		}
 		catch (Exception e) {
 			throw e;
+		}
+	}
+	
+	public Afiliado searchAfiliado(String legajo, Biblioteca biblioteca) throws Exception {
+		try {
+			if (legajo == null || biblioteca == null) {
+				throw new Exception("Null arguments");
+			}
+			StringBuilder query = new StringBuilder("""
+                                           WITH filtered AS (
+                                           SELECT *
+                                           FROM afiliados
+                                           WHERE legajo=""");
+			query.append(legajo).append(" AND id_biblioteca_afiliacion=");
+			query.append(biblioteca.getIdBiblioteca()).append(")");
+			query.append("""
+                 SELECT filtered.*, sanciones.to
+                 FROM filtered LEFT JOIN sanciones
+								ON filtered.legajo=sanciones.legajo
+                                   AND filtered.id_biblioteca_afiliacion=sanciones.id_biblioteca_afiliado;
+                 """);
+			
+			connectDB();
+			requestDB(query.toString());
+			
+			if(rs == null){
+                return null;
+            }
+			
+			rs.next();
+			java.sql.Date date;
+			date = checkFechaFormat(rs.getString("to")) ? java.sql.Date.valueOf(rs.getString("to")) : null;
+			Afiliado afiliado = new Afiliado(rs.getInt("legajo"),
+								rs.getInt("id_biblioteca_afiliacion"),
+								rs.getString("nombre"),
+								rs.getString("apellido"));
+			afiliado.setSancion(date);
+			return afiliado;
+		}
+		catch (Exception e) {
+			throw e;
+		}
+		finally {
+			disconnectDB();
+		}
+	}
+	
+	private boolean checkFechaFormat(String fecha) {
+		try {
+			SimpleDateFormat fechaFormat = new SimpleDateFormat("yyyy-MM-dd");
+			fechaFormat.setLenient(false);
+			fechaFormat.parse(fecha);
+			return true;
+		}
+		catch (Exception e) {
+			;
+		}
+		finally {
+			return false;
 		}
 	}
 }

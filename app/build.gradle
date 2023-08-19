@@ -9,6 +9,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'java'
 }
 
 repositories {
@@ -22,14 +24,32 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.0.1-jre'
+    implementation 'mysql:mysql-connector-java:8.0.27'
+    // https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox
+    implementation group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.29'
 }
 
 application {
     // Define the main class for the application.
-    mainClass = 'biblioteca.db.App'
+    mainClass = 'gui.Principal'
+}
+
+jar {
+  manifest {
+    attributes(
+      //'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+      'Main-Class': 'gui.Principal'
+    )
+  }
 }
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+shadowJar {
+    baseName = 'app-full' // Cambia el nombre del JAR según tus preferencias
+    classifier = null
+    version = null
 }

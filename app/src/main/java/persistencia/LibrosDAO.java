@@ -85,12 +85,12 @@ public class LibrosDAO extends DAO {
                                                     SET 
                                                     """);
             query.append("titulo='").append(libro.getTitulo()).append("', ");
-            query.append("edicion=").append(libro.getTitulo()).append("', ");
-            query.append("id_editorial=").append(libro.getIdEditorial()).append("', ");
-            query.append("idioma=").append(libro.getIdioma()).append("', ");
-            query.append("genero=").append(libro.getGenero()).append("', ");
-            query.append("paginas=").append(libro.getPaginas()).append("', ");
-            query.append("year_publicacion=").append(libro.getFechaPublicacion()).append("' ");
+            query.append("edicion='").append(libro.getEdicion()).append("', ");
+            query.append("id_editorial=").append(libro.getIdEditorial()).append(", ");
+            query.append("idioma='").append(libro.getIdioma()).append("', ");
+            query.append("genero='").append(libro.getGenero()).append("', ");
+            query.append("paginas=").append(libro.getPaginas()).append(", ");
+            query.append("year_publicacion='").append(libro.getFechaPublicacion()).append("' ");
 			query.append("WHERE ISBN='").append(libro.getISBN()).append("';");
 			
             updateDB(query.toString());
@@ -158,6 +158,10 @@ public class LibrosDAO extends DAO {
 										new Editorial(rs.getInt("id_editorial"),
 													   rs.getString("nombre_editorial"))
 										);
+					libro.setFechaPublicacion(java.sql.Date.valueOf(rs.getString("year_publicacion")));
+					libro.setIdioma(rs.getString("idioma"));
+					libro.setPaginas(rs.getInt("paginas"));
+					libro.setGenero(rs.getString("genero"));
 					libros.add(libro);
 					autores = new ArrayList();
 					libro.setAutores(autores);
@@ -199,11 +203,12 @@ public class LibrosDAO extends DAO {
 						tmp_autor_libro AS (
                         SELECT filtro_pattern.*, libros_autores.id_libro as ISBN
                         FROM filtro_pattern INNER JOIN libros_autores
-                                                  ON filtro_pattern.id=libros_autores.id_autor)
+                                                  ON filtro_pattern.id_autor=libros_autores.id_autor)
 						""");
 				query.append("""
 						SELECT tmp_autor_libro.*, 
-								editoriales.nombre AS nombre_editorial, editoriales.id AS id_editorial
+								editoriales.nombre AS nombre_editorial, editoriales.id AS id_editorial,
+                                libros.titulo, libros.edicion, libros.year_publicacion, libros.paginas, libros.idioma, libros.genero
                         FROM tmp_autor_libro INNER JOIN libros
                                                   ON tmp_autor_libro.ISBN=libros.ISBN
                                              INNER JOIN editoriales

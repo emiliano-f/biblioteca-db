@@ -200,4 +200,9 @@ public class Libro {
 		}
 		return autores.toString();
 	}
+	
+	@Override
+	public String toString() {
+		return titulo + " [" + ISBN + "]";
+	}
 }

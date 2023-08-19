@@ -152,6 +152,9 @@ public class EjemplaresDAO extends DAO {
 									new Editorial(rs.getInt("id_editorial"),
 													rs.getString("nombre_editorial"))
 								);
+				libro.setFechaPublicacion(java.sql.Date.valueOf(rs.getString("year_publicacion")));
+				libro.setIdioma(rs.getString("idioma"));
+				libro.setPaginas(rs.getInt("paginas"));
 				autores = new ArrayList();
 				autores.add(new Autor("", rs.getString("all_autores")));
 				libro.setAutores(autores);
@@ -185,7 +188,6 @@ public class EjemplaresDAO extends DAO {
 			}			
 			
 			StringBuilder query;
-			
 			if (column.equals("autor")){
 				query = new StringBuilder ("""
 						WITH filtro_pattern AS ( SELECT id
@@ -207,7 +209,7 @@ public class EjemplaresDAO extends DAO {
                         tmp_libros_2 AS (
                         SELECT libros_autores.id_libro, libros_autores.id_autor
                         FROM libros_autores INNER JOIN tmp_libros_1
-                                                  ON libros_autores.id_libro=tmp_libro_1.id_libro), 
+                                                  ON libros_autores.id_libro=tmp_libros_1.id_libro), 
 						""");
 				// obtenemos el nombre y apellido de los autores
 				query.append("""
@@ -241,7 +243,7 @@ public class EjemplaresDAO extends DAO {
                         FROM tmp_full_libros INNER JOIN	ejemplares
                                                   ON tmp_full_libros.ISBN=ejemplares.ISBN
                                              INNER JOIN bibliotecas
-                                                  ON ejemplares.id_biblioteca=biblioteca.id
+                                                  ON ejemplares.id_biblioteca=bibliotecas.id
                         ORDER BY tmp_full_libros.ISBN;
 						""");
 			}
@@ -266,7 +268,7 @@ public class EjemplaresDAO extends DAO {
                                              ON libro_edit.ISBN=libros_autores.id_libro
                                         INNER JOIN autores
                                              ON libros_autores.id_autor=autores.id
-						GROUP BY libro_edit.ISBN), 
+						GROUP BY libro_edit.ISBN)
 						""");
 				query.append("""
                         SELECT tmp_last_filter.*,
@@ -275,7 +277,7 @@ public class EjemplaresDAO extends DAO {
                         FROM tmp_last_filter INNER JOIN	ejemplares
                                                   ON tmp_last_filter.ISBN=ejemplares.ISBN
                                              INNER JOIN bibliotecas
-                                                  ON ejemplares.id_biblioteca=biblioteca.id
+                                                  ON ejemplares.id_biblioteca=bibliotecas.id
                         ORDER BY tmp_last_filter.ISBN;
 						""");
 			}
@@ -284,6 +286,79 @@ public class EjemplaresDAO extends DAO {
 		}
 		catch (Exception e) {
 			throw e;
+		}
+	}
+	
+	/*
+	* USO EN PRESTAMOS NUEVO
+	* Crear libro con titulo e ISBN
+	* crear biblioteca con nombre y dependencia
+	* poner si está disponible o no
+	*/
+	public Ejemplar searchEjemplar(String idEjemplar) throws Exception {
+		try {
+			if (idEjemplar == null) {
+				throw new Exception("Null arguments");
+			}
+			
+			StringBuilder query = new StringBuilder("""
+                                           WITH filter_ejemplares AS (
+                                           SELECT *
+                                           FROM ejemplares
+                                           WHERE 
+                                           """);
+			query.append("id=").append(idEjemplar).append("),");
+			query.append("""
+                filtrados AS (
+                SELECT filter_ejemplares.*,
+						prestamos.devuelto, prestamos.to
+                FROM filter_ejemplares LEFT JOIN prestamos
+                                    ON filter_ejemplares.id=prestamos.id_ejemplar
+                ORDER BY prestamos.from DESC
+                LIMIT 1)
+                """);
+			query.append("""
+                SELECT filtrados.*,
+						bibliotecas.nombre, bibliotecas.dependencia,
+                        libros.titulo
+                FROM filtrados INNER JOIN bibliotecas
+                                              ON filtrados.id_biblioteca=bibliotecas.id
+                                       INNER JOIN libros
+                                              ON filtrados.ISBN=libros.ISBN;
+                """);
+			
+			connectDB();
+			requestDB(query.toString());
+			
+			if(rs == null){
+                return null;
+            }
+			
+			rs.next();
+			Ejemplar ejemplar =
+					new Ejemplar(rs.getInt("id"),
+								rs.getString("ISBN"),
+								rs.getInt("numero"),
+								rs.getInt("id_biblioteca"),
+								rs.getString("id_ubicacion"),
+								new Biblioteca(rs.getString("nombre"),
+												rs.getString("dependencia")),
+								new Libro(rs.getString("ISBN"),
+											rs.getString("titulo")));
+			if (rs.getString("devuelto") == null 
+				|| rs.getString("devuelto").equals("SI")) {
+				ejemplar.setDisponible("SI");
+			}
+			else {
+				ejemplar.setDisponible("NO");
+			}
+			return ejemplar;
+		}
+		catch (Exception e) {
+			throw e;
+		}
+		finally {
+			disconnectDB();
 		}
 	}
 	

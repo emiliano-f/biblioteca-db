@@ -15,16 +15,25 @@ public class Prestamo {
     private int idEjemplar;
     private Date from;
     private Date to;
+	private String devuelto;
 	private Ejemplar ejemplar;
 	private Afiliado afiliado;
 
-	public Prestamo(int legajo, int idBibliotecaAfiliacion, int idEjemplar, Date from, Date to, Ejemplar ejemplar, Afiliado afiliado) {
+	public Prestamo(){
+	}
+	
+	public Prestamo(int legajo, int idBibliotecaAfiliacion, int idEjemplar, Date from, Date to, String devuelto, Ejemplar ejemplar) {
 		this.legajo = legajo;
 		this.idBibliotecaAfiliacion = idBibliotecaAfiliacion;
 		this.idEjemplar = idEjemplar;
 		this.from = from;
 		this.to = to;
+		this.devuelto = devuelto;
 		this.ejemplar = ejemplar;
+	}
+	
+	public Prestamo(int legajo, int idBibliotecaAfiliacion, int idEjemplar, Date from, Date to, String devuelto, Ejemplar ejemplar, Afiliado afiliado) {
+		this(legajo,idBibliotecaAfiliacion,idEjemplar,from,to,devuelto,ejemplar);
 		this.afiliado = afiliado;
 	}
 
@@ -97,7 +106,7 @@ public class Prestamo {
 	public void setTo(Date to) {
 		this.to = to;
 	}
-
+	
 	/**
 	 * @return the ejemplar
 	 */
@@ -124,6 +133,20 @@ public class Prestamo {
 	 */
 	public void setAfiliado(Afiliado afiliado) {
 		this.afiliado = afiliado;
+	}
+
+	/**
+	 * @return the devuelto
+	 */
+	public String getDevuelto() {
+		return devuelto;
+	}
+
+	/**
+	 * @param devuelto the devuelto to set
+	 */
+	public void setDevuelto(String devuelto) {
+		this.devuelto = devuelto;
 	}
 	
 	

@@ -9,7 +9,10 @@ import dominio.Biblioteca;
 import dominio.Editorial;
 import dominio.Ejemplar;
 import dominio.Libro;
+import dominio.Prestamo;
 import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import persistencia.AfiliadosDAO;
 import persistencia.AutoresDAO;
@@ -17,6 +20,8 @@ import persistencia.BibliotecasDAO;
 import persistencia.EditorialesDAO;
 import persistencia.EjemplaresDAO;
 import persistencia.LibrosDAO;
+import persistencia.PrestamosDAO;
+import persistencia.ReportesDAO;
 /**
  *
  * @author emiliano
@@ -29,6 +34,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
 		initListasDesplegables();
+		initSpinnerEvent();
     }
 
     /**
@@ -59,14 +65,45 @@ public class Principal extends javax.swing.JFrame {
         buttonGroupPrestamoBuscar = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         panelPrestamos = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        prestamoNuevo = new javax.swing.JButton();
+        prestamoModificar = new javax.swing.JButton();
+        prestamoBuscar = new javax.swing.JButton();
+        prestamoEliminar = new javax.swing.JButton();
         cardLayoutPrestamoTabla = new javax.swing.JPanel();
         subPanelPrestamoTablaBuscar = new javax.swing.JPanel();
         jScrollPane14 = new javax.swing.JScrollPane();
         tablaPrestamoBuscar = new javax.swing.JTable();
+        subPanelPrestamoTablaNuevo = new javax.swing.JPanel();
+        labelPrestamoTablaNuevoEjemplarId = new javax.swing.JLabel();
+        textoPrestamoTablaNuevoEjemplarId = new javax.swing.JTextField();
+        textoPrestamoTablaNuevoEjemplarTitulo = new javax.swing.JTextField();
+        textoPrestamoTablaNuevoEjemplarBiblioteca = new javax.swing.JTextField();
+        textoPrestamoTablaNuevoAfiliadoLegajo = new javax.swing.JTextField();
+        labelPrestamoTablaNuevoAfiliadoLegajo = new javax.swing.JLabel();
+        textoPrestamoTablaNuevoAfiliadoApellido = new javax.swing.JTextField();
+        textoPrestamoTablaNuevoAfiliadoNombre = new javax.swing.JTextField();
+        textoPrestamoTablaNuevoAfiliadoSancion = new javax.swing.JTextField();
+        textoPrestamoTablaNuevoHasta = new javax.swing.JTextField();
+        textoPrestamoTablaNuevoDesde = new javax.swing.JTextField();
+        labelPrestamoTablaNuevoFecha = new javax.swing.JLabel();
+        buttonPrestamoTablaNuevo = new javax.swing.JButton();
+        buttonPrestamoTablaEjemplar = new javax.swing.JButton();
+        buttonPrestamoTablaAfiliado = new javax.swing.JButton();
+        textoPrestamoTablaNuevoEjemplarDisponible = new javax.swing.JTextField();
+        listaPrestamoTablaNuevoAfiliadoBiblioteca = new javax.swing.JComboBox();
+        labelPrestamoTablaNuevoAfiliadoBiblioteca = new javax.swing.JLabel();
+        labelPrestamoTablaNuevoFechaHasta = new javax.swing.JLabel();
+        spinnerPrestamoTablaNuevo = new javax.swing.JSpinner(new javax.swing.SpinnerNumberModel(3, 1, 30, 1));
+        subPanelPrestamoTablaEliminar = new javax.swing.JPanel();
+        jScrollPane22 = new javax.swing.JScrollPane();
+        tablaPrestamoEliminar = new javax.swing.JTable();
+        subPanelPrestamoTablaModificar = new javax.swing.JPanel();
+        jScrollPane21 = new javax.swing.JScrollPane();
+        tablaPrestamoModificar = new javax.swing.JTable();
+        labelPrestamoModificarFecha = new javax.swing.JLabel();
+        textoPrestamoTablaModificarFecha = new javax.swing.JTextField();
+        spinnerPrestamoTablaModificar = new javax.swing.JSpinner(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+        buttonPrestamoTablaModificar = new javax.swing.JButton();
         cardLayoutPrestamoCampos = new javax.swing.JPanel();
         subPanelPrestamoBuscar = new javax.swing.JPanel();
         radioPrestamoBuscarLegajo = new javax.swing.JRadioButton();
@@ -74,6 +111,20 @@ public class Principal extends javax.swing.JFrame {
         radioPrestamoBuscarId = new javax.swing.JRadioButton();
         textoPrestamoBuscar = new javax.swing.JTextField();
         buttonPrestamoBuscar = new javax.swing.JButton();
+        subPanelPrestamoNuevo = new javax.swing.JPanel();
+        subPanelPrestamoEliminar = new javax.swing.JPanel();
+        textoPrestamoEliminarLegajo = new javax.swing.JTextField();
+        buttonPrestamoEliminar = new javax.swing.JButton();
+        labelPrestamoEliminarBiblioteca = new javax.swing.JLabel();
+        listaPrestamoEliminarBiblioteca = new javax.swing.JComboBox();
+        labelPrestamoEliminarLegajo = new javax.swing.JLabel();
+        buttonPrestamoEliminarAccion = new javax.swing.JButton();
+        subPanelPrestamoModificar = new javax.swing.JPanel();
+        textoPrestamoModificarLegajo = new javax.swing.JTextField();
+        buttonPrestamoModificar = new javax.swing.JButton();
+        labelPrestamoModificarBiblioteca = new javax.swing.JLabel();
+        listaPrestamoModificarBiblioteca = new javax.swing.JComboBox();
+        labelPrestamoModificarLegajo = new javax.swing.JLabel();
         panelAfiliados = new javax.swing.JPanel();
         afiliadoEliminar = new javax.swing.JButton();
         afiliadoModificar = new javax.swing.JButton();
@@ -364,21 +415,38 @@ public class Principal extends javax.swing.JFrame {
         subPanelEjemplarTablaEliminar = new javax.swing.JPanel();
         jScrollPane16 = new javax.swing.JScrollPane();
         tablaEjemplarEliminar = new javax.swing.JTable();
+        panelReportes = new javax.swing.JPanel();
+        buttonReporteGenerar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Nuevo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        prestamoNuevo.setText("Nuevo");
+        prestamoNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                prestamoNuevoActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Modificar");
+        prestamoModificar.setText("Extender");
+        prestamoModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prestamoModificarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Buscar");
+        prestamoBuscar.setText("Buscar");
+        prestamoBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prestamoBuscarActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Eliminar");
+        prestamoEliminar.setText("Devolución");
+        prestamoEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prestamoEliminarActionPerformed(evt);
+            }
+        });
 
         cardLayoutPrestamoTabla.setLayout(new java.awt.CardLayout());
 
@@ -411,7 +479,267 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
         );
 
-        cardLayoutPrestamoTabla.add(subPanelPrestamoTablaBuscar, "card2");
+        cardLayoutPrestamoTabla.add(subPanelPrestamoTablaBuscar, "cardPrestamoTablaBuscar");
+
+        labelPrestamoTablaNuevoEjemplarId.setText("ID Ejemplar");
+
+        textoPrestamoTablaNuevoEjemplarTitulo.setEditable(false);
+
+        textoPrestamoTablaNuevoEjemplarBiblioteca.setEditable(false);
+
+        labelPrestamoTablaNuevoAfiliadoLegajo.setText("Legajo");
+
+        textoPrestamoTablaNuevoAfiliadoApellido.setEditable(false);
+        textoPrestamoTablaNuevoAfiliadoApellido.setToolTipText("");
+
+        textoPrestamoTablaNuevoAfiliadoNombre.setEditable(false);
+
+        textoPrestamoTablaNuevoAfiliadoSancion.setEditable(false);
+        textoPrestamoTablaNuevoAfiliadoSancion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoPrestamoTablaNuevoAfiliadoSancionActionPerformed(evt);
+            }
+        });
+
+        textoPrestamoTablaNuevoHasta.setEditable(false);
+
+        textoPrestamoTablaNuevoDesde.setEditable(false);
+
+        labelPrestamoTablaNuevoFecha.setText("Fecha Desde");
+
+        buttonPrestamoTablaNuevo.setText("Confirmar");
+        buttonPrestamoTablaNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPrestamoTablaNuevoActionPerformed(evt);
+            }
+        });
+
+        buttonPrestamoTablaEjemplar.setText("Buscar");
+        buttonPrestamoTablaEjemplar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPrestamoTablaEjemplarActionPerformed(evt);
+            }
+        });
+
+        buttonPrestamoTablaAfiliado.setText("Buscar");
+        buttonPrestamoTablaAfiliado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPrestamoTablaAfiliadoActionPerformed(evt);
+            }
+        });
+
+        textoPrestamoTablaNuevoEjemplarDisponible.setEditable(false);
+
+        labelPrestamoTablaNuevoAfiliadoBiblioteca.setText("Biblioteca Afiliado");
+
+        labelPrestamoTablaNuevoFechaHasta.setText("Fecha Hasta");
+
+        javax.swing.GroupLayout subPanelPrestamoTablaNuevoLayout = new javax.swing.GroupLayout(subPanelPrestamoTablaNuevo);
+        subPanelPrestamoTablaNuevo.setLayout(subPanelPrestamoTablaNuevoLayout);
+        subPanelPrestamoTablaNuevoLayout.setHorizontalGroup(
+            subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelPrestamoTablaNuevoLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(subPanelPrestamoTablaNuevoLayout.createSequentialGroup()
+                        .addComponent(labelPrestamoTablaNuevoEjemplarId)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textoPrestamoTablaNuevoEjemplarId, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addGroup(subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonPrestamoTablaEjemplar)
+                            .addComponent(buttonPrestamoTablaAfiliado))
+                        .addGap(33, 33, 33)
+                        .addGroup(subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(subPanelPrestamoTablaNuevoLayout.createSequentialGroup()
+                                .addComponent(textoPrestamoTablaNuevoAfiliadoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(textoPrestamoTablaNuevoAfiliadoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(subPanelPrestamoTablaNuevoLayout.createSequentialGroup()
+                                .addComponent(textoPrestamoTablaNuevoEjemplarTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(textoPrestamoTablaNuevoEjemplarBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textoPrestamoTablaNuevoAfiliadoSancion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoPrestamoTablaNuevoEjemplarDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(subPanelPrestamoTablaNuevoLayout.createSequentialGroup()
+                        .addGroup(subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(subPanelPrestamoTablaNuevoLayout.createSequentialGroup()
+                                .addComponent(labelPrestamoTablaNuevoAfiliadoLegajo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(subPanelPrestamoTablaNuevoLayout.createSequentialGroup()
+                                .addGroup(subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(labelPrestamoTablaNuevoFecha)
+                                    .addComponent(labelPrestamoTablaNuevoAfiliadoBiblioteca))
+                                .addGap(10, 10, 10))
+                            .addGroup(subPanelPrestamoTablaNuevoLayout.createSequentialGroup()
+                                .addComponent(labelPrestamoTablaNuevoFechaHasta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textoPrestamoTablaNuevoAfiliadoLegajo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(listaPrestamoTablaNuevoAfiliadoBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(textoPrestamoTablaNuevoHasta)
+                                    .addComponent(textoPrestamoTablaNuevoDesde, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))))
+                        .addGroup(subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(subPanelPrestamoTablaNuevoLayout.createSequentialGroup()
+                                .addGap(645, 645, 645)
+                                .addComponent(buttonPrestamoTablaNuevo))
+                            .addGroup(subPanelPrestamoTablaNuevoLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(spinnerPrestamoTablaNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(83, 83, 83))
+        );
+        subPanelPrestamoTablaNuevoLayout.setVerticalGroup(
+            subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelPrestamoTablaNuevoLayout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addGroup(subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPrestamoTablaNuevoEjemplarId)
+                    .addComponent(textoPrestamoTablaNuevoEjemplarId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoPrestamoTablaNuevoEjemplarTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoPrestamoTablaNuevoEjemplarBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonPrestamoTablaEjemplar)
+                    .addComponent(textoPrestamoTablaNuevoEjemplarDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPrestamoTablaNuevoAfiliadoLegajo)
+                    .addComponent(textoPrestamoTablaNuevoAfiliadoLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addGroup(subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonPrestamoTablaAfiliado)
+                    .addComponent(textoPrestamoTablaNuevoAfiliadoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoPrestamoTablaNuevoAfiliadoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoPrestamoTablaNuevoAfiliadoSancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listaPrestamoTablaNuevoAfiliadoBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPrestamoTablaNuevoAfiliadoBiblioteca))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPrestamoTablaNuevoFecha)
+                    .addComponent(textoPrestamoTablaNuevoDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelPrestamoTablaNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoPrestamoTablaNuevoHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPrestamoTablaNuevoFechaHasta)
+                    .addComponent(spinnerPrestamoTablaNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(buttonPrestamoTablaNuevo)
+                .addContainerGap(186, Short.MAX_VALUE))
+        );
+
+        cardLayoutPrestamoTabla.add(subPanelPrestamoTablaNuevo, "cardPrestamoTablaNuevo");
+
+        tablaPrestamoEliminar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Número", "Titulo", "Biblioteca", "Desde", "Hasta"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tablaPrestamoEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaPrestamoEliminarMouseClicked(evt);
+            }
+        });
+        jScrollPane22.setViewportView(tablaPrestamoEliminar);
+
+        javax.swing.GroupLayout subPanelPrestamoTablaEliminarLayout = new javax.swing.GroupLayout(subPanelPrestamoTablaEliminar);
+        subPanelPrestamoTablaEliminar.setLayout(subPanelPrestamoTablaEliminarLayout);
+        subPanelPrestamoTablaEliminarLayout.setHorizontalGroup(
+            subPanelPrestamoTablaEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1096, Short.MAX_VALUE)
+            .addGroup(subPanelPrestamoTablaEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1096, Short.MAX_VALUE))
+        );
+        subPanelPrestamoTablaEliminarLayout.setVerticalGroup(
+            subPanelPrestamoTablaEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 465, Short.MAX_VALUE)
+            .addGroup(subPanelPrestamoTablaEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(subPanelPrestamoTablaEliminarLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        cardLayoutPrestamoTabla.add(subPanelPrestamoTablaEliminar, "cardPrestamoTablaEliminar");
+
+        tablaPrestamoModificar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Número", "Titulo", "Biblioteca", "Desde", "Hasta"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tablaPrestamoModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaPrestamoModificarMouseClicked(evt);
+            }
+        });
+        jScrollPane21.setViewportView(tablaPrestamoModificar);
+
+        labelPrestamoModificarFecha.setText("Nueva Fecha");
+
+        textoPrestamoTablaModificarFecha.setEditable(false);
+
+        buttonPrestamoTablaModificar.setText("Extender");
+        buttonPrestamoTablaModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPrestamoTablaModificarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout subPanelPrestamoTablaModificarLayout = new javax.swing.GroupLayout(subPanelPrestamoTablaModificar);
+        subPanelPrestamoTablaModificar.setLayout(subPanelPrestamoTablaModificarLayout);
+        subPanelPrestamoTablaModificarLayout.setHorizontalGroup(
+            subPanelPrestamoTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelPrestamoTablaModificarLayout.createSequentialGroup()
+                .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 797, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(subPanelPrestamoTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(subPanelPrestamoTablaModificarLayout.createSequentialGroup()
+                        .addComponent(labelPrestamoModificarFecha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textoPrestamoTablaModificarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(spinnerPrestamoTablaModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonPrestamoTablaModificar))
+                .addGap(0, 28, Short.MAX_VALUE))
+        );
+        subPanelPrestamoTablaModificarLayout.setVerticalGroup(
+            subPanelPrestamoTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+            .addGroup(subPanelPrestamoTablaModificarLayout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addGroup(subPanelPrestamoTablaModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPrestamoModificarFecha)
+                    .addComponent(textoPrestamoTablaModificarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spinnerPrestamoTablaModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonPrestamoTablaModificar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        cardLayoutPrestamoTabla.add(subPanelPrestamoTablaModificar, "cardPrestamoTablaModificar");
 
         cardLayoutPrestamoCampos.setLayout(new java.awt.CardLayout());
 
@@ -422,12 +750,18 @@ public class Principal extends javax.swing.JFrame {
         buttonGroupPrestamoBuscar.add(radioPrestamoBuscarISBN);
         radioPrestamoBuscarISBN.setSelected(true);
         radioPrestamoBuscarISBN.setText("ISBN");
+        radioPrestamoBuscarISBN.setActionCommand("ISBN");
 
         buttonGroupPrestamoBuscar.add(radioPrestamoBuscarId);
         radioPrestamoBuscarId.setText("Id Ejemplar");
         radioPrestamoBuscarId.setActionCommand("id_ejemplar");
 
         buttonPrestamoBuscar.setText("Buscar");
+        buttonPrestamoBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPrestamoBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout subPanelPrestamoBuscarLayout = new javax.swing.GroupLayout(subPanelPrestamoBuscar);
         subPanelPrestamoBuscar.setLayout(subPanelPrestamoBuscarLayout);
@@ -437,15 +771,13 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(subPanelPrestamoBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(radioPrestamoBuscarISBN)
-                    .addGroup(subPanelPrestamoBuscarLayout.createSequentialGroup()
-                        .addComponent(radioPrestamoBuscarLegajo)
-                        .addGap(27, 27, 27))
+                    .addComponent(radioPrestamoBuscarLegajo)
                     .addComponent(radioPrestamoBuscarId))
                 .addGap(148, 148, 148)
                 .addComponent(textoPrestamoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonPrestamoBuscar)
-                .addContainerGap(267, Short.MAX_VALUE))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
         subPanelPrestamoBuscarLayout.setVerticalGroup(
             subPanelPrestamoBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,7 +794,119 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        cardLayoutPrestamoCampos.add(subPanelPrestamoBuscar, "card2");
+        cardLayoutPrestamoCampos.add(subPanelPrestamoBuscar, "cardPrestamoBuscar");
+
+        javax.swing.GroupLayout subPanelPrestamoNuevoLayout = new javax.swing.GroupLayout(subPanelPrestamoNuevo);
+        subPanelPrestamoNuevo.setLayout(subPanelPrestamoNuevoLayout);
+        subPanelPrestamoNuevoLayout.setHorizontalGroup(
+            subPanelPrestamoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 987, Short.MAX_VALUE)
+        );
+        subPanelPrestamoNuevoLayout.setVerticalGroup(
+            subPanelPrestamoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 118, Short.MAX_VALUE)
+        );
+
+        cardLayoutPrestamoCampos.add(subPanelPrestamoNuevo, "cardPrestamoNuevo");
+
+        buttonPrestamoEliminar.setText("Buscar");
+        buttonPrestamoEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPrestamoEliminarActionPerformed(evt);
+            }
+        });
+
+        labelPrestamoEliminarBiblioteca.setText("Biblioteca Afiliacion");
+
+        labelPrestamoEliminarLegajo.setText("Legajo");
+
+        buttonPrestamoEliminarAccion.setText("Confirmar");
+        buttonPrestamoEliminarAccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPrestamoEliminarAccionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout subPanelPrestamoEliminarLayout = new javax.swing.GroupLayout(subPanelPrestamoEliminar);
+        subPanelPrestamoEliminar.setLayout(subPanelPrestamoEliminarLayout);
+        subPanelPrestamoEliminarLayout.setHorizontalGroup(
+            subPanelPrestamoEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelPrestamoEliminarLayout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addGroup(subPanelPrestamoEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelPrestamoEliminarBiblioteca)
+                    .addComponent(labelPrestamoEliminarLegajo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(subPanelPrestamoEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(textoPrestamoEliminarLegajo, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addComponent(listaPrestamoEliminarBiblioteca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
+                .addComponent(buttonPrestamoEliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                .addComponent(buttonPrestamoEliminarAccion))
+        );
+        subPanelPrestamoEliminarLayout.setVerticalGroup(
+            subPanelPrestamoEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelPrestamoEliminarLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(subPanelPrestamoEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoPrestamoEliminarLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPrestamoEliminarLegajo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelPrestamoEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonPrestamoEliminar)
+                    .addComponent(labelPrestamoEliminarBiblioteca)
+                    .addComponent(listaPrestamoEliminarBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonPrestamoEliminarAccion))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        cardLayoutPrestamoCampos.add(subPanelPrestamoEliminar, "cardPrestamoEliminar");
+
+        buttonPrestamoModificar.setText("Buscar");
+        buttonPrestamoModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPrestamoModificarActionPerformed(evt);
+            }
+        });
+
+        labelPrestamoModificarBiblioteca.setText("Biblioteca Afiliacion");
+
+        labelPrestamoModificarLegajo.setText("Legajo");
+
+        javax.swing.GroupLayout subPanelPrestamoModificarLayout = new javax.swing.GroupLayout(subPanelPrestamoModificar);
+        subPanelPrestamoModificar.setLayout(subPanelPrestamoModificarLayout);
+        subPanelPrestamoModificarLayout.setHorizontalGroup(
+            subPanelPrestamoModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelPrestamoModificarLayout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addGroup(subPanelPrestamoModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelPrestamoModificarBiblioteca)
+                    .addComponent(labelPrestamoModificarLegajo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(subPanelPrestamoModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(textoPrestamoModificarLegajo, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addComponent(listaPrestamoModificarBiblioteca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
+                .addComponent(buttonPrestamoModificar)
+                .addContainerGap(255, Short.MAX_VALUE))
+        );
+        subPanelPrestamoModificarLayout.setVerticalGroup(
+            subPanelPrestamoModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(subPanelPrestamoModificarLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(subPanelPrestamoModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoPrestamoModificarLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPrestamoModificarLegajo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(subPanelPrestamoModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonPrestamoModificar)
+                    .addComponent(labelPrestamoModificarBiblioteca)
+                    .addComponent(listaPrestamoModificarBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        cardLayoutPrestamoCampos.add(subPanelPrestamoModificar, "cardPrestamoModificar");
 
         javax.swing.GroupLayout panelPrestamosLayout = new javax.swing.GroupLayout(panelPrestamos);
         panelPrestamos.setLayout(panelPrestamosLayout);
@@ -472,15 +916,14 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelPrestamosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrestamosLayout.createSequentialGroup()
-                        .addGroup(panelPrestamosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPrestamosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelPrestamosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(prestamoModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(prestamoBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(prestamoEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(prestamoNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cardLayoutPrestamoCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(cardLayoutPrestamoTabla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(cardLayoutPrestamoCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(cardLayoutPrestamoTabla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelPrestamosLayout.setVerticalGroup(
@@ -489,13 +932,13 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelPrestamosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelPrestamosLayout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(prestamoBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(prestamoNuevo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(prestamoModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4))
+                        .addComponent(prestamoEliminar))
                     .addComponent(cardLayoutPrestamoCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cardLayoutPrestamoTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1108,6 +1551,7 @@ public class Principal extends javax.swing.JFrame {
 
         buttonGroupLibrosModificar.add(radioLibrosModificarISBN);
         radioLibrosModificarISBN.setText("ISBN");
+        radioLibrosModificarISBN.setActionCommand("ISBN");
 
         buttonGroupLibrosModificar.add(radioLibrosModificarAutor);
         radioLibrosModificarAutor.setText("Autor");
@@ -1167,6 +1611,7 @@ public class Principal extends javax.swing.JFrame {
 
         buttonGroupLibrosEliminar.add(radioLibrosEliminarISBN);
         radioLibrosEliminarISBN.setText("ISBN");
+        radioLibrosEliminarISBN.setActionCommand("ISBN");
 
         buttonGroupLibrosEliminar.add(radioLibrosEliminarAutor);
         radioLibrosEliminarAutor.setText("Autor");
@@ -1238,6 +1683,7 @@ public class Principal extends javax.swing.JFrame {
 
         buttonGroupLibrosBuscar.add(radioLibrosBuscarISBN);
         radioLibrosBuscarISBN.setText("ISBN");
+        radioLibrosBuscarISBN.setActionCommand("ISBN");
 
         buttonGroupLibrosBuscar.add(radioLibrosBuscarAutor);
         radioLibrosBuscarAutor.setText("Autor");
@@ -2786,6 +3232,7 @@ public class Principal extends javax.swing.JFrame {
 
         buttonGroupEjemplarBuscar.add(radioEjemplarBuscarISBN);
         radioEjemplarBuscarISBN.setText("ISBN");
+        radioEjemplarBuscarISBN.setActionCommand("ISBN");
 
         buttonGroupEjemplarBuscar.add(radioEjemplarBuscarAutor);
         radioEjemplarBuscarAutor.setText("Autor");
@@ -2845,6 +3292,7 @@ public class Principal extends javax.swing.JFrame {
 
         buttonGroupEjemplarModificar.add(radioEjemplarModificarISBN);
         radioEjemplarModificarISBN.setText("ISBN");
+        radioEjemplarModificarISBN.setActionCommand("ISBN");
 
         buttonGroupEjemplarModificar.add(radioEjemplarModificarAutor);
         radioEjemplarModificarAutor.setText("Autor");
@@ -2904,6 +3352,7 @@ public class Principal extends javax.swing.JFrame {
 
         buttonGroupEjemplarEliminar.add(radioEjemplarEliminarISBN);
         radioEjemplarEliminarISBN.setText("ISBN");
+        radioEjemplarEliminarISBN.setActionCommand("ISBN");
 
         buttonGroupEjemplarEliminar.add(radioEjemplarEliminarAutor);
         radioEjemplarEliminarAutor.setText("Autor");
@@ -2966,7 +3415,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        cardLayoutEjemplarCampos.add(subPanelEjemplarEliminar, "cardEjemplarModificar");
+        cardLayoutEjemplarCampos.add(subPanelEjemplarEliminar, "cardEjemplarEliminar");
 
         cardLayoutEjemplarTabla.setLayout(new java.awt.CardLayout());
 
@@ -2977,6 +3426,7 @@ public class Principal extends javax.swing.JFrame {
 
         buttonGroupEjemplarTablaNuevo.add(radioEjemplarTablaNuevoISBN);
         radioEjemplarTablaNuevoISBN.setText("ISBN");
+        radioEjemplarTablaNuevoISBN.setActionCommand("ISBN");
 
         buttonGroupEjemplarTablaNuevo.add(radioEjemplarTablaNuevoAutor);
         radioEjemplarTablaNuevoAutor.setText("Autor");
@@ -3006,6 +3456,12 @@ public class Principal extends javax.swing.JFrame {
         buttonEjemplarTablaNuevoBiblioteca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEjemplarTablaNuevoBibliotecaActionPerformed(evt);
+            }
+        });
+
+        listaEjemplarTablaNuevoBiblioteca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaEjemplarTablaNuevoBibliotecaActionPerformed(evt);
             }
         });
 
@@ -3175,6 +3631,11 @@ public class Principal extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tablaEjemplarModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaEjemplarModificarMouseClicked(evt);
+            }
+        });
         jScrollPane15.setViewportView(tablaEjemplarModificar);
 
         labelEjemplarTablaModificarTitulo.setText("Título*");
@@ -3263,6 +3724,11 @@ public class Principal extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tablaEjemplarEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaEjemplarEliminarMouseClicked(evt);
+            }
+        });
         jScrollPane16.setViewportView(tablaEjemplarEliminar);
 
         javax.swing.GroupLayout subPanelEjemplarTablaEliminarLayout = new javax.swing.GroupLayout(subPanelEjemplarTablaEliminar);
@@ -3320,6 +3786,32 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Ejemplares", panelEjemplares);
 
+        buttonReporteGenerar.setText("Generar Reporte");
+        buttonReporteGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonReporteGenerarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelReportesLayout = new javax.swing.GroupLayout(panelReportes);
+        panelReportes.setLayout(panelReportesLayout);
+        panelReportesLayout.setHorizontalGroup(
+            panelReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelReportesLayout.createSequentialGroup()
+                .addGap(474, 474, 474)
+                .addComponent(buttonReporteGenerar)
+                .addContainerGap(505, Short.MAX_VALUE))
+        );
+        panelReportesLayout.setVerticalGroup(
+            panelReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelReportesLayout.createSequentialGroup()
+                .addGap(251, 251, 251)
+                .addComponent(buttonReporteGenerar)
+                .addContainerGap(331, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Reportes", panelReportes);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -3345,6 +3837,9 @@ public class Principal extends javax.swing.JFrame {
 			tmpBiblioteca = new BibliotecasDAO().getAll();
 			for (int i=0; i<tmpBiblioteca.size(); i++) {
 				listaAfiliadoTablaNuevo.addItem(tmpBiblioteca.get(i));
+				listaPrestamoTablaNuevoAfiliadoBiblioteca.addItem(tmpBiblioteca.get(i));
+				listaPrestamoModificarBiblioteca.addItem(tmpBiblioteca.get(i));
+				listaPrestamoEliminarBiblioteca.addItem(tmpBiblioteca.get(i));
 			}
 		}
 		catch (Exception e) {
@@ -3352,9 +3847,47 @@ public class Principal extends javax.swing.JFrame {
 		}
 	}
 	
-        private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                // TODO add your handling code here:
-        }//GEN-LAST:event_jButton1ActionPerformed
+	private void initSpinnerEvent(){
+		spinnerPrestamoTablaNuevo.addChangeListener(new javax.swing.event.ChangeListener() {
+            @Override
+            public void stateChanged(javax.swing.event.ChangeEvent e) {
+				textoPrestamoTablaNuevoHasta.setText(LocalDate.now().plusDays((int) spinnerPrestamoTablaNuevo.getValue()).toString());
+            }
+        });
+		
+		spinnerPrestamoTablaModificar.addChangeListener(new javax.swing.event.ChangeListener() {
+            @Override
+            public void stateChanged(javax.swing.event.ChangeEvent e) {
+				//textoPrestamoTablaModificarFecha.setText(LocalDate.now().plusDays((int) spinnerPrestamoTablaModificar.getValue()).toString());
+				textoPrestamoTablaModificarFecha.setText(
+						LocalDate.parse(tmpPrestamoTablaModificarFecha).plusDays((int) spinnerPrestamoTablaModificar.getValue()).toString());
+				// activamos boton para panel prestamo tabla modificar
+				if ((int) spinnerPrestamoTablaModificar.getValue() == 0) {
+					buttonPrestamoTablaModificar.setEnabled(false);
+				}
+				else {
+					buttonPrestamoTablaModificar.setEnabled(true);
+				}
+            }
+        });
+		
+		
+	}
+	
+        private void prestamoNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamoNuevoActionPerformed
+            subPanelPrestamoBuscar.setVisible(false);
+			subPanelPrestamoNuevo.setVisible(true);
+			subPanelPrestamoModificar.setVisible(false);
+			subPanelPrestamoEliminar.setVisible(false);
+			((CardLayout) cardLayoutPrestamoCampos.getLayout()).show(cardLayoutPrestamoCampos, "cardPrestamoNuevo");
+			subPanelPrestamoTablaBuscar.setVisible(false);
+			subPanelPrestamoTablaNuevo.setVisible(true);
+			subPanelPrestamoTablaModificar.setVisible(false);
+			subPanelPrestamoTablaEliminar.setVisible(false);
+			((CardLayout) cardLayoutPrestamoTabla.getLayout()).show(cardLayoutPrestamoTabla, "cardPrestamoTablaNuevo");
+			
+			blockCamposPrestamoNuevo();
+        }//GEN-LAST:event_prestamoNuevoActionPerformed
 
         private void librosNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librosNuevoActionPerformed
                 // TODO add your handling code here:
@@ -4227,8 +4760,7 @@ public class Principal extends javax.swing.JFrame {
 		
 		try {
 			if (textoBuscar.length() > 0) {
-				LibrosDAO dbLibros = new LibrosDAO();
-				ArrayList<Libro> libros = dbLibros.searchLibro(textoBuscar, 
+				ArrayList<Libro> libros = new LibrosDAO().searchLibro(textoBuscar, 
 															buttonGroupLibrosBuscar
 																	.getSelection()
 																	.getActionCommand());
@@ -4249,12 +4781,12 @@ public class Principal extends javax.swing.JFrame {
 		
 		try {
 			if (textoBuscar.length() > 0) {
-				LibrosDAO dbLibros = new LibrosDAO();
-				ArrayList<Libro> libros = dbLibros.searchLibro(textoBuscar, 
-															buttonGroupLibrosBuscar
+				ArrayList<Libro> libros = new LibrosDAO().searchLibro(textoBuscar, 
+															buttonGroupLibrosModificar
 																	.getSelection()
 																	.getActionCommand());
-				fillLibrosTable(libros, tablaLibrosBuscar);
+				tmpLibros = libros;
+				fillLibrosTable(libros, tablaLibrosModificar);
 			}
 		}
 		catch (Exception e){ // acá puede haber un error
@@ -4320,7 +4852,7 @@ public class Principal extends javax.swing.JFrame {
 			textoLibrosModificarGenero.setText(tmpLibros.get(row).getGenero());
 			textoLibrosModificarEdicion.setText(String.valueOf(tmpLibros.get(row).getEdicion()));
 			textoLibrosModificarPaginas.setText(String.valueOf(tmpLibros.get(row).getPaginas()));
-			textoLibrosModificarAño.setText(tmpLibros.get(row).getFechaPublicacion().toString());
+			textoLibrosModificarAño.setText(tmpLibros.get(row).getFechaPublicacion().toString().substring(0,4));
 			listaLibrosModificarEditorial.addItem(tmpLibros.get(row).getEditorial());
 		}
 		catch (Exception e) {
@@ -4434,8 +4966,7 @@ public class Principal extends javax.swing.JFrame {
 		
 		try {
 			if (textoBuscar.length() > 0) {
-				EjemplaresDAO dbEjemplar = new EjemplaresDAO();
-				ArrayList<Ejemplar> ejemplares = dbEjemplar.searchEjemplar(textoBuscar, 
+				ArrayList<Ejemplar> ejemplares = new EjemplaresDAO().searchEjemplar(textoBuscar, 
 															buttonGroupEjemplarBuscar
 																	.getSelection()
 																	.getActionCommand());
@@ -4458,7 +4989,7 @@ public class Principal extends javax.swing.JFrame {
 				tmpEjemplarNuevoLibro = new LibrosDAO().searchLibro(textoEjemplarTablaNuevoLibro.getText(), 
 																	buttonGroupEjemplarTablaNuevo.getSelection().getActionCommand());
 				for (int i=0; i<tmpEjemplarNuevoLibro.size(); i++) {
-					listaEjemplarTablaNuevoBiblioteca.addItem(tmpEjemplarNuevoLibro.get(i));
+					listaEjemplarTablaNuevoLibro.addItem(tmpEjemplarNuevoLibro.get(i));
 				}
 				
 				if (listaEjemplarTablaNuevoBiblioteca.getSelectedItem() != null){
@@ -4482,14 +5013,14 @@ public class Principal extends javax.swing.JFrame {
 			listaEjemplarTablaNuevoBiblioteca.removeAllItems();
 			if (textoEjemplarTablaNuevoBiblioteca.getText().length() > 0) {
 				tmpEjemplarNuevoBiblioteca = new BibliotecasDAO().searchBiblioteca(textoEjemplarTablaNuevoBiblioteca.getText(), 
-																					"dependencia");
+																			"dependencia");
 				for (int i=0; i<tmpEjemplarNuevoBiblioteca.size(); i++) {
 					listaEjemplarTablaNuevoBiblioteca.addItem(tmpEjemplarNuevoBiblioteca.get(i));
 				}
-				
+
 				if (listaEjemplarTablaNuevoLibro.getSelectedItem() != null){
 					int maxNumId = new EjemplaresDAO().searchMaxIdEjemplar(((Libro) listaEjemplarTablaNuevoLibro.getSelectedItem()).getISBN(),
-																		((Biblioteca) listaEjemplarTablaNuevoBiblioteca.getSelectedItem()).getIdBiblioteca());
+																			((Biblioteca) listaEjemplarTablaNuevoBiblioteca.getSelectedItem()).getIdBiblioteca());
 					textoEjemplarTablaNuevoNumero.setText(String.valueOf(maxNumId + 1));
 				}
 			}
@@ -4498,7 +5029,7 @@ public class Principal extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
     }//GEN-LAST:event_buttonEjemplarTablaNuevoBibliotecaActionPerformed
-
+	
     private void textoEjemplarTablaNuevoUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoEjemplarTablaNuevoUbicacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textoEjemplarTablaNuevoUbicacionActionPerformed
@@ -4554,11 +5085,11 @@ public class Principal extends javax.swing.JFrame {
 		
 		try {
 			if (textoBuscar.length() > 0) {
-				EjemplaresDAO dbEjemplares = new EjemplaresDAO();
-				ArrayList<Ejemplar> ejemplares = dbEjemplares.searchEjemplar(textoBuscar, 
+				ArrayList<Ejemplar> ejemplares = new EjemplaresDAO().searchEjemplar(textoBuscar, 
 															buttonGroupEjemplarModificar
 																	.getSelection()
 																	.getActionCommand());
+				tmpEjemplar = ejemplares;
 				fillEjemplarTableModificar(ejemplares, tablaEjemplarModificar);
 			}
 		}
@@ -4598,10 +5129,8 @@ public class Principal extends javax.swing.JFrame {
 		String textoBuscar = textoEjemplarEliminar.getText();
 		
 		if (textoBuscar.length() > 0) {
-			EjemplaresDAO dbEjemplar = new EjemplaresDAO();
-
 			try {
-				ArrayList<Ejemplar> ejemplares = dbEjemplar.searchEjemplar(textoBuscar, 
+				ArrayList<Ejemplar> ejemplares = new EjemplaresDAO().searchEjemplar(textoBuscar, 
 															buttonGroupEjemplarEliminar
 																	.getSelection()
 																	.getActionCommand());
@@ -4624,10 +5153,299 @@ public class Principal extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
     }//GEN-LAST:event_buttonEjemplarEliminarAccionActionPerformed
+
+    private void buttonPrestamoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPrestamoBuscarActionPerformed
+        String textoBuscar = textoPrestamoBuscar.getText();
+		
+		try {
+			if (textoBuscar.length() > 0) {
+				ArrayList<Prestamo> prestamos = new PrestamosDAO().searchPrestamo(textoBuscar, 
+															buttonGroupPrestamoBuscar
+																	.getSelection()
+																	.getActionCommand());
+				fillPrestamoTableBuscar(prestamos, tablaPrestamoBuscar);
+			}
+		}
+		catch (Exception e){ 
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonPrestamoBuscarActionPerformed
+
+    private void prestamoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamoBuscarActionPerformed
+        subPanelPrestamoBuscar.setVisible(true);
+		subPanelPrestamoNuevo.setVisible(false);
+		subPanelPrestamoModificar.setVisible(false);
+		subPanelPrestamoEliminar.setVisible(false);
+		((CardLayout) cardLayoutPrestamoCampos.getLayout()).show(cardLayoutPrestamoCampos, "cardPrestamoBuscar");
+		subPanelPrestamoTablaBuscar.setVisible(true);
+		subPanelPrestamoTablaNuevo.setVisible(false);
+		subPanelPrestamoTablaModificar.setVisible(false);
+		subPanelPrestamoTablaEliminar.setVisible(false);
+		((CardLayout) cardLayoutPrestamoTabla.getLayout()).show(cardLayoutPrestamoTabla, "cardPrestamoTablaBuscar");
+    }//GEN-LAST:event_prestamoBuscarActionPerformed
+
+    private void prestamoModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamoModificarActionPerformed
+        subPanelPrestamoBuscar.setVisible(false);
+		subPanelPrestamoNuevo.setVisible(false);
+		subPanelPrestamoModificar.setVisible(true);
+		subPanelPrestamoEliminar.setVisible(false);
+		((CardLayout) cardLayoutPrestamoCampos.getLayout()).show(cardLayoutPrestamoCampos, "cardPrestamoModificar");
+		subPanelPrestamoTablaBuscar.setVisible(false);
+		subPanelPrestamoTablaNuevo.setVisible(false);
+		subPanelPrestamoTablaModificar.setVisible(true);
+		subPanelPrestamoTablaEliminar.setVisible(false);
+		((CardLayout) cardLayoutPrestamoTabla.getLayout()).show(cardLayoutPrestamoTabla, "cardPrestamoTablaModificar");
+		
+		blockCamposPrestamoModificar();
+    }//GEN-LAST:event_prestamoModificarActionPerformed
+
+    private void prestamoEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamoEliminarActionPerformed
+        subPanelPrestamoBuscar.setVisible(false);
+		subPanelPrestamoNuevo.setVisible(false);
+		subPanelPrestamoModificar.setVisible(false);
+		subPanelPrestamoEliminar.setVisible(true);
+		((CardLayout) cardLayoutPrestamoCampos.getLayout()).show(cardLayoutPrestamoCampos, "cardPrestamoEliminar");
+		subPanelPrestamoTablaBuscar.setVisible(false);
+		subPanelPrestamoTablaNuevo.setVisible(false);
+		subPanelPrestamoTablaModificar.setVisible(false);
+		subPanelPrestamoTablaEliminar.setVisible(true);
+		((CardLayout) cardLayoutPrestamoTabla.getLayout()).show(cardLayoutPrestamoTabla, "cardPrestamoTablaEliminar");
+		
+		blockCamposPrestamoEliminar();
+    }//GEN-LAST:event_prestamoEliminarActionPerformed
+
+    private void textoPrestamoTablaNuevoAfiliadoSancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoPrestamoTablaNuevoAfiliadoSancionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoPrestamoTablaNuevoAfiliadoSancionActionPerformed
+
+    private void buttonPrestamoTablaEjemplarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPrestamoTablaEjemplarActionPerformed
+        try {
+			if (textoPrestamoTablaNuevoEjemplarId.getText().length() > 0) {
+				Ejemplar ejemplar = new EjemplaresDAO().searchEjemplar(textoPrestamoTablaNuevoEjemplarId.getText());
+				
+				if (ejemplar != null) {
+					String disponible = "No disponible";
+					if (ejemplar.getDisponible().equals("SI")) {
+						tmpPrestamoNuevo.setIdEjemplar(ejemplar.getIdEjemplar());
+						disponible = "Disponible";
+					}
+
+					textoPrestamoTablaNuevoEjemplarTitulo.setText(ejemplar.getLibro().getTitulo());
+					textoPrestamoTablaNuevoEjemplarBiblioteca.setText(ejemplar.getBiblioteca().toString());
+					textoPrestamoTablaNuevoEjemplarDisponible.setText(disponible);
+					
+					// habilitamos boton nuevo
+					if (tmpPrestamoNuevo.getLegajo() > 0) {
+					//if (tmpPrestamoNuevo != null) {
+						buttonPrestamoTablaNuevo.setEnabled(true);
+					}
+				}
+				else {
+					clearCamposPrestamoNuevoEjemplar();
+				}
+			}
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonPrestamoTablaEjemplarActionPerformed
+
+    private void buttonPrestamoTablaAfiliadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPrestamoTablaAfiliadoActionPerformed
+        try {
+			if (textoPrestamoTablaNuevoAfiliadoLegajo.getText().length() > 0) {
+				Afiliado afiliado = new AfiliadosDAO().searchAfiliado(textoPrestamoTablaNuevoAfiliadoLegajo.getText(),
+																	  (Biblioteca) listaPrestamoTablaNuevoAfiliadoBiblioteca.getSelectedItem());
+				
+				if (afiliado != null) {
+					String sancion = "Sancionado hasta el ";
+					if (afiliado.getSancion() == null) {
+						tmpPrestamoNuevo.setLegajo(afiliado.getLegajo());
+						tmpPrestamoNuevo.setIdBibliotecaAfiliacion(afiliado.getIdBibliotecaAfiliacion());
+						sancion = "Sin sanción vigente";
+					}
+					else {
+						sancion += afiliado.getSancion().toString();
+					}
+
+					textoPrestamoTablaNuevoAfiliadoApellido.setText(afiliado.getApellido());
+					textoPrestamoTablaNuevoAfiliadoNombre.setText(afiliado.getNombre());
+					textoPrestamoTablaNuevoAfiliadoSancion.setText(sancion);
+					textoPrestamoTablaNuevoDesde.setText(LocalDate.now().toString());
+					textoPrestamoTablaNuevoHasta.setText(LocalDate.now().plusDays((int) spinnerPrestamoTablaNuevo.getValue()).toString());
+					
+					// habiltacion boton nuevo
+					if (tmpPrestamoNuevo.getIdEjemplar() > 0) {
+					//if (tmpPrestamoNuevo != null) {
+						buttonPrestamoTablaNuevo.setEnabled(true);
+					}
+				}
+				else {
+					clearCamposPrestamoNuevoAfiliado();
+				}
+			}
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonPrestamoTablaAfiliadoActionPerformed
+
+    private void buttonPrestamoTablaNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPrestamoTablaNuevoActionPerformed
+        try {
+			tmpPrestamoNuevo.setDevuelto("NO");
+			tmpPrestamoNuevo.setFrom(java.sql.Date.valueOf(textoPrestamoTablaNuevoDesde.getText()));
+			if (checkFechaFormat(textoPrestamoTablaNuevoHasta.getText())) {
+				tmpPrestamoNuevo.setTo(java.sql.Date.valueOf(textoPrestamoTablaNuevoHasta.getText()));
+				new PrestamosDAO().insertPrestamo(tmpPrestamoNuevo);
+				blockCamposPrestamoNuevo();
+			}
+			else {
+				textoPrestamoTablaNuevoHasta.setText(LocalDate.now().plusDays(diasPrestamo).toString());
+				spinnerPrestamoTablaNuevo.setValue(diasPrestamo);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonPrestamoTablaNuevoActionPerformed
+
+    private void buttonPrestamoModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPrestamoModificarActionPerformed
+        try {
+			if (textoPrestamoModificarLegajo.getText().length() > 0) {
+				ArrayList<Prestamo> prestamo = new PrestamosDAO().searchPrestamo(textoPrestamoModificarLegajo.getText(),
+																	  (Biblioteca) listaPrestamoModificarBiblioteca.getSelectedItem());
+				
+				tmpPrestamoModificar = prestamo;
+				fillPrestamoTableModificar(prestamo, tablaPrestamoModificar);
+			}
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonPrestamoModificarActionPerformed
+
+    private void tablaPrestamoModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPrestamoModificarMouseClicked
+        // habilitacion
+		spinnerPrestamoTablaModificar.setEnabled(true);
+		buttonPrestamoTablaModificar.setEnabled(false);
+		
+		// relleno de campos
+		int row = tablaPrestamoModificar.getSelectedRow();
+		
+		try {
+			textoPrestamoTablaModificarFecha.setText(tmpPrestamoModificar.get(row).getTo().toString());
+			tmpPrestamoTablaModificarFecha = tmpPrestamoModificar.get(row).getTo().toString();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_tablaPrestamoModificarMouseClicked
+
+    private void tablaEjemplarModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEjemplarModificarMouseClicked
+        /// habilitacion
+		buttonEjemplarTablaModificar.setEnabled(true);
+		textoEjemplarTablaModificarUbicacion.setEnabled(true);
+		
+		// relleno de campos
+		int row = tablaEjemplarModificar.getSelectedRow();
+		
+		try {
+			textoEjemplarTablaModificarISBN.setText(tmpEjemplar.get(row).getISBN());
+			textoEjemplarTablaModificarTitulo.setText(tmpEjemplar.get(row).getLibro().getTitulo());
+			textoEjemplarTablaModificarUbicacion.setText(tmpEjemplar.get(row).getIdUbicacion());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_tablaEjemplarModificarMouseClicked
+
+    private void buttonPrestamoTablaModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPrestamoTablaModificarActionPerformed
+        try {
+			Prestamo prestamoUpdated = tmpPrestamoModificar.get(tablaPrestamoModificar.getSelectedRow());
+			prestamoUpdated.setTo(java.sql.Date.valueOf(textoPrestamoTablaModificarFecha.getText()));
+			new PrestamosDAO().updatePrestamo(prestamoUpdated);
+			blockCamposPrestamoModificar();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonPrestamoTablaModificarActionPerformed
+
+    private void buttonPrestamoEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPrestamoEliminarActionPerformed
+        try {
+			if (textoPrestamoEliminarLegajo.getText().length() > 0) {
+				ArrayList<Prestamo> prestamo = new PrestamosDAO().searchPrestamo(textoPrestamoEliminarLegajo.getText(),
+																	  (Biblioteca) listaPrestamoEliminarBiblioteca.getSelectedItem());
+				
+				tmpPrestamoEliminar = prestamo;
+				fillPrestamoTableModificar(prestamo, tablaPrestamoEliminar);
+			}
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonPrestamoEliminarActionPerformed
+
+    private void tablaPrestamoEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPrestamoEliminarMouseClicked
+        buttonPrestamoEliminarAccion.setEnabled(true);
+    }//GEN-LAST:event_tablaPrestamoEliminarMouseClicked
+
+    private void tablaEjemplarEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEjemplarEliminarMouseClicked
+        buttonEjemplarEliminarAccion.setEnabled(true);
+    }//GEN-LAST:event_tablaEjemplarEliminarMouseClicked
+
+    private void buttonPrestamoEliminarAccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPrestamoEliminarAccionActionPerformed
+        try {
+			// los campos fecha To y devuelto se actualzian directmantee en la consulta SQL
+			new PrestamosDAO().devolucionPrestamo(tmpPrestamoEliminar.get(tablaPrestamoEliminar.getSelectedRow()));
+			blockCamposPrestamoEliminar();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonPrestamoEliminarAccionActionPerformed
+
+    private void buttonReporteGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonReporteGenerarActionPerformed
+        try {
+			biblioteca.Reporte.generarReporte(System.getProperty("user.home"), new ReportesDAO().generarReporte());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_buttonReporteGenerarActionPerformed
+
+    private void listaEjemplarTablaNuevoBibliotecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaEjemplarTablaNuevoBibliotecaActionPerformed
+        try {
+			int maxNumId = new EjemplaresDAO().searchMaxIdEjemplar(((Libro) listaEjemplarTablaNuevoLibro.getSelectedItem()).getISBN(),
+																	((Biblioteca) listaEjemplarTablaNuevoBiblioteca.getSelectedItem()).getIdBiblioteca());
+			textoEjemplarTablaNuevoNumero.setText(String.valueOf(maxNumId + 1));
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+    }//GEN-LAST:event_listaEjemplarTablaNuevoBibliotecaActionPerformed
+	
+	private boolean checkFechaFormat(String fecha) {
+		boolean flag = false;
+		try {
+			SimpleDateFormat fechaFormat = new SimpleDateFormat("yyyy-MM-dd");
+			fechaFormat.setLenient(false);
+			fechaFormat.parse(fecha);
+			flag = true;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			return flag;
+		}
+	}
 	
 	private int checkAndGetAño(String año) throws Exception {
+		if (año.length()>4 || año.length() == 0) {
+			throw new Exception ("Invalid year string");
+		}
 		int year = Integer.parseInt(año);
-		if (year < 0 || year > new java.sql.Date(System.currentTimeMillis()).getYear()) {
+		if (year < 0 || year > Integer.parseInt(new java.sql.Date(System.currentTimeMillis()).toString().substring(0,4))) {
 			throw new Exception("Invalid year");
 		}
 		return year;
@@ -4637,7 +5455,7 @@ public class Principal extends javax.swing.JFrame {
 		ArrayList<Ejemplar> newEjemplares = new ArrayList();
 		String prevISBN="";
 		String ISBN;
-		int j = 0; //last index of newEjemplares
+		int j = -1; //last index of newEjemplares
 		
 		for (int i=0; i<ejemplares.size(); i++){
 			
@@ -4655,6 +5473,42 @@ public class Principal extends javax.swing.JFrame {
 		}
 		
 		return newEjemplares;
+	}
+	
+	private void clearCamposPrestamoNuevoAfiliado(){
+		textoPrestamoTablaNuevoAfiliadoApellido.setText("");
+		textoPrestamoTablaNuevoAfiliadoNombre.setText("");
+		textoPrestamoTablaNuevoAfiliadoSancion.setText("");
+		textoPrestamoTablaNuevoDesde.setText("");
+		textoPrestamoTablaNuevoHasta.setText("");
+		spinnerPrestamoTablaNuevo.setValue(diasPrestamo);
+	}
+	
+	private void clearCamposPrestamoNuevoEjemplar() {
+		textoPrestamoTablaNuevoEjemplarTitulo.setText("");
+		textoPrestamoTablaNuevoEjemplarBiblioteca.setText("");
+		textoPrestamoTablaNuevoEjemplarDisponible.setText("");
+	}
+	
+	private void blockCamposPrestamoNuevo() {
+		tmpPrestamoNuevo = new Prestamo();
+		buttonPrestamoTablaNuevo.setEnabled(false);
+		clearCamposPrestamoNuevoAfiliado();
+		clearCamposPrestamoNuevoEjemplar();
+	}
+	
+	private void blockCamposPrestamoModificar() {
+		tmpPrestamoModificar = null;
+		tmpPrestamoTablaModificarFecha = "";
+		buttonPrestamoTablaModificar.setEnabled(false);
+		textoPrestamoTablaModificarFecha.setText("");
+		spinnerPrestamoTablaModificar.setValue(0);
+		spinnerPrestamoTablaModificar.setEnabled(false);
+	}
+	
+	private void blockCamposPrestamoEliminar() {
+		tmpPrestamoEliminar = null;
+		buttonPrestamoEliminarAccion.setEnabled(false);
 	}
 	
 	private void blockCamposEjemplarModificar() {
@@ -4794,7 +5648,7 @@ public class Principal extends javax.swing.JFrame {
 			forTable[i][3] = libro.getEditorial().getNombre();
 			forTable[i][4] = libro.getEdicion();
 			forTable[i][5] = libro.getPaginas();
-			forTable[i][6] = libro.getFechaPublicacion().getYear();
+			forTable[i][6] = libro.getFechaPublicacion().toString().substring(0, 4);
 			forTable[i][7] = libro.getIdioma();
 		}
 		
@@ -4814,7 +5668,7 @@ public class Principal extends javax.swing.JFrame {
 			forTable[i][5] = ejemplar.getLibro().getEditorial();
 			forTable[i][6] = ejemplar.getLibro().getEdicion();
 			forTable[i][7] = ejemplar.getLibro().getPaginas();
-			forTable[i][8] = ejemplar.getLibro().getFechaPublicacion().getYear();
+			forTable[i][8] = ejemplar.getLibro().getFechaPublicacion().toString().substring(0, 4);
 			forTable[i][9] = ejemplar.getLibro().getIdioma();
 		}
 		
@@ -4838,6 +5692,82 @@ public class Principal extends javax.swing.JFrame {
 		}
 		
 		return forTable;
+	}
+	
+	private Object[][] createObjectForTablePrestamoBuscar (ArrayList<Prestamo> prestamos, int columns) {
+		Object forTable[][] = new Object[prestamos.size()][columns];
+		Prestamo prestamo;
+		for (int i=0; i<prestamos.size(); i++) {
+			prestamo = prestamos.get(i);
+			forTable[i][0] = prestamo.getEjemplar().getIdEjemplar();
+			forTable[i][1] = prestamo.getEjemplar().getLibro().getTitulo();
+			forTable[i][2] = prestamo.getEjemplar().getLibro().getISBN();
+			forTable[i][3] = prestamo.getEjemplar().getBiblioteca().toString();
+			forTable[i][4] = prestamo.getEjemplar().getNumero();
+			forTable[i][5] = prestamo.getDevuelto();
+			forTable[i][6] = prestamo.getLegajo();
+			forTable[i][7] = prestamo.getAfiliado().getApellido();
+			forTable[i][8] = prestamo.getAfiliado().getNombre();
+			forTable[i][9] = prestamo.getFrom().toString();
+			forTable[i][10] = prestamo.getTo().toString();
+		}
+		
+		return forTable;
+	}
+	
+	private Object[][] createObjectForTablePrestamoModificar (ArrayList<Prestamo> prestamos, int columns) {
+		Object forTable[][] = new Object[prestamos.size()][columns];
+		Prestamo prestamo;
+		for (int i=0; i<prestamos.size(); i++) {
+			prestamo = prestamos.get(i);
+			forTable[i][0] = prestamo.getEjemplar().getIdEjemplar();
+			forTable[i][1] = prestamo.getEjemplar().getNumero();
+			forTable[i][2] = prestamo.getEjemplar().getLibro().getTitulo();
+			forTable[i][3] = prestamo.getEjemplar().getBiblioteca().toString();
+			forTable[i][4] = prestamo.getFrom().toString();
+			forTable[i][5] = prestamo.getTo().toString();
+		}
+		
+		return forTable;
+	}
+	
+	private void fillPrestamoTableModificar(ArrayList<Prestamo> prestamos, javax.swing.JTable tabla){
+		int columns = 6;
+		tabla.setModel(new javax.swing.table.DefaultTableModel(
+            createObjectForTablePrestamoModificar(prestamos, columns),
+            new String [] {
+                "ID","Número", "Titulo", "Biblioteca", "Desde", "Hasta"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class,
+				java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+	}
+	
+	private void fillPrestamoTableBuscar(ArrayList<Prestamo> prestamos, javax.swing.JTable tabla){
+		int columns = 11;
+		tabla.setModel(new javax.swing.table.DefaultTableModel(
+            createObjectForTablePrestamoBuscar(prestamos, columns),
+            new String [] {
+                "ID", "Titulo", "ISBN", "Biblioteca", "Número", "Disponible", "Legajo", "Apellido", "Nombre", "Desde", "Hasta"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class,
+				java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class,
+				java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
 	}
 	
 	private void fillEjemplarTableModificar(ArrayList<Ejemplar> ejemplares, javax.swing.JTable tabla){
@@ -4953,6 +5883,9 @@ public class Principal extends javax.swing.JFrame {
         });
 	}
 	
+	// dias de prestamo
+	private final int diasPrestamo = 3;
+	
 	// Algunos atributos propios
 	private ArrayList<Autor> tmpAutor;
 	private ArrayList<Editorial> tmpEditorial;
@@ -4966,6 +5899,12 @@ public class Principal extends javax.swing.JFrame {
 	private ArrayList<Libro> tmpEjemplarNuevoLibro;
 	private ArrayList<Biblioteca> tmpEjemplarNuevoBiblioteca;
 	private ArrayList<Ejemplar> tmpEjemplar;
+	// Prestamo Tab
+	private Prestamo tmpPrestamoNuevo;
+	private ArrayList<Prestamo> tmpPrestamoModificar;
+	private ArrayList<Prestamo> tmpPrestamoEliminar;
+	private String tmpPrestamoTablaModificarFecha;
+	
     /**
      * @param args the command line arguments
      */
@@ -5064,6 +6003,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton buttonModificarTablaAutor;
     private javax.swing.JButton buttonNuevoTablaAutor;
     private javax.swing.JButton buttonPrestamoBuscar;
+    private javax.swing.JButton buttonPrestamoEliminar;
+    private javax.swing.JButton buttonPrestamoEliminarAccion;
+    private javax.swing.JButton buttonPrestamoModificar;
+    private javax.swing.JButton buttonPrestamoTablaAfiliado;
+    private javax.swing.JButton buttonPrestamoTablaEjemplar;
+    private javax.swing.JButton buttonPrestamoTablaModificar;
+    private javax.swing.JButton buttonPrestamoTablaNuevo;
+    private javax.swing.JButton buttonReporteGenerar;
     private javax.swing.JPanel cardLayoutAfiliadoCampos;
     private javax.swing.JPanel cardLayoutAfiliadoTabla;
     private javax.swing.JPanel cardLayoutCamposAutor;
@@ -5084,10 +6031,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton ejemplarEliminar;
     private javax.swing.JButton ejemplarModificar;
     private javax.swing.JButton ejemplarNuevo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -5097,6 +6040,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane21;
+    private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -5147,6 +6092,16 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel labelNuevoTablaFechaAutor;
     private javax.swing.JLabel labelNuevoTablaNacionalidadAutor;
     private javax.swing.JLabel labelNuevoTablaNombreAutor;
+    private javax.swing.JLabel labelPrestamoEliminarBiblioteca;
+    private javax.swing.JLabel labelPrestamoEliminarLegajo;
+    private javax.swing.JLabel labelPrestamoModificarBiblioteca;
+    private javax.swing.JLabel labelPrestamoModificarFecha;
+    private javax.swing.JLabel labelPrestamoModificarLegajo;
+    private javax.swing.JLabel labelPrestamoTablaNuevoAfiliadoBiblioteca;
+    private javax.swing.JLabel labelPrestamoTablaNuevoAfiliadoLegajo;
+    private javax.swing.JLabel labelPrestamoTablaNuevoEjemplarId;
+    private javax.swing.JLabel labelPrestamoTablaNuevoFecha;
+    private javax.swing.JLabel labelPrestamoTablaNuevoFechaHasta;
     private javax.swing.JButton librosBuscar;
     private javax.swing.JButton librosEliminar;
     private javax.swing.JButton librosModificar;
@@ -5157,12 +6112,20 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox listaLibrosModificarEditorial;
     private javax.swing.JComboBox listaLibrosNuevoAutor;
     private javax.swing.JComboBox listaLibrosNuevoEditorial;
+    private javax.swing.JComboBox listaPrestamoEliminarBiblioteca;
+    private javax.swing.JComboBox listaPrestamoModificarBiblioteca;
+    private javax.swing.JComboBox listaPrestamoTablaNuevoAfiliadoBiblioteca;
     private javax.swing.JPanel panelAfiliados;
     private javax.swing.JPanel panelAutores;
     private javax.swing.JPanel panelEditoriales;
     private javax.swing.JPanel panelEjemplares;
     private javax.swing.JPanel panelLibros;
     private javax.swing.JPanel panelPrestamos;
+    private javax.swing.JPanel panelReportes;
+    private javax.swing.JButton prestamoBuscar;
+    private javax.swing.JButton prestamoEliminar;
+    private javax.swing.JButton prestamoModificar;
+    private javax.swing.JButton prestamoNuevo;
     private javax.swing.JRadioButton radioAfiliadoBuscarApellido;
     private javax.swing.JRadioButton radioAfiliadoBuscarLegajo;
     private javax.swing.JRadioButton radioAfiliadoBuscarNombre;
@@ -5211,6 +6174,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioPrestamoBuscarISBN;
     private javax.swing.JRadioButton radioPrestamoBuscarId;
     private javax.swing.JRadioButton radioPrestamoBuscarLegajo;
+    private javax.swing.JSpinner spinnerPrestamoTablaModificar;
+    private javax.swing.JSpinner spinnerPrestamoTablaNuevo;
     private javax.swing.JPanel subPanelAfiliadoBuscar;
     private javax.swing.JPanel subPanelAfiliadoEliminar;
     private javax.swing.JPanel subPanelAfiliadoModificar;
@@ -5252,7 +6217,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel subPanelNuevoAutor;
     private javax.swing.JPanel subPanelNuevoTablaAutor;
     private javax.swing.JPanel subPanelPrestamoBuscar;
+    private javax.swing.JPanel subPanelPrestamoEliminar;
+    private javax.swing.JPanel subPanelPrestamoModificar;
+    private javax.swing.JPanel subPanelPrestamoNuevo;
     private javax.swing.JPanel subPanelPrestamoTablaBuscar;
+    private javax.swing.JPanel subPanelPrestamoTablaEliminar;
+    private javax.swing.JPanel subPanelPrestamoTablaModificar;
+    private javax.swing.JPanel subPanelPrestamoTablaNuevo;
     private javax.swing.JTable tablaAfiliadoBuscar;
     private javax.swing.JTable tablaAfiliadoEliminar;
     private javax.swing.JTable tablaAfiliadoModificar;
@@ -5269,6 +6240,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable tablaLibrosModificar;
     private javax.swing.JTable tablaModificarAutor;
     private javax.swing.JTable tablaPrestamoBuscar;
+    private javax.swing.JTable tablaPrestamoEliminar;
+    private javax.swing.JTable tablaPrestamoModificar;
     private javax.swing.JTextField textoAfiliadoBuscar;
     private javax.swing.JTextField textoAfiliadoEliminar;
     private javax.swing.JTextField textoAfiliadoModificar;
@@ -5327,5 +6300,18 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField textoNuevoTablaNacionalidadAutor;
     private javax.swing.JTextField textoNuevoTablaNombreAutor;
     private javax.swing.JTextField textoPrestamoBuscar;
+    private javax.swing.JTextField textoPrestamoEliminarLegajo;
+    private javax.swing.JTextField textoPrestamoModificarLegajo;
+    private javax.swing.JTextField textoPrestamoTablaModificarFecha;
+    private javax.swing.JTextField textoPrestamoTablaNuevoAfiliadoApellido;
+    private javax.swing.JTextField textoPrestamoTablaNuevoAfiliadoLegajo;
+    private javax.swing.JTextField textoPrestamoTablaNuevoAfiliadoNombre;
+    private javax.swing.JTextField textoPrestamoTablaNuevoAfiliadoSancion;
+    private javax.swing.JTextField textoPrestamoTablaNuevoDesde;
+    private javax.swing.JTextField textoPrestamoTablaNuevoEjemplarBiblioteca;
+    private javax.swing.JTextField textoPrestamoTablaNuevoEjemplarDisponible;
+    private javax.swing.JTextField textoPrestamoTablaNuevoEjemplarId;
+    private javax.swing.JTextField textoPrestamoTablaNuevoEjemplarTitulo;
+    private javax.swing.JTextField textoPrestamoTablaNuevoHasta;
     // End of variables declaration//GEN-END:variables
 }

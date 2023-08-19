@@ -17,6 +17,8 @@ public class Afiliado {
     private String apellido;
     private Date fechaRegistro;
 	private Biblioteca biblioteca;
+	
+	private Date sancion;
 
 	public Afiliado(int legajo, int idBibliotecaAfiliacion, String nombre, String apellido) {
 		this.legajo = legajo;
@@ -117,6 +119,20 @@ public class Afiliado {
 	 */
 	public void setBiblioteca(Biblioteca biblioteca) {
 		this.biblioteca = biblioteca;
+	}
+
+	/**
+	 * @return the sancion
+	 */
+	public Date getSancion() {
+		return sancion;
+	}
+
+	/**
+	 * @param sancion the sancion to set
+	 */
+	public void setSancion(Date sancion) {
+		this.sancion = sancion;
 	}
 	
 }
